@@ -1,5 +1,5 @@
 import React from "react";
-// import '../css/sortcard.css';
+import { Link } from "react-router-dom";      
 
 class SortCard extends React.Component {
   constructor(props) {
@@ -8,12 +8,15 @@ class SortCard extends React.Component {
   }
 
   render() {
-    const {name,info} = this.props;
+    const { setList , name, info } = this.props;
+
     return (
-      <div>
+      <Link to={"/caselist"} onClick={() => {
+        setList("sort",name);
+      }}>
         <h2>{name}</h2>
         <p>{info}</p>
-      </div>
+      </Link>
     );
   }
 }
