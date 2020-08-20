@@ -99,7 +99,6 @@ class RentalSearch extends React.Component {
 
     let result = this._getResult();
     this.props.setRentalResult(result, s);
-    console.log(s);
   }
 
   _getResult() {

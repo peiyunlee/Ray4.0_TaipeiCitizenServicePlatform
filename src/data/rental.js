@@ -15,6 +15,14 @@ const rentalData = [
       cost: 400,
       device: "冷氣"
     },
+    {
+      name: "小龍國小 | 六藝教室",
+      district: "大安區",
+      type: ["教室"],
+      number: 50,
+      cost: 400,
+      device: "冷氣"
+    },
   ];
 
   export default rentalData;

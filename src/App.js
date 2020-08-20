@@ -112,18 +112,6 @@ class App extends React.Component {
         search: search,
       });
 
-      let result = [];
-      if (search.district.do || search.type.do) {
-        rentalData.forEach((item) => {
-          let d = item.district === search.district.name || !search.district.do;
-          let t = item.type.includes(search.type.name) || !search.type.do;
-          if (d && t) result.push(item);
-        });
-      }
-      else
-        result = rentalData
-      this.setRentalResult(result);
-
       let d, t, o;
       d = this.state.check.district;
       d.forEach((ditem) => {
@@ -144,7 +132,19 @@ class App extends React.Component {
 
       o = { district: d, type: t };
 
-      this.setRentalCheck(o);
+      this.setState({
+        check: o,
+      });
+
+      let result = [];
+      if (search.district.do || search.type.do) {
+        rentalData.forEach((item) => {
+          let d = item.district === search.district.name || !search.district.do;
+          let t = item.type.includes(search.type.name) || !search.type.do;
+          if (d && t) result.push(item);
+        });
+      } else result = rentalData;
+      this.setRentalResult(result);
     }
   }
 
@@ -153,6 +153,28 @@ class App extends React.Component {
       this.setState({
         check: check,
       });
+
+      let result = [];
+      let d, t;
+      rentalData.forEach((item) => {
+        if (check.district.every((ditem) => !ditem.checked)) {
+          d = true
+        } else {
+          d = check.district.some(
+            (ditem) => ditem.checked && ditem.name === item.district
+          );
+        }
+        if (check.type.every((titem) => !titem.checked)) {
+          t = true
+        } else {
+          t = item.type.some(
+            (name) => check.type.some((titem)=>titem.checked && titem.name === name)
+          );
+        }
+        if (d && t) result.push(item);
+      });
+
+      this.setRentalResult(result);
     }
   }
 }
