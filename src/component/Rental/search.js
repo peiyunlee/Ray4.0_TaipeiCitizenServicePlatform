@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-class RentalHome extends React.Component {
+class RentalSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,10 +23,10 @@ class RentalHome extends React.Component {
   }
 
   handleSubmit(event) {
-    let d = this.state.search.district !== ""
-    let t = this.state.search.type !== ""
-    let i,j,s;
-    if(d){
+    let d = this.state.search.district !== "";
+    let t = this.state.search.type !== "";
+    let i, j, s;
+    if (d) {
       switch (this.state.search.district) {
         case "中正區":
           i = 0;
@@ -65,11 +65,11 @@ class RentalHome extends React.Component {
           i = 11;
           break;
         default:
-          i = 0
+          i = 0;
           break;
       }
     }
-    if(t){
+    if (t) {
       switch (this.state.search.type) {
         case "運動":
           j = 0;
@@ -94,16 +94,17 @@ class RentalHome extends React.Component {
           break;
       }
     }
-    
+
     s = {
       keyword: this.state.keyword,
-      district: {do:d,index:i,name:this.state.search.district},
-      type: {do:t,index:j,name:this.state.search.type},
+      district: { do: d, index: i, name: this.state.search.district },
+      type: { do: t, index: j, name: this.state.search.type },
     };
 
     this.props.setRentalSearch(s);
     event.preventDefault();
-    this.props.history.push("/rentallist");
+    if (this.props.location.pathname !== "/rentallist")
+      this.props.history.push("/rentallist");
   }
 
   render() {
@@ -160,4 +161,4 @@ class RentalHome extends React.Component {
   }
 }
 
-export default withRouter(RentalHome);
+export default withRouter(RentalSearch);

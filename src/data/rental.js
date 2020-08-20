@@ -11,7 +11,7 @@ const rentalData = [
       name: "大龍國小 | 六藝教室",
       district: "大安區",
       type: ["運動","教室"],
-      number: 50,
+      number: 20,
       cost: 400,
       device: "冷氣"
     },
@@ -20,7 +20,7 @@ const rentalData = [
       district: "大安區",
       type: ["教室"],
       number: 50,
-      cost: 400,
+      cost: 4000,
       device: "冷氣"
     },
   ];

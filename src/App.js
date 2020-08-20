@@ -4,7 +4,7 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import "./css/App.css";
 // import Home from "./component/Home/home";
 import RentalHome from "./component/Rental/rentalhome";
-import RentalSearch from "./component/Rental/rentalsearch";
+import RentalResult from "./component/Rental/rentalresult";
 import CaseList from "./component/Case/caselist";
 import rentalData from "./data/rental";
 import caseData from "./data/case";
@@ -21,7 +21,7 @@ class App extends React.Component {
         district: { do: false, index: 0, name: "" },
         type: { do: false, index: 0, name: "" },
       },
-      check: {
+      filter: {
         district: [
           { checked: false, name: "中正區" },
           { checked: false, name: "大同區" },
@@ -43,12 +43,30 @@ class App extends React.Component {
           { checked: false, name: "禮堂" },
           { checked: false, name: "教室" },
         ],
+        number: [
+          { checked: false, min: 0, max: 30 },
+          { checked: false, min: 30, max: 60 },
+          { checked: false, min: 60, max: 100 },
+          { checked: false, min: 100, max: 200 },
+          { checked: false, min: 200, max: 500 },
+          { checked: false, min: 500, max: 1000 },
+          { checked: false, min: 1000, max: 10000 },
+        ],
+        cost: [
+          { checked: false, min: 0, max: 0 },
+          { checked: false, min: 0, max: 500 },
+          { checked: false, min: 500, max: 1000 },
+          { checked: false, min: 1000, max: 3000 },
+          { checked: false, min: 3000, max: 5000 },
+          { checked: false, min: 5000, max: 10000 },
+          { checked: false, min: 10000, max: 100000 },
+        ]
       },
     };
 
     this.setCaseList = this.setCaseList.bind(this);
     this.setRentalSearch = this.setRentalSearch.bind(this);
-    this.setRentalCheck = this.setRentalCheck.bind(this);
+    this.setRentalFilter = this.setRentalFilter.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
   }
 
@@ -71,10 +89,12 @@ class App extends React.Component {
           <Route
             path="/rentallist"
             component={() => (
-              <RentalSearch
-                check={this.state.check}
+              <RentalResult
+                filter={this.state.filter}
                 result={this.state.rentalResult}
-                setRentalCheck={this.setRentalCheck}
+                setRentalSearch={this.setRentalSearch}
+                setRentalFilter={this.setRentalFilter}
+                setRentalResult={this.setRentalResult}
               />
             )}
           />
@@ -113,11 +133,11 @@ class App extends React.Component {
       });
 
       let d, t, o;
-      d = this.state.check.district;
+      d = this.state.filter.district;
       d.forEach((ditem) => {
         ditem.checked = false;
       });
-      t = this.state.check.type;
+      t = this.state.filter.type;
       t.forEach((titem) => {
         titem.checked = false;
       });
@@ -130,10 +150,12 @@ class App extends React.Component {
         t[search.type.index].checked = true;
       }
 
-      o = { district: d, type: t };
+      o = Object.assign({}, this.state.filter, {
+        district: d, type: t
+      });
 
       this.setState({
-        check: o,
+        filter: o,
       });
 
       let result = [];
@@ -148,30 +170,40 @@ class App extends React.Component {
     }
   }
 
-  setRentalCheck(check) {
-    if (check !== {}) {
+  setRentalFilter(filter) {
+    if (filter !== {}) {
       this.setState({
-        check: check,
+        filter: filter,
       });
 
       let result = [];
-      let d, t;
+      let d, t,n,c;
       rentalData.forEach((item) => {
-        if (check.district.every((ditem) => !ditem.checked)) {
+        if (filter.district.every((ditem) => !ditem.checked)) {
           d = true
         } else {
-          d = check.district.some(
+          d = filter.district.some(
             (ditem) => ditem.checked && ditem.name === item.district
           );
         }
-        if (check.type.every((titem) => !titem.checked)) {
+        if (filter.type.every((titem) => !titem.checked)) {
           t = true
         } else {
           t = item.type.some(
-            (name) => check.type.some((titem)=>titem.checked && titem.name === name)
+            (name) => filter.type.some((titem)=>titem.checked && titem.name === name)
           );
         }
-        if (d && t) result.push(item);
+        if (filter.number.every((nitem) => !nitem.checked)) {
+          n = true
+        } else {
+          n = filter.number.some((nitem)=>nitem.checked && item.number >= nitem.min && item.number <= nitem.max)
+        }
+        if (filter.cost.every((citem) => !citem.checked)) {
+          c = true
+        } else {
+          c = filter.cost.some((citem)=>citem.checked && item.cost >= citem.min && item.cost <= citem.max)
+        }
+        if (d && t && n && c ) result.push(item);
       });
 
       this.setRentalResult(result);
