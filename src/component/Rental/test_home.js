@@ -23,10 +23,18 @@ class RentalHome extends React.Component {
   }
 
   handleSubmit(event) {
-    let d = this.state.search.district !== ""
-    let t = this.state.search.type !== ""
-    let i,j,s;
-    if(d){
+    const { search, rentalData } = this.props;
+    let isdistrict = false,
+      istype = false;
+    if (this.state.search.district !== "") isdistrict = true;
+    if (this.state.search.type !== "") istype = true;
+
+    let i;
+    let s;
+    let d;
+
+    d = search.district;
+    if (isdistrict) { //有選擇行政區
       switch (this.state.search.district) {
         case "中正區":
           i = 0;
@@ -65,43 +73,68 @@ class RentalHome extends React.Component {
           i = 11;
           break;
         default:
-          i = 0
           break;
       }
+      d.forEach((item) => (item.selected = false));
+      d[i].selected = true;
     }
-    if(t){
-      switch (this.state.search.type) {
-        case "運動":
-          j = 0;
-          break;
-        case "公園":
-          j = 1;
-          break;
-        case "廣場":
-          j = 2;
-          break;
-        case "演講廳":
-          j = 3;
-          break;
-        case "禮堂":
-          j = 4;
-          break;
-        case "教室":
-          j = 5;
-          break;
-        default:
-          j = 0;
-          break;
-      }
+    else{
+      d.forEach((item) => (item.selected = true));
     }
-    
-    s = {
-      keyword: this.state.keyword,
-      district: {do:d,index:i,name:this.state.search.district},
-      type: {do:t,index:j,name:this.state.search.type},
-    };
+    s = Object.assign({}, search, {
+      district: d,
+      isdistrict: isdistrict
+    });
 
-    this.props.setRentalSearch(s);
+    let j;
+    switch (this.state.search.type) {
+      case "運動":
+        j = 0;
+        break;
+      case "公園":
+        j = 1;
+        break;
+      case "廣場":
+        j = 2;
+        break;
+      case "演講廳":
+        j = 3;
+        break;
+      case "禮堂":
+        j = 4;
+        break;
+      case "教室":
+        j = 5;
+        break;
+      default:
+        j = null;
+        break;
+    }
+
+    if (j !== null) {
+      let t = search.type;
+      t.forEach((item) => (item.selected = false));
+      t[j].selected = true;
+      s = Object.assign({}, search, {
+        type: t,
+      });
+    } else {
+      let t = search.type;
+      t.forEach((item) => (item.selected = true));
+      s = Object.assign({}, search, {
+        type: t,
+      });
+    }
+
+    let result = [];
+    rentalData.forEach((item) => {
+      let district =
+        item.district === this.state.search.district || !isdistrict;
+      let type = item.type.includes(this.state.search.type) || !istype;
+      if (district && type) result.push(item);
+    });
+
+    this.props.setRentalResult(result, s);
     event.preventDefault();
     this.props.history.push("/rentallist");
   }

@@ -15,27 +15,40 @@ class App extends React.Component {
     this.state = {
       caseListName: "",
       caseListType: "sort",
-      rentalResult: null,
+      rentalResult: rentalData,
       search: {
         keyword: "",
+        district: { do: false, index: 0, name: "" },
+        type: { do: false, index: 0, name: "" },
+      },
+      check: {
         district: [
-          { selected: false, name: "中正區" },
-          { selected: false, name: "大同區" },
-          { selected: false, name: "中山區" },
-          { selected: false, name: "松山區" },
-          { selected: false, name: "大安區" },
-          { selected: false, name: "萬華區" },
-          { selected: false, name: "信義區" },
-          { selected: false, name: "士林區" },
-          { selected: false, name: "松山區" },
-          { selected: false, name: "內湖區" },
-          { selected: false, name: "文山區" },
+          { checked: false, name: "中正區" },
+          { checked: false, name: "大同區" },
+          { checked: false, name: "中山區" },
+          { checked: false, name: "松山區" },
+          { checked: false, name: "大安區" },
+          { checked: false, name: "萬華區" },
+          { checked: false, name: "信義區" },
+          { checked: false, name: "士林區" },
+          { checked: false, name: "松山區" },
+          { checked: false, name: "內湖區" },
+          { checked: false, name: "文山區" },
         ],
-        type: [false],
+        type: [
+          { checked: false, name: "運動" },
+          { checked: false, name: "公園" },
+          { checked: false, name: "廣場" },
+          { checked: false, name: "演講廳" },
+          { checked: false, name: "禮堂" },
+          { checked: false, name: "教室" },
+        ],
       },
     };
 
     this.setCaseList = this.setCaseList.bind(this);
+    this.setRentalSearch = this.setRentalSearch.bind(this);
+    this.setRentalCheck = this.setRentalCheck.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
   }
 
@@ -52,21 +65,16 @@ class App extends React.Component {
             exact
             path="/"
             component={() => (
-              <RentalHome
-                search={this.state.search}
-                rentalData={rentalData}
-                setRentalResult={this.setRentalResult}
-              />
+              <RentalHome setRentalSearch={this.setRentalSearch} />
             )}
           />
           <Route
             path="/rentallist"
             component={() => (
               <RentalSearch
-                search={this.state.search}
-                rentalData={rentalData}
+                check={this.state.check}
                 result={this.state.rentalResult}
-                setRentalResult={this.setRentalResult}
+                setRentalCheck={this.setRentalCheck}
               />
             )}
           />
@@ -92,16 +100,60 @@ class App extends React.Component {
     });
   }
 
-  setRentalResult(result, search = {}) {
+  setRentalResult(result) {
+    this.setState({
+      rentalResult: result,
+    });
+  }
+
+  setRentalSearch(search) {
     if (search !== {}) {
       this.setState({
         search: search,
       });
+
+      let result = [];
+      if (search.district.do || search.type.do) {
+        rentalData.forEach((item) => {
+          let d = item.district === search.district.name || !search.district.do;
+          let t = item.type.includes(search.type.name) || !search.type.do;
+          if (d && t) result.push(item);
+        });
+      }
+      else
+        result = rentalData
+      this.setRentalResult(result);
+
+      let d, t, o;
+      d = this.state.check.district;
+      d.forEach((ditem) => {
+        ditem.checked = false;
+      });
+      t = this.state.check.type;
+      t.forEach((titem) => {
+        titem.checked = false;
+      });
+      if (search.district.do && search.type.do) {
+        d[search.district.index].checked = true;
+        t[search.type.index].checked = true;
+      } else if (search.district.do) {
+        d[search.district.index].checked = true;
+      } else if (search.type.do) {
+        t[search.type.index].checked = true;
+      }
+
+      o = { district: d, type: t };
+
+      this.setRentalCheck(o);
     }
-    this.setState({
-      rentalResult: result,
-    });
-    
+  }
+
+  setRentalCheck(check) {
+    if (check !== {}) {
+      this.setState({
+        check: check,
+      });
+    }
   }
 }
 
