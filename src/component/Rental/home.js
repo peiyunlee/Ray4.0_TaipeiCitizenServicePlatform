@@ -1,11 +1,15 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import SearchBar from "./search"
+import SearchBar from "./search";
+import Header from "../header"
 
 class RentalHome extends React.Component {
   render() {
     return (
-      <SearchBar setRentalSearch={this.props.setRentalSearch}/>
+      <div>
+        <Header />
+        <SearchBar setRentalSearch={this.props.setRentalSearch} />
+      </div>
     );
   }
 }

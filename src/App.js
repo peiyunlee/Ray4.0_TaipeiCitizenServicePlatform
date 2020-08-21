@@ -1,10 +1,11 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
+// import "./css/normalize.css";
 import "./css/App.css";
 // import Home from "./component/Home/home";
-import RentalHome from "./component/Rental/rentalhome";
-import RentalResult from "./component/Rental/rentalresult";
+import RentalHome from "./component/Rental/home";
+import RentalResult from "./component/Rental/result";
 import CaseList from "./component/Case/caselist";
 import rentalData from "./data/rental";
 import caseData from "./data/case";
@@ -72,7 +73,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <HashRouter>
+      <HashRouter className="App">
         <Switch>
           {/* <Route
             exact
