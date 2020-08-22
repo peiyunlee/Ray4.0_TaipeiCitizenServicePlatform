@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.5f361e03.chunk.css",
-    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.5d6ab2db.chunk.js",
-    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.5d6ab2db.chunk.js.map",
+    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.d58f26a1.chunk.css",
+    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.efa7a479.chunk.js",
+    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.efa7a479.chunk.js.map",
     "runtime-main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js",
     "runtime-main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js.map",
-    "static/js/2.3781522f.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.3781522f.chunk.js",
-    "static/js/2.3781522f.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.3781522f.chunk.js.map",
+    "static/js/2.fe1394c4.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.fe1394c4.chunk.js",
+    "static/js/2.fe1394c4.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.fe1394c4.chunk.js.map",
     "index.html": "/Ray4.0_TaipeiCitizenServicePlatform/index.html",
-    "precache-manifest.5e06934a4507346596e7c46a7897a105.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.5e06934a4507346596e7c46a7897a105.js",
+    "precache-manifest.8131b77a39d5b88f9eba525463e43136.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.8131b77a39d5b88f9eba525463e43136.js",
     "service-worker.js": "/Ray4.0_TaipeiCitizenServicePlatform/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.3781522f.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.3781522f.chunk.js.LICENSE.txt"
+    "static/css/main.d58f26a1.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.d58f26a1.chunk.css.map",
+    "static/js/2.fe1394c4.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.fe1394c4.chunk.js.LICENSE.txt",
+    "static/media/home.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/101.5b2bca1c.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e73960f0.js",
-    "static/js/2.3781522f.chunk.js",
-    "static/css/main.5f361e03.chunk.css",
-    "static/js/main.5d6ab2db.chunk.js"
+    "static/js/2.fe1394c4.chunk.js",
+    "static/css/main.d58f26a1.chunk.css",
+    "static/js/main.efa7a479.chunk.js"
   ]
 }
