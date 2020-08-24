@@ -1,0 +1,35 @@
+.filter{
+    width: 310px;
+    margin-top: 25px;
+}
+.filter .title{
+    font-size: 22px;
+    font-weight: 700;
+    border: 1px solid #000000;
+    border-radius: 5px 5px 0px 0px;
+    padding: 16px 0;
+    text-align: center;
+}
+.filter .container{
+    padding: 16px 35px;
+    border:1px solid #000;
+    border-top:none;
+}
+.filter .list_title{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.filter .list{
+    display: flex;
+    flex-direction: column;
+}
+.filter .list>label{
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+.filter input{
+    margin-right: 15px;
+    width: 17px;
+    height: 17px;
+}

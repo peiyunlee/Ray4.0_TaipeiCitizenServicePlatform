@@ -1,0 +1,30 @@
+.rentalresult {
+  width: 1170px;
+  display: flex;
+  justify-content: space-between;
+  margin: 26px auto 0;
+}
+.s2_search_wrapper {
+  background-color: #d2edef;
+  border: 1px solid #000000;
+  width: 310px;
+  height: 563px;
+  border-radius: 6px;
+}
+.s2_title {
+  height: 70px;
+  background-color: #008992;
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rentalresult > .container {
+  width: 800px;
+}
+.countresult {
+  font-size: 30px;
+  font-weight: 700;
+}

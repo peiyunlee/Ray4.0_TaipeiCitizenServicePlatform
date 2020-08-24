@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/images/台北市政府logo去背 1.png";
 import { Link } from "react-router-dom";
-import "../css/header.css";
+import "./header.css";
 
 class Header extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Header extends React.Component {
             <h1>市民服務大平台</h1>
           </div>
         </Link>
-          <nav>
+        <nav>
           <ul>
             <li>
               <Link to="/" className="nav-item">
@@ -37,7 +37,7 @@ class Header extends React.Component {
               </Link>
             </li>
           </ul>
-          </nav>
+        </nav>
       </header>
     );
   }

@@ -7,16 +7,19 @@ header{
     align-items: center;
     padding: 0 22px;
     justify-content: space-between;
+    background-color: #00BCC8;
 }
 .logo{
     margin-right: 13px;
 }
-h2 {
+.logo-wrapper h2 {
   font-weight: 700;
-  margin-top:5px
+  margin-top:5px;
+  color: white;
 }
-h1{
-    margin-top:-5px
+.logo-wrapper h1{
+    margin-top:-5px;
+    color: white;
 }
 .logo-wrapper {
     display: flex;
@@ -25,25 +28,26 @@ nav{
     height: 100%;
     display: flex;
 }
-ul{
+nav ul{
     display: flex;
     align-items: center;
     height: 100%;
 }
-li{
+nav li{
     display: flex;
     align-items: center;
     height: 100%;
 
 }
-li>a{
+nav li>a{
     display: flex;
     align-items: center;
-    color:#344344;
-    font-weight: 700;
+    color: white;
     padding:14px;
     height: 100%;
+    transition: all 0.2s;
 }
-li>a:hover{
+nav li>a:hover{
     color:red;
+    transition: all 0.2s;
 }

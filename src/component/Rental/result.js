@@ -1,11 +1,14 @@
 import React from "react";
-import SearchBar from "./search";
+import SearchBar from "./searchbar/search2";
 import RentalFilter from "./filter";
+import VenueCard from "./venuecard";
+
+import "./result.css";
+import "./searchbar/search2.css";
 
 class RentalResult extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this._renderItems = this._renderItems.bind(this);
     this._costSort = this._costSort.bind(this);
@@ -15,57 +18,68 @@ class RentalResult extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar setRentalSearch={this.props.setRentalSearch} />
-        <RentalFilter
-          filter={this.props.filter}
-          setRentalFilter={this.props.setRentalFilter}
-        />
-        <div>找到{this.props.result.length}筆結果</div>
-        <div>
-          <label>
-            <input
-              name="價格"
-              type="checkbox"
-              onChange={() => {
-                this._costSort(0);
-              }}
+        <div className="rentalresult">
+          <section>
+            <div className="s2_search_wrapper">
+              <div className="s2_title">搜尋</div>
+              <SearchBar setRentalSearch={this.props.setRentalSearch} />
+            </div>
+            <RentalFilter
+              filter={this.props.filter}
+              setRentalFilter={this.props.setRentalFilter}
             />
-            價格由低到高
-          </label>
-          <label>
-            <input
-              name="價格"
-              type="checkbox"
-              onChange={() => {
-                this._costSort(1);
-              }}
-            />
-            價格由高到低
-          </label>
+          </section>
+          <section className="container">
+            <div className="countresult">
+              找到 {this.props.result.length} 筆結果
+            </div>
+            <div>
+              <label>
+                <input
+                  name="價格"
+                  type="checkbox"
+                  onChange={() => {
+                    this._costSort(0);
+                  }}
+                />
+                價格由低到高
+              </label>
+              <label>
+                <input
+                  name="價格"
+                  type="checkbox"
+                  onChange={() => {
+                    this._costSort(1);
+                  }}
+                />
+                價格由高到低
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  name="人數"
+                  type="checkbox"
+                  onChange={() => {
+                    this._numberSort(0);
+                  }}
+                />
+                人數由低到高
+              </label>
+              <label>
+                <input
+                  name="人數"
+                  type="checkbox"
+                  onChange={() => {
+                    this._numberSort(1);
+                  }}
+                />
+                人數由高到低
+              </label>
+            </div>
+            <div>{this._renderItems()}</div>
+          </section>
         </div>
-        <div>
-          <label>
-            <input
-              name="人數"
-              type="checkbox"
-              onChange={() => {
-                this._numberSort(0);
-              }}
-            />
-            人數由低到高
-          </label>
-          <label>
-            <input
-              name="人數"
-              type="checkbox"
-              onChange={() => {
-                this._numberSort(1);
-              }}
-            />
-            人數由高到低
-          </label>
-        </div>
-        <div>{this._renderItems()}</div>
       </div>
     );
   }
@@ -105,18 +119,8 @@ class RentalResult extends React.Component {
     let list = [];
     if (result !== []) {
       result.forEach((item, index) => {
-        let t = [];
-        item.type.forEach((titem) => t.push(<p key={titem}>{titem}</p>));
         list.push(
-          <div key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.district}</p>
-            <div>
-              {t}
-              <p>{item.number}</p>
-            </div>
-            <p>{item.cost}</p>
-          </div>
+          <VenueCard key={index} item={item} />
         );
       });
     } else {

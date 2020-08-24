@@ -1,0 +1,71 @@
+.venue-card {
+    width: 100%;
+    height: 290px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    display: flex;
+    padding: 26px 36px;
+  }
+  .venue-card > .district {
+    width: 95px;
+    height: 50px;
+    background: #7fcdd2;
+    box-shadow: 3px 4px 9px rgba(0, 0, 0, 0.18);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:36px;
+  }
+  .venue-card > .img{
+    width: 300px;
+    height: 241px;
+    border: 1px solid red;
+    margin-right: 26px;
+  }
+  .venue-card > .info{
+      width: 300px;
+      height: 241px;
+      color: #000000;
+  }
+  .venue-card h4{
+      font-weight: bold;
+      font-size: 22px;
+      margin-bottom: 15px;
+  }
+  .venue-card .type{
+      background: #7FCDD2;
+      width: 48px;
+      height: 30px;
+      font-size: 14px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      margin-right: 16px;
+      margin-bottom: 22px;
+  }
+  .venue-card .other{
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+  }
+  .venue-card .icon{
+      width: 18px;
+      height: 18px;
+      border: 1px solid red;
+      margin-right: 10px;
+  }
+  .venue-card .button{
+    position: absolute;
+    font-size: 22px;
+    line-height: 23px;
+    right: 26px;
+    bottom: 27px;
+    transition: all 0.2s;
+  }

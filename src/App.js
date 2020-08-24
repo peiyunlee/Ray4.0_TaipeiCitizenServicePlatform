@@ -2,20 +2,33 @@ import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
 // import "./css/normalize.css";
-import "./css/App.css";
-// import Home from "./component/Home/home";
+import "./app.css";
+import Home from "./component/Home/home";
 import RentalHome from "./component/Rental/home";
 import RentalResult from "./component/Rental/result";
 import CaseList from "./component/Case/caselist";
+import CaseInfo from "./component/Case/caseinfo";
+import VenueDetail from "./component/Rental/Detail";
+import Header from "./component/header";
+import Footer from "./component/footer";
+import FatFooter from "./component/Home/fatfooter";
+import ScrollToTop from "./component/scrolltotop";
+import StepOne from "./component/Apply/one";
+import StepTwo from "./component/Apply/two";
+import StepThree from "./component/Apply/three";
+import StepFour from "./component/Apply/four";
+
 import rentalData from "./data/rental";
 import caseData from "./data/case";
+import sortData from "./data/sort";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      caseListName: "",
-      caseListType: "sort",
+      rentalData: rentalData,
+      caseData: caseData,
+      sortData: sortData,
       rentalResult: rentalData,
       search: {
         keyword: "",
@@ -61,11 +74,10 @@ class App extends React.Component {
           { checked: false, min: 3000, max: 5000 },
           { checked: false, min: 5000, max: 10000 },
           { checked: false, min: 10000, max: 100000 },
-        ]
+        ],
       },
     };
 
-    this.setCaseList = this.setCaseList.bind(this);
     this.setRentalSearch = this.setRentalSearch.bind(this);
     this.setRentalFilter = this.setRentalFilter.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
@@ -74,15 +86,21 @@ class App extends React.Component {
   render() {
     return (
       <HashRouter className="App">
+        <ScrollToTop />
+        <Header />
         <Switch>
-          {/* <Route
-            exact
-            path="/"
-            component={() => <Home caseData={caseData} setList={this.setList} />}
-          /> */}
           <Route
             exact
             path="/"
+            component={() => (
+              <div>
+                <Home sortData={this.state.sortData} />
+                <FatFooter sortData={this.state.sortData} />
+              </div>
+            )}
+          />
+          <Route
+            path="/rental"
             component={() => (
               <RentalHome setRentalSearch={this.setRentalSearch} />
             )}
@@ -100,25 +118,48 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/caselist"
-            component={() => (
+            path="/caselist/:listtype/:listname"
+            component={(props) => (
               <CaseList
-                caseData={caseData}
-                listName={this.state.caseListName}
-                listType={this.state.caseListType}
+                {...props}
+                sortData={this.state.sortData}
+                caseData={this.state.caseData}
               />
             )}
           />
+          <Route
+            path="/caseinfo/:caseindex"
+            component={(props) => (
+              <CaseInfo
+                item={this.state.caseData[props.match.params.caseindex]}
+              />
+            )}
+          />
+          <Route
+            path="/venuedetail/:venueindex"
+            component={(props) => <VenueDetail
+              item={this.state.rentalData[props.match.params.venueindex]} />}
+          />
+          <Route
+            path="/apply/step1"
+            component={(props) => <StepOne />}
+          />
+          <Route
+            path="/apply/step2"
+            component={(props) => <StepTwo />}
+          />
+          <Route
+            path="/apply/step3"
+            component={(props) => <StepThree />}
+          />
+          <Route
+            path="/apply/step4"
+            component={(props) => <StepFour />}
+          />
         </Switch>
+        <Footer />
       </HashRouter>
     );
-  }
-
-  setCaseList(listType, listName) {
-    this.setState({
-      caseListName: listName,
-      caseListType: listType,
-    });
   }
 
   setRentalResult(result) {
@@ -152,7 +193,8 @@ class App extends React.Component {
       }
 
       o = Object.assign({}, this.state.filter, {
-        district: d, type: t
+        district: d,
+        type: t,
       });
 
       this.setState({
@@ -161,12 +203,12 @@ class App extends React.Component {
 
       let result = [];
       if (search.district.do || search.type.do) {
-        rentalData.forEach((item) => {
+        this.state.rentalData.forEach((item) => {
           let d = item.district === search.district.name || !search.district.do;
           let t = item.type.includes(search.type.name) || !search.type.do;
           if (d && t) result.push(item);
         });
-      } else result = rentalData;
+      } else result = this.state.rentalData;
       this.setRentalResult(result);
     }
   }
@@ -178,33 +220,41 @@ class App extends React.Component {
       });
 
       let result = [];
-      let d, t,n,c;
-      rentalData.forEach((item) => {
+      let d, t, n, c;
+      this.state.rentalData.forEach((item) => {
         if (filter.district.every((ditem) => !ditem.checked)) {
-          d = true
+          d = true;
         } else {
           d = filter.district.some(
             (ditem) => ditem.checked && ditem.name === item.district
           );
         }
         if (filter.type.every((titem) => !titem.checked)) {
-          t = true
+          t = true;
         } else {
-          t = item.type.some(
-            (name) => filter.type.some((titem)=>titem.checked && titem.name === name)
+          t = item.type.some((name) =>
+            filter.type.some((titem) => titem.checked && titem.name === name)
           );
         }
         if (filter.number.every((nitem) => !nitem.checked)) {
-          n = true
+          n = true;
         } else {
-          n = filter.number.some((nitem)=>nitem.checked && item.number >= nitem.min && item.number <= nitem.max)
+          n = filter.number.some(
+            (nitem) =>
+              nitem.checked &&
+              item.number >= nitem.min &&
+              item.number <= nitem.max
+          );
         }
         if (filter.cost.every((citem) => !citem.checked)) {
-          c = true
+          c = true;
         } else {
-          c = filter.cost.some((citem)=>citem.checked && item.cost >= citem.min && item.cost <= citem.max)
+          c = filter.cost.some(
+            (citem) =>
+              citem.checked && item.cost >= citem.min && item.cost <= citem.max
+          );
         }
-        if (d && t && n && c ) result.push(item);
+        if (d && t && n && c) result.push(item);
       });
 
       this.setRentalResult(result);

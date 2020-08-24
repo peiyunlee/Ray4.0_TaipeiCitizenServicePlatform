@@ -1,0 +1,55 @@
+
+.s2_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.s2_input_t,
+.s2_button {
+  width:247px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #008992;
+  font-size: 16px;
+  padding-left: 45px;
+  text-align: left;
+  background-color: #fff;
+  margin-top: 8px;
+}
+.s2_input_t,
+.s2_button:focus {
+  outline: 0;
+}
+.s2_button {
+  cursor: pointer;
+}
+input[type="submit"] {
+  margin: 24px auto 0px;
+  display: block;
+  font-size: 22px;
+}
+.calender {
+  width: 320px;
+  height: 280px;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 5px;
+  margin-top: -5px;
+}
+.calender::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid white;
+  left: 20px;
+  top: -10px;
+}
+.s2_container {
+  color: #008992;
+  height: 75px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}

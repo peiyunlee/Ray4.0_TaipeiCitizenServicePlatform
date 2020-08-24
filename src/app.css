@@ -8,6 +8,8 @@
   font-family: "Roboto", sans-serif,'Noto Sans TC', sans-serif;;
   font-weight: 400;
   font-size: 16px;
+  position:relative;
+  letter-spacing: 0.05em;
 }
 
 .App {
@@ -19,7 +21,7 @@ h1 {
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 a {
@@ -29,4 +31,14 @@ a {
 
 li{
   list-style-type: none;;
+}
+
+button {
+  border: none;
+}
+
+button:active,
+button:focus,input:focus,input:active {
+  box-shadow: none;
+  outline: none;
 }

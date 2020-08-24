@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./filter.css";
+
 class RentalFilter extends React.Component {
   constructor(props) {
     super(props);
@@ -17,33 +19,40 @@ class RentalFilter extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>{this._renderCheckBox_D()}</div>
-        <div>{this._renderCheckBox_T()}</div>
-        <div>{this._renderCheckBox_N()}</div>
-        <div>{this._renderCheckBox_C()}</div>
-        <div>
-          <label>
-            <input
-              name="停車場"
-              type="checkbox"
-            />
-            停車場
-          </label>
-          <label>
-            <input
-              name="親子設備"
-              type="checkbox"
-            />
-            親子設備
-          </label>
-          <label>
-            <input
-              name="無障礙設施"
-              type="checkbox"
-            />
-            無障礙設施
-          </label>
+      <div className="filter">
+        <div className="title">透過以下分類搜尋</div>
+        <div className="container">
+          <div className="list_title">行政區</div>
+          <div className="list">{this._renderCheckBox_D()}</div>
+        </div>
+        <div className="container">
+          <div className="list_title">場地類型</div>
+          <div className="list">{this._renderCheckBox_T()}</div>
+        </div>
+        <div className="container">
+          <div className="list_title">容納人數</div>
+          <div className="list">{this._renderCheckBox_N()}</div>
+        </div>
+        <div className="container">
+          <div className="list_title">場地價格（小時）</div>
+          <div className="list">{this._renderCheckBox_C()}</div>
+        </div>
+        <div className="container">
+          <div className="list_title">其他設施及設備</div>
+          <div className="list">
+            <label>
+              <input name="停車場" type="checkbox" />
+              停車場
+            </label>
+            <label>
+              <input name="親子設備" type="checkbox" />
+              親子設備
+            </label>
+            <label>
+              <input name="無障礙設施" type="checkbox" />
+              無障礙設施
+            </label>
+          </div>
         </div>
       </div>
     );

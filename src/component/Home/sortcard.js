@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";      
+import { Link } from "react-router-dom";
 
 class SortCard extends React.Component {
   constructor(props) {
@@ -8,16 +8,23 @@ class SortCard extends React.Component {
   }
 
   render() {
-    const { setList , name, info } = this.props;
+    const { list, listtype } = this.props;
+    if (listtype === "theme") {
+      return (
+        <Link to={"/caselist/" + listtype + "/" + list.name}>
+          <h3>{list.name}</h3>
+          <p>{list.info}</p>
+        </Link>
+      );
+    }
+    else{
+      return (
+        <Link to={"/caselist/" + listtype + "/" + list.name}>
+          <h3>{list.name}</h3>
+        </Link>
+      );
 
-    return (
-      <Link to={"/caselist"} onClick={() => {
-        setList("sort",name);
-      }}>
-        <h2>{name}</h2>
-        <p>{info}</p>
-      </Link>
-    );
+    }
   }
 }
 

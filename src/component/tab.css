@@ -1,0 +1,14 @@
+.tab-list-item {
+  border: none;
+  background: #ebebeb;
+  color: #008992;
+  font-weight: bold;
+  font-size: 26px;
+}
+.tab-list-active {
+  background: #acdee1;
+}
+.home .tab-list-item {
+  width: 200px;
+  height: 56px;
+}

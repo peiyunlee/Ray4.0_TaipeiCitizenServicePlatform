@@ -1,0 +1,28 @@
+.section_rh {
+  width: 100%;
+  /* height: calc( 100vh - 162px ); */
+  height: 894px;
+  background-image: url(../../assets/images/101.jpg);
+  background-position: top center;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  padding-top: 90px;
+}
+.rental-home h3 {
+  font-size: 36px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.info {
+  font-size: 24px;
+  margin-bottom: 60px;
+  color: #fff;
+  font-weight: 400;
+}
+.s1_search_wrapper {
+  display: flex;
+  justify-content: center;
+}
