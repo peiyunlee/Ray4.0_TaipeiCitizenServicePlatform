@@ -1,28 +1,32 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import Button from "../../button";
+import Calender from "../../calender";
+
 import search from "../../../assets/images/icon/search.svg";
 import start from "../../../assets/images/icon/startdate.png";
-// import end from "../../../assets/images/icon/enddate.png";
-import dropdown from "../../../assets/images/icon/dropdown.png";
+import end from "../../../assets/images/icon/enddate.png";
+import down from "../../../assets/images/icon/dropdown.png";
+import position from "../../../assets/images/icon/position.png";
+import type from "../../../assets/images/icon/type.png";
 
 class RentalHomeSearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showcalender: [false, false],
+      showdropdown: [true, false, false],
       search: {
         keyword: "",
-        district: "",
-        type: "",
+        district: "選擇行政區",
+        type: "選擇類型",
         dateStart: "選擇日期",
-        dateEnd: "租借結束日期",
-        time: "租借時段",
+        dateEnd: "選擇日期",
       },
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleCalenderShow = this.handleCalenderShow.bind(this);
+    this.handleDropdownShow = this.handleDropdownShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -120,18 +124,24 @@ class RentalHomeSearchBar extends React.Component {
     this.props.history.push("/rentallist");
   }
 
-  handleCalenderShow(index) {
+  handleDropdownShow(index) {
     let a = [false, false];
-    a[index] = !this.state.showcalender[index];
+    a[index] = !this.state.showdropdown[index];
     this.setState({
-      showcalender: a,
+      showdropdown: a,
     });
   }
 
   render() {
-    let calender = [];
-    if (this.state.showcalender[0]) {
-      calender = <div className="calender"></div>;
+    let dropdown = [];
+    if (this.state.showdropdown[0]) {
+      dropdown[0] = <Calender />;
+    }
+    if (this.state.showdropdown[1]) {
+      dropdown[1] = <div className="dropdown"></div>;
+    }
+    if (this.state.showdropdown[2]) {
+      dropdown[2] = <div className="dropdown"></div>;
     }
     return (
       <form className="s1_form" onSubmit={this.handleSubmit}>
@@ -160,6 +170,11 @@ class RentalHomeSearchBar extends React.Component {
                 name="keyword"
                 value={this.state.search.keyword}
                 onChange={this.handleInputChange}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                  }
+                }}
               />
             </label>
           </div>
@@ -174,46 +189,99 @@ class RentalHomeSearchBar extends React.Component {
                 <br />
                 {this.state.search.dateStart}
               </div>
-              <img src={dropdown} alt="" />
+              <img src={down} alt="" />
             </div>
             <input
               className={
-                this.state.showcalender[0] || this.state.showcalender[1]
+                this.state.showdropdown[0]
                   ? "input-btn input-btn-active"
                   : "input-btn"
               }
               type="button"
               name="datestart"
-              onClick={() => this.handleCalenderShow(0)}
+              onClick={() => this.handleDropdownShow(0)}
             />
-            {calender}
+            {dropdown[0]}
           </div>
           <div className="line-container">
             <div className="line"></div>
           </div>
           <div className="input-btn-container">
             <div className="input radius-end">
-              <img className="icon" src={start} alt="" />
+              <img className="icon" src={end} alt="" />
               <div>
                 <span className="input-span">租借結束</span>
                 <br />
                 {this.state.search.dateStart}
               </div>
-              <img src={dropdown} alt="" />
+              <img src={down} alt="" />
             </div>
             <input
               className={
-                this.state.showcalender[0] || this.state.showcalender[1]
+                this.state.showdropdown[0]
                   ? "input-btn input-btn-active radius-end"
                   : "input-btn radius-end"
               }
               type="button"
-              name="datestart"
-              onClick={() => this.handleCalenderShow(0)}
+              name="dateend"
+              onClick={() => this.handleDropdownShow(0)}
             />
           </div>
         </div>
-        <div>
+        <div className="row">
+          <div>
+            <div className="input radius-all">
+              <img className="icon" src={position} alt="" />
+              <div>
+                <span className="input-span">場地位置</span>
+                <br />
+                {this.state.search.district}
+              </div>
+              <img src={down} alt="" />
+            </div>
+            <input
+              className={
+                this.state.showdropdown[1]
+                  ? "input-btn radius-all input-btn-active"
+                  : "input-btn radius-all"
+              }
+              type="button"
+              name="district"
+              onClick={() => this.handleDropdownShow(1)}
+            />
+            {dropdown[1]}
+          </div>
+          <div>
+            <div className="input radius-all">
+              <img className="icon" src={type} alt="" />
+              <div>
+                <span className="input-span">場地類型</span>
+                <br />
+                {this.state.search.type}
+              </div>
+              <img src={down} alt="" />
+            </div>
+            <input
+              className={
+                this.state.showdropdown[2]
+                  ? "input-btn radius-all input-btn-active"
+                  : "input-btn radius-all"
+              }
+              type="button"
+              name="type"
+              onClick={() => this.handleDropdownShow(2)}
+            />
+            {dropdown[2]}
+          </div>
+        </div>
+        <Button type={2} text={"搜尋"} />
+      </form>
+    );
+  }
+}
+export default withRouter(RentalHomeSearchBar);
+
+/* <div>
           <label>
             <select
               className="s1_select"
@@ -252,12 +320,4 @@ class RentalHomeSearchBar extends React.Component {
               <option value="教室">教室</option>
             </select>
           </label>
-        </div>
-        <div>
-          <input type="submit" value="搜尋" />
-        </div>
-      </form>
-    );
-  }
-}
-export default withRouter(RentalHomeSearchBar);
+        </div> */

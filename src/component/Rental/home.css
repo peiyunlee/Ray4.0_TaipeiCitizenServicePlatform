@@ -1,9 +1,9 @@
 .section_rh {
   width: 100%;
-  /* height: calc( 100vh - 162px ); */
-  height: 894px;
+  height:780px;
   background-image: url(../../assets/images/101.jpg);
   background-position: top center;
+  background-size: cover;
   display: flex;
   /* justify-content: center; */
   align-items: center;

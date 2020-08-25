@@ -29,24 +29,6 @@ input[type="submit"] {
   display: block;
   font-size: 22px;
 }
-.calender {
-  width: 320px;
-  height: 280px;
-  background-color: #fff;
-  position: absolute;
-  border-radius: 5px;
-  margin-top: -5px;
-}
-.calender::before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid white;
-  left: 20px;
-  top: -10px;
-}
 .s2_container {
   color: #008992;
   height: 75px;

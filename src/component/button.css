@@ -1,3 +1,9 @@
+button {
+  width: fit-content;
+  transition: all 0.2s;
+}
+
+/* button1 */
 .button1 {
   padding: 9px 12px;
   font-weight: bold;
@@ -14,6 +20,32 @@
 .button1:active,
 .button1:focus {
   box-shadow: none;
+  background: #3a959a;
+  transition: all 0.2s;
+  outline: none;
+}
+
+/* button2 */
+.button2 {
+  font-size: 28px;
+  height: 88px;
+  padding: 0px 170px;
+  font-weight: bold;
+  color: #fff;
+  border: 5px solid #FFFFFF;
+  border-radius: 4px;
+  transition: all 0.2s;
+  background-color: inherit;
+  margin-top:43px;
+}
+.button2:hover {
+  background-color: #00bcc8;
+  border: 5px solid #00bcc8;
+  transition: all 0.2s;
+}
+.button2:active,
+.button2:focus {
+  border: 5px solid #3a959a;
   background: #3a959a;
   transition: all 0.2s;
   outline: none;
