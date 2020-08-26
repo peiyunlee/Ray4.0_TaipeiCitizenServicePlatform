@@ -242,57 +242,117 @@ input[type="submit"] {
   height: 100%;
 }
 
-.calender .day-contianer {
+.calender .day {
   width: 100%;
   height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
+  cursor: pointer;
 }
-.calender .day-label {
+.calender .day::before{
+  content: '';
+  width: 30px;
+  height: 30px;
+  z-index: -1;
+  position: absolute;
+  border-radius: 50%;
+}
+.calender .day::after{
+  content: '';
+  z-index: -2;
+  width: 40px;
+  height: 30px;
+  position: absolute;
+}
+/* .calender .day-label {
   width: 30px;
   height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-}
+} */
 
 /* start */
-.calender .day-contianer-start {
+.calender .day-start-single {
+  color: white;
+  /* background: linear-gradient(90deg, transparent 50%, #c0dee0 0); */
+}
+.calender .day-start-single::before {
+  background-color: #008FA3;
+}
+.calender .day-start {
+  color: white;
+  /* background: linear-gradient(90deg, transparent 50%, #c0dee0 0); */
+}
+.calender .day-start::before {
+  background-color: #008fa3;
+}
+.calender .day-start::after {
   background: linear-gradient(90deg, transparent 50%, #c0dee0 0);
 }
-.calender .day-label-start {
+/* .calender .day-label-start:before {
   background-color: #008fa3;
   position: absolute;
   border-radius: 50%;
   color: white;
-}
+} */
+
 /* in */
-.calender .day-contianer-in {
+.calender .day-in {
+  color: white;
   background: linear-gradient(90deg, transparent 0%, #c0dee0 0);
 }
-.calender .day-label-in{
+/* .calender .day-label-in{
   color: white;
-}
+} */
 /* end */
-.calender .day-contianer-end {
-  background: linear-gradient(270deg, transparent 50%, #c0dee0 0);
+.calender .day-end {
+  color: white;
+  /* background: linear-gradient(270deg, transparent 50%, #c0dee0 0); */
 }
-.calender .day-label-end {
+/* .calender .day-label-end {
   background-color: #00BCC8;
   border-radius: 50%;
   color: white;
-  color: white;
+} */
+.calender .day-end::before {
+  background-color: #008fa3;
+}
+.calender .day-end::after {
+  background: linear-gradient(-90deg, transparent 50%, #c0dee0 0);
 }
 
-/* .calender .day-contianer-end:active ~.day-label{
+/* .calender .day-end:active ~.day-label{
   background-color: #008fa3;
 } */
 
 
-/* default-hover */
-.calender .day-default:hover > .day-label-default {
+/* hover1 */
+.calender .day-hover:hover {
+  color: white;
+}
+.calender .day-hover:hover::before {
+  background-color: #00BCC8;
+}
+.calender .day-hover:active::before {
+  background-color: #008FA3;
+}
+/* end-hover1 */
+.calender .day-end-hover:hover {
+  color: white;
+}
+.calender .day-end-hover:hover::before {
+  background-color: #00BCC8;
+}
+.calender .day-end-hover:hover::after {
+  background: linear-gradient(-90deg, transparent 50%, #c0dee0 0);
+}
+
+
+/* .calender .day-default-hover > .day-label-default {
   background-color: #00BCC8;
   border-radius: 50%;
   transition: background-color 0.2s;
@@ -303,10 +363,15 @@ input[type="submit"] {
   border-radius: 50%;
   transition: background-color 0.2s;
   color: white;
+} */
+
+/* today */
+.calender .day-today{
+  color: #00BCC8;
+  font-weight: 700;
 }
 
 /* today */
-.calender .day-label-today{
-  color: #00BCC8;
-    font-weight: 700;
+.calender .day-no{
+  color: #CACACA;
 }

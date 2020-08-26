@@ -1,22 +1,24 @@
 import React from "react";
 import "./footer.css";
 
+import DemoLink from "./demolink";
+
 class Footer extends React.Component {
   render() {
     return (
       <footer>
         <ul>
           <li>
-            <a href="/#" >網站導覽</a>
+            <DemoLink text="網站導覽" />
           </li>
           <li>
-            <a href="/#">台北卡</a>
+            <DemoLink text="台北卡" />
           </li>
           <li>
-            <a href="/#">政府網站資料開放宣言</a>
+            <DemoLink text="政府網站資料開放宣言" />
           </li>
           <li>
-            <a href="/#">隱私權及資訊安全政策</a>
+            <DemoLink text="隱私權及資訊安全政策" />
           </li>
         </ul>
         <p>

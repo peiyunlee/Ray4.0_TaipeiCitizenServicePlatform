@@ -3,6 +3,8 @@ import logo from "../assets/images/台北市政府logo去背 1.png";
 import { Link } from "react-router-dom";
 import "./header.css";
 
+import DemoLink from './demolink';
+
 class Header extends React.Component {
   render() {
     return (
@@ -22,19 +24,13 @@ class Header extends React.Component {
               </Link>
             </li>
             <li>
-              <Link to="/" className="nav-item">
-                常見問題
-              </Link>
+              <DemoLink className="nav-item" text="常見問題" />
             </li>
             <li>
-              <Link to="/" className="nav-item">
-                聯絡資訊
-              </Link>
+              <DemoLink className="nav-item" text="聯絡資訊" />
             </li>
             <li>
-              <Link to="/" className="nav-item">
-                會員登入
-              </Link>
+              <DemoLink className="nav-item" text="會員登入" />
             </li>
           </ul>
         </nav>

@@ -1,4 +1,5 @@
 import React from "react";
+import { findDOMNode } from "react-dom";
 import { withRouter } from "react-router-dom";
 
 import Button from "../../button";
@@ -15,19 +16,50 @@ class RentalHomeSearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showdropdown: [true, false, false],
+      showdropdown: [false, false, false],
       search: {
         keyword: "",
         district: "選擇行政區",
         type: "選擇類型",
-        dateStart: "選擇日期",
-        dateEnd: "選擇日期",
+        datestart: "選擇日期",
+        dateend: "選擇日期",
       },
+      selected: 0,
+      pickday: [new Date("", "", ""), new Date("", "", "")],
+      // selectedstart:true,
+      // selectedend:true,
+      // pickday:[new Date("2020",7,29),new Date("2020",8,23)]
     };
+    this.refModal = React.createRef();
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDropdownShow = this.handleDropdownShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPickDay = this.setPickDay.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener(
+      "mousedown",
+      (e) => this.handleClickOutside(e),
+      false
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "mousedown",
+      (e) => this.handleClickOutside(e),
+      false
+    );
+  }
+  handleClickOutside(e) {
+    const target = e.target;
+    let result = findDOMNode(this.refModal.current).contains(target);
+    if (!result) {
+      this.setState({
+        showdropdown: [false, false, false],
+      });
+    }
   }
 
   handleInputChange(event) {
@@ -132,10 +164,55 @@ class RentalHomeSearchBar extends React.Component {
     });
   }
 
+  setPickDay(day, count) {
+    const start = new Date(day[0]);
+    let m = [parseInt(start.getMonth()) + 1, ""];
+    if (count === 0) {
+      this.setState({
+        pickday: day,
+        selected: 0,
+        search: Object.assign({}, this.state.search, {
+          datestart: "選擇日期",
+          dateend: "選擇日期",
+        }),
+      });
+    } else if (count === 1) {
+      this.setState({
+        pickday: day,
+        selected: 1,
+        search: Object.assign({}, this.state.search, {
+          datestart:
+            start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
+          dateend: "選擇日期",
+        }),
+      });
+    } else {
+      const end = new Date(day[1]);
+      m = [parseInt(start.getMonth()) + 1, parseInt(end.getMonth()) + 1];
+      this.setState({
+        pickday: day,
+        selected: 2,
+        showdropdown: [false, false, false],
+        search: Object.assign({}, this.state.search, {
+          datestart:
+            start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
+          dateend:
+            end.getFullYear() + "年" + m[1] + "月" + end.getDate() + "日",
+        }),
+      });
+    }
+  }
+
   render() {
     let dropdown = [];
     if (this.state.showdropdown[0]) {
-      dropdown[0] = <Calender />;
+      dropdown[0] = (
+        <Calender
+          setPickDay={this.setPickDay}
+          pickday={this.state.pickday}
+          selected={this.state.selected}
+        />
+      );
     }
     if (this.state.showdropdown[1]) {
       dropdown[1] = <div className="dropdown"></div>;
@@ -144,7 +221,11 @@ class RentalHomeSearchBar extends React.Component {
       dropdown[2] = <div className="dropdown"></div>;
     }
     return (
-      <form className="s1_form" onSubmit={this.handleSubmit}>
+      <form
+        ref={this.refModal}
+        className="s1_form"
+        onSubmit={this.handleSubmit}
+      >
         <div className="row">
           <div className="input-t-container radius-start">
             <div
@@ -187,7 +268,7 @@ class RentalHomeSearchBar extends React.Component {
               <div>
                 <span className="input-span">租借開始</span>
                 <br />
-                {this.state.search.dateStart}
+                {this.state.search.datestart}
               </div>
               <img src={down} alt="" />
             </div>
@@ -212,7 +293,7 @@ class RentalHomeSearchBar extends React.Component {
               <div>
                 <span className="input-span">租借結束</span>
                 <br />
-                {this.state.search.dateStart}
+                {this.state.search.dateend}
               </div>
               <img src={down} alt="" />
             </div>
