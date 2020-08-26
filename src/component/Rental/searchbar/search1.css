@@ -162,6 +162,7 @@ input[type="submit"] {
 }
 .s1_form .line {
   height: 62%;
+  background-color: #c4c4c4;
   border: 1px solid #c4c4c4;
 }
 
@@ -302,4 +303,10 @@ input[type="submit"] {
   border-radius: 50%;
   transition: background-color 0.2s;
   color: white;
+}
+
+/* today */
+.calender .day-label-today{
+  color: #00BCC8;
+    font-weight: 700;
 }
