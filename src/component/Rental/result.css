@@ -5,18 +5,18 @@
   margin: 26px auto 0;
 }
 .s2_search_wrapper {
-  background-color: #d2edef;
-  border: 1px solid #000000;
+  background-color: #FFDED3;
+  border: 1px solid #CACACA;
   width: 310px;
-  height: 563px;
   border-radius: 6px;
 }
 .s2_title {
+  border-bottom: 1px solid #CACACA;
   height: 70px;
-  background-color: #008992;
+  background-color: #FFAC92;
   color: #fff;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 26px;
   display: flex;
   justify-content: center;
   align-items: center;

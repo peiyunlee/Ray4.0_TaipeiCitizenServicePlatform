@@ -1,6 +1,8 @@
 button {
   width: fit-content;
   transition: all 0.2s;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 /* button1 */
@@ -27,8 +29,9 @@ button {
 
 /* button2 */
 .button2 {
-  font-size: 28px;
-  height: 88px;
+  z-index: 2;
+  font-size: 26px;
+  height: 85px;
   padding: 0px 170px;
   font-weight: bold;
   color: #fff;
@@ -46,6 +49,27 @@ button {
 .button2:active,
 .button2:focus {
   border: 5px solid #3a959a;
+  background: #3a959a;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.s2_form .button2 {
+  font-size: 22px;
+  font-weight: 400;
+  width: 140px;
+  padding: 0px;
+  height: 41px;
+  border: none;
+  background-color: #00bcc8;
+  margin-top:15px;
+}
+.s2_form .button2:hover {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  transition: all 0.2s;
+}
+.s2_form .button2:active,
+.s2_form .button2:focus {
   background: #3a959a;
   transition: all 0.2s;
   outline: none;

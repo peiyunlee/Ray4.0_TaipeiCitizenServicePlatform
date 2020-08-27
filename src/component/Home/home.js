@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import SortCard from "./sortcard";
-import Tab from "../tab"
-import "./home.css"
+import Tab from "../tab";
+import "./home.css";
 
 class Home extends React.Component {
   constructor(props) {
@@ -26,8 +26,16 @@ class Home extends React.Component {
         </section>
         <section className="sort">
           <div>
-            <Tab label="服務主題" activeTab={this.state.activeTab} tagClick={this.tagClick} />
-            <Tab label="業務機關" activeTab={this.state.activeTab} tagClick={this.tagClick} />
+            <Tab
+              label="服務主題"
+              activeTab={this.state.activeTab}
+              tagClick={this.tagClick}
+            />
+            <Tab
+              label="業務機關"
+              activeTab={this.state.activeTab}
+              tagClick={this.tagClick}
+            />
           </div>
           <div>{this._renderItems()}</div>
         </section>
@@ -39,23 +47,11 @@ class Home extends React.Component {
     let list = [];
     if (this.state.activeTab === "服務主題") {
       this.state.sortData.theme.forEach((item, index) => {
-        list.push(
-          <SortCard
-            key={index}
-            list={item}
-            listtype={"theme"}
-          />
-        );
+        list.push(<SortCard key={index} list={item} listtype={"theme"} />);
       });
     } else {
       this.state.sortData.organ.forEach((item) => {
-        list.push(
-          <SortCard
-            key={item.name}
-            list={item}
-            listtype={"organ"}
-          />
-        );
+        list.push(<SortCard key={item.name} list={item} listtype={"organ"} />);
       });
     }
     return list;

@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
+// import { findDOMNode } from "react-dom";
 
 // import "./css/normalize.css";
 import "./app.css";
@@ -32,10 +33,10 @@ class App extends React.Component {
       rentalResult: rentalData,
       search: {
         keyword: "",
-        district: { do: false, index: 0, name: "" },
-        type: { do: false, index: 0, name: "" },
+        date: { do: false, value: [] },
       },
       filter: {
+        dodistrict: false,
         district: [
           { checked: false, name: "中正區" },
           { checked: false, name: "大同區" },
@@ -49,12 +50,15 @@ class App extends React.Component {
           { checked: false, name: "內湖區" },
           { checked: false, name: "文山區" },
         ],
+        dotype: false,
         type: [
-          { checked: false, name: "運動" },
-          { checked: false, name: "公園" },
+          { checked: false, name: "類型不限" },
+          { checked: false, name: "戶外" },
+          { checked: false, name: "室內" },
+          { checked: false, name: "運動場館" },
+          { checked: false, name: "藝文場館" },
           { checked: false, name: "廣場" },
-          { checked: false, name: "演講廳" },
-          { checked: false, name: "禮堂" },
+          { checked: false, name: "公園" },
           { checked: false, name: "教室" },
         ],
         number: [
@@ -79,6 +83,8 @@ class App extends React.Component {
     };
 
     this.setRentalSearch = this.setRentalSearch.bind(this);
+    this.setRentalFilter_DT = this.setRentalFilter_DT.bind(this);
+    this.setRentalSearchDate = this.setRentalSearchDate.bind(this);
     this.setRentalFilter = this.setRentalFilter.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
   }
@@ -102,7 +108,10 @@ class App extends React.Component {
           <Route
             path="/rental"
             component={() => (
-              <RentalHome setRentalSearch={this.setRentalSearch} />
+              <RentalHome
+                filter={this.state.filter}
+                setRentalSearch={this.setRentalSearch}
+              />
             )}
           />
           <Route
@@ -137,29 +146,26 @@ class App extends React.Component {
           />
           <Route
             path="/venuedetail/:venueindex"
-            component={(props) => <VenueDetail
-              item={this.state.rentalData[props.match.params.venueindex]} />}
+            component={(props) => (
+              <VenueDetail
+                item={this.state.rentalData[props.match.params.venueindex]}
+              />
+            )}
           />
-          <Route
-            path="/apply/step1"
-            component={(props) => <StepOne />}
-          />
-          <Route
-            path="/apply/step2"
-            component={(props) => <StepTwo />}
-          />
-          <Route
-            path="/apply/step3"
-            component={(props) => <StepThree />}
-          />
-          <Route
-            path="/apply/step4"
-            component={(props) => <StepFour />}
-          />
+          <Route path="/apply/step1" component={(props) => <StepOne />} />
+          <Route path="/apply/step2" component={(props) => <StepTwo />} />
+          <Route path="/apply/step3" component={(props) => <StepThree />} />
+          <Route path="/apply/step4" component={(props) => <StepFour />} />
         </Switch>
         <Footer />
       </HashRouter>
     );
+  }
+
+  setMaskWork() {
+    this.setState({
+      mask: !this.state.mask,
+    });
   }
 
   setRentalResult(result) {
@@ -168,60 +174,58 @@ class App extends React.Component {
     });
   }
 
-  setRentalSearch(search) {
-    if (search !== {}) {
-      this.setState({
-        search: search,
-      });
-
-      let d, t, o;
-      d = this.state.filter.district;
-      d.forEach((ditem) => {
-        ditem.checked = false;
-      });
-      t = this.state.filter.type;
-      t.forEach((titem) => {
-        titem.checked = false;
-      });
-      if (search.district.do && search.type.do) {
-        d[search.district.index].checked = true;
-        t[search.type.index].checked = true;
-      } else if (search.district.do) {
-        d[search.district.index].checked = true;
-      } else if (search.type.do) {
-        t[search.type.index].checked = true;
-      }
-
-      o = Object.assign({}, this.state.filter, {
-        district: d,
-        type: t,
-      });
-
-      this.setState({
-        filter: o,
-      });
-
-      let result = [];
-      if (search.district.do || search.type.do) {
-        this.state.rentalData.forEach((item) => {
-          let d = item.district === search.district.name || !search.district.do;
-          let t = item.type.includes(search.type.name) || !search.type.do;
-          if (d && t) result.push(item);
-        });
-      } else result = this.state.rentalData;
-      this.setRentalResult(result);
-    }
+  setRentalSearch(search, filter) {
+    let result_s = this.setRentalSearchDate(this.state.rentalData, search);
+    let result = this.setRentalFilter_DT(result_s, filter);
+    this.setRentalResult(result);
   }
 
-  setRentalFilter(filter) {
-    if (filter !== {}) {
-      this.setState({
-        filter: filter,
-      });
+  setRentalSearchDate(data, search) {
+    let result = [];
+    if (search !== undefined) {
+      if (search.date.do) {
+        this.setState({
+          search: search,
+        });
+        result = data;
+      } else {
+        result = data;
+      }
+    }
+    return result;
+    // let d, t;
+    // data.forEach((item) => {
+    //   if (filter.district.every((ditem) => !ditem.checked)) {
+    //     d = true;
+    //   } else {
+    //     d = filter.district.some(
+    //       (ditem) => ditem.checked && ditem.name === item.district
+    //     );
+    //   }
+    //   if (filter.type.every((titem) => !titem.checked)) {
+    //     t = true;
+    //   } else {
+    //     t = item.type.some((name) =>
+    //       filter.type.some((titem) => titem.checked && titem.name === name)
+    //     );
+    //   }
+    //   if (d && t) result.push(item);
+    // });
+  }
 
-      let result = [];
-      let d, t, n, c;
-      this.state.rentalData.forEach((item) => {
+  setRentalFilter_DT(data, filter) {
+    if (filter !== undefined) {
+      const f = Object.assign({}, this.state.filter, filter);
+      this.setState({
+        filter: f,
+      });
+    }
+
+    let result = [];
+    let d = true,
+      t = true;
+    data.forEach((item) => {
+      if (filter.dodistrict) {
         if (filter.district.every((ditem) => !ditem.checked)) {
           d = true;
         } else {
@@ -229,6 +233,8 @@ class App extends React.Component {
             (ditem) => ditem.checked && ditem.name === item.district
           );
         }
+      }
+      if (filter.dotype) {
         if (filter.type.every((titem) => !titem.checked)) {
           t = true;
         } else {
@@ -236,30 +242,95 @@ class App extends React.Component {
             filter.type.some((titem) => titem.checked && titem.name === name)
           );
         }
-        if (filter.number.every((nitem) => !nitem.checked)) {
-          n = true;
-        } else {
-          n = filter.number.some(
-            (nitem) =>
-              nitem.checked &&
-              item.number >= nitem.min &&
-              item.number <= nitem.max
-          );
-        }
-        if (filter.cost.every((citem) => !citem.checked)) {
-          c = true;
-        } else {
-          c = filter.cost.some(
-            (citem) =>
-              citem.checked && item.cost >= citem.min && item.cost <= citem.max
-          );
-        }
-        if (d && t && n && c) result.push(item);
-      });
+      }
+      if (d && t) result.push(item);
+    });
+    return result;
+  }
 
-      this.setRentalResult(result);
+  setRentalFilter(filter) {
+    if (filter !== {}) {
+      this.setState({
+        filter: filter,
+      });
     }
+
+    let result = [];
+    let d, t, n, c;
+    this.state.rentalData.forEach((item) => {
+      if (filter.district.every((ditem) => !ditem.checked)) {
+        d = true;
+      } else {
+        d = filter.district.some(
+          (ditem) => ditem.checked && ditem.name === item.district
+        );
+      }
+      if (filter.type.every((titem) => !titem.checked)) {
+        t = true;
+      } else {
+        t = item.type.some((name) =>
+          filter.type.some((titem) => titem.checked && titem.name === name)
+        );
+      }
+      if (filter.number.every((nitem) => !nitem.checked)) {
+        n = true;
+      } else {
+        n = filter.number.some(
+          (nitem) =>
+            nitem.checked &&
+            item.number >= nitem.min &&
+            item.number <= nitem.max
+        );
+      }
+      if (filter.cost.every((citem) => !citem.checked)) {
+        c = true;
+      } else {
+        c = filter.cost.some(
+          (citem) =>
+            citem.checked && item.cost >= citem.min && item.cost <= citem.max
+        );
+      }
+      if (d && t && n && c) result.push(item);
+    });
   }
 }
 
 export default App;
+
+//   let d, t, o;
+//   d = this.state.filter.district;
+//   d.forEach((ditem) => {
+//     ditem.checked = false;
+//   });
+//   t = this.state.filter.type;
+//   t.forEach((titem) => {
+//     titem.checked = false;
+//   });
+//   if (search.district.do && search.type.do) {
+//     d[search.district.index].checked = true;
+//     t[search.type.index].checked = true;
+//   } else if (search.district.do) {
+//     d[search.district.index].checked = true;
+//   } else if (search.type.do) {
+//     t[search.type.index].checked = true;
+//   }
+
+//   o = Object.assign({}, this.state.filter, {
+//     district: d,
+//     type: t,
+//   });
+
+//   this.setState({
+//     filter: o,
+//   });
+
+//   let result = [];
+//   if (search.district.do || search.type.do) {
+//     this.state.rentalData.forEach((item) => {
+//       let d = item.district === search.district.name || !search.district.do;
+//       let t = item.type.includes(search.type.name) || !search.type.do;
+//       if (d && t) result.push(item);
+//     });
+//   } else result = this.state.rentalData;
+//   this.setRentalResult(result);
+// }

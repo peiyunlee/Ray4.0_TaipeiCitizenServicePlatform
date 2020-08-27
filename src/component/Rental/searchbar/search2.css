@@ -1,37 +1,44 @@
-
 .s2_form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 30px;
-}
-.s2_input_t,
-.s2_button {
-  width:247px;
-  height: 50px;
-  border-radius: 10px;
-  border: 2px solid #008992;
-  font-size: 16px;
-  padding-left: 45px;
-  text-align: left;
-  background-color: #fff;
-  margin-top: 8px;
-}
-.s2_input_t,
-.s2_button:focus {
-  outline: 0;
-}
-.s2_button {
-  cursor: pointer;
-}
-input[type="submit"] {
-  margin: 24px auto 0px;
-  display: block;
-  font-size: 22px;
+  padding: 15px 0;
+  align-items: center;
 }
 .s2_container {
-  color: #008992;
-  height: 75px;
-  margin-bottom: 20px;
-  font-size: 14px;
+  width: 250px;
+  color: #1d1d1d;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.s2_container img {
+  position: absolute;
+  width: 22px;
+  left:15px;
+  top:41px;
+}
+
+.s2-input-t,
+.s2-input-btn {
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+  border: 2px solid #ffac92;
+  border-radius: 10px;
+  padding-left: 50px;
+  text-align: left;
+  margin-top:5px;
+  color: #9e9e9e;
+}
+
+.s2-input-btn{
+  cursor: pointer;
+}
+
+.s2-input-t:focus,
+.s2-input-t:active,
+.s2-input-t-have:focus {
+  outline: none;
+  padding-left: 50px;
 }

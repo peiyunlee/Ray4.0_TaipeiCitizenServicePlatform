@@ -1,17 +1,22 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+import Button from "../../button";
+import Calender from "../../calender";
+import search from "../../../assets/images/icon/search.svg";
+import start from "../../../assets/images/icon/startdate.png";
+import end from "../../../assets/images/icon/enddate.png";
+
 class RentalResultSearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showcalender: [false, false, false],
-      search: {
-        keyword: "",
-        dateStart: "租借開始日期",
-        dateEnd: "租借結束日期",
-        time: "租借時段",
-      },
+      showdropdown: [false, false],
+      keyword: "",
+      datestart: "選擇日期",
+      dateend: "選擇日期",
+      selected: 0,
+      pickday: [new Date("", "", ""), new Date("", "", "")],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -23,84 +28,140 @@ class RentalResultSearchBar extends React.Component {
     const target = event.target;
     const name = target.name;
     this.setState({
-      search: Object.assign({}, this.state.search, {
-        [name]: target.value,
-      }),
+      [name]: target.value,
     });
   }
 
   handleSubmit(event) {
-    // this.props.setRentalSearch(s);
+    let dodate =
+      this.state.dateend !== "選擇日期" && this.state.dateend !== "選擇日期";
+
+    let dodistrict = this.state.district !== "選擇行政區";
+
+    let dotype = this.state.dateend !== "選擇類型";
+    let s = {
+      keyword: this.state.keyword,
+      date: { do: dodate, value: this.state.pickday },
+    };
+
+    let f = Object.assign({}, this.props.filter, {
+      dodistrict: dodistrict,
+      dotype: dotype,
+      district: this.state.filter.district,
+      type: this.state.filter.type,
+    });
+
+    this.props.setRentalSearch(s, f);
+    event.preventDefault();
+    // this.props.history.push("/rentallist");
   }
 
   handleCalenderShow(index) {
-    let a = [false, false, false];
-    a[index] = !this.state.showcalender[index];
+    let a = [false, false];
+    a[index] = !this.state.showdropdown[index];
     this.setState({
-      showcalender: a,
+      showdropdown: a,
     });
   }
 
+  setPickDay(day, count) {
+    const start = new Date(day[0]);
+    let m = [parseInt(start.getMonth()) + 1, ""];
+    if (count === 0) {
+      this.setState({
+        pickday: day,
+        selected: 0,
+        datestart: "選擇日期",
+        dateend: "選擇日期",
+      });
+    } else if (count === 1) {
+      this.setState({
+        pickday: day,
+        selected: 1,
+        datestart:
+          start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
+        dateend: "選擇日期",
+      });
+    } else {
+      const end = new Date(day[1]);
+      m = [parseInt(start.getMonth()) + 1, parseInt(end.getMonth()) + 1];
+      this.setState({
+        pickday: day,
+        selected: 2,
+        showdropdown: [false, false, false],
+        datestart:
+          start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
+        dateend: end.getFullYear() + "年" + m[1] + "月" + end.getDate() + "日",
+      });
+    }
+  }
+
   render() {
-    const calender = [];
-    if (this.state.showcalender[0]) {
-      calender[0] = <div className="calender"></div>;
+    let dropdown = [];
+    if (this.state.showdropdown[0]) {
+      dropdown[0] = (
+        <Calender
+          setPickDay={this.setPickDay}
+          pickday={this.state.pickday}
+          selected={this.state.selected}
+        />
+      );
     }
-    if (this.state.showcalender[1]) {
-      calender[1] = <div className="calender"></div>;
-    }
-    if (this.state.showcalender[2]) {
-      calender[2] = <div className="calender"></div>;
+    if (this.state.showdropdown[1]) {
+      dropdown[1] = (
+        <Calender
+          setPickDay={this.setPickDay}
+          pickday={this.state.pickday}
+          selected={this.state.selected}
+        />
+      );
     }
     return (
-      <form className="s2_form" onSubmit={this.handleSubmit}>
-        <label className="s2_container">
-          場地名稱
-          <input
-            className="s2_input_t"
-            type="text"
-            name="keyword"
-            placeholder="輸入場地名稱、類型"
-            value={this.state.search.keyword}
-            onChange={this.handleInputChange}
-          />
-        </label>
+      <form className="s2_form">
         <div className="s2_container">
-          租借開始日期
+          場地關鍵字
+          <label>
+            <input
+              className="s2-input-t"
+              type="text"
+              name="keyword"
+              value={this.state.keyword}
+              placeholder="想要找什麼場地？"
+              onChange={this.handleInputChange}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                }
+              }}
+            />
+          </label>
+          <img src={search} alt="" />
+        </div>
+        <div className="s2_container">
+        租借開始
           <input
-            className="s2_button"
+            className="s2-input-btn"
             type="button"
             name="datestart"
-            value={this.state.search.dateStart}
+            value={this.state.datestart}
             onClick={() => this.handleCalenderShow(0)}
           />
-          {calender[0]}
+          <img src={start} alt="" />
+          {dropdown[0]}
         </div>
         <div className="s2_container">
-          租借結束日期
+          租借結束
           <input
-            className="s2_button"
+            className="s2-input-btn"
             type="button"
             name="dateend"
-            value={this.state.search.dateEnd}
+            value={this.state.datestart}
             onClick={() => this.handleCalenderShow(1)}
           />
-          {calender[1]}
+          <img src={end} alt="" />
+          {dropdown[1]}
         </div>
-        <div className="s2_container">
-            租借時段
-          <input
-            className="s2_button"
-            type="button"
-            name="time"
-            value={this.state.search.time}
-            onClick={() => this.handleCalenderShow(2)}
-          />
-          {calender[2]}
-        </div>
-        <div>
-          <input type="submit" value="搜尋" />
-        </div>
+        <Button type={2} text={"搜尋"} onclick={this.handleSubmit} />
       </form>
     );
   }

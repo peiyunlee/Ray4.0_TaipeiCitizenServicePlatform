@@ -108,7 +108,7 @@ input[type="submit"] {
   height: 70px;
   background-color: inherit;
   border: 1px solid white;
-  font-size: 24px;
+  font-size: 26px;
 }
 .input-t:hover {
   border: 1px solid rgba(196, 196, 196, 0.3);
@@ -130,7 +130,7 @@ input[type="submit"] {
   background-color: inherit;
   border: 1px solid white;
   background-color: #fff;
-  font-size: 24px;
+  font-size: 26px;
   width: calc(100% - 70px);
   margin-left: 70px;
   padding-left: 0px;
@@ -168,30 +168,53 @@ input[type="submit"] {
 
 .dropdown {
   z-index: 3;
-  width: 320px;
-  height: 280px;
   background-color: #fff;
   position: absolute;
   border-radius: 5px;
   margin-top: 5px;
+  display: grid;
+  justify-content: center;
+  padding: 22px 24px;
 }
-/* .dropdown::before {
-  content: "";
-  display: block;
-  position: absolute;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: 10px solid white;
-  left: 20px;
-  top: -10px;
-} */
+.dropdown-district {
+  grid-template: repeat(5, 1fr) / repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 5px;
+}
+.dropdown-type {
+  grid-template: repeat(5, 1fr) / repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 5px;
+}
 
+.dropdown .checkbox-label {
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
 
+.dropdown .checkbox-label-d-all {
+  grid-column-start: span 3;
+  font-weight: 500;
+}
+.dropdown .checkbox-label-t-all {
+  grid-column-start: span 2;
+  font-weight: 500;
+}
+
+.dropdown input[type="checkbox"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+/* calender */
 .calender-container {
   z-index: 3;
   width: auto;
   display: grid;
-  grid-template: auto / repeat(2,1fr);
+  grid-template: auto / repeat(2, 1fr);
   grid-gap: 20px;
   /* height: 350px; */
   background-color: #fff;
@@ -251,29 +274,21 @@ input[type="submit"] {
   font-weight: 500;
   cursor: pointer;
 }
-.calender .day::before{
-  content: '';
+.calender .day::before {
+  content: "";
   width: 30px;
   height: 30px;
   z-index: -1;
   position: absolute;
   border-radius: 50%;
 }
-.calender .day::after{
-  content: '';
+.calender .day::after {
+  content: "";
   z-index: -2;
   width: 40px;
   height: 30px;
   position: absolute;
 }
-/* .calender .day-label {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-} */
 
 /* start */
 .calender .day-start-single {
@@ -281,7 +296,7 @@ input[type="submit"] {
   /* background: linear-gradient(90deg, transparent 50%, #c0dee0 0); */
 }
 .calender .day-start-single::before {
-  background-color: #008FA3;
+  background-color: #008fa3;
 }
 .calender .day-start {
   color: white;
@@ -293,31 +308,17 @@ input[type="submit"] {
 .calender .day-start::after {
   background: linear-gradient(90deg, transparent 50%, #c0dee0 0);
 }
-/* .calender .day-label-start:before {
-  background-color: #008fa3;
-  position: absolute;
-  border-radius: 50%;
-  color: white;
-} */
 
 /* in */
 .calender .day-in {
   color: white;
   background: linear-gradient(90deg, transparent 0%, #c0dee0 0);
 }
-/* .calender .day-label-in{
-  color: white;
-} */
 /* end */
 .calender .day-end {
   color: white;
   /* background: linear-gradient(270deg, transparent 50%, #c0dee0 0); */
 }
-/* .calender .day-label-end {
-  background-color: #00BCC8;
-  border-radius: 50%;
-  color: white;
-} */
 .calender .day-end::before {
   background-color: #008fa3;
 }
@@ -325,53 +326,34 @@ input[type="submit"] {
   background: linear-gradient(-90deg, transparent 50%, #c0dee0 0);
 }
 
-/* .calender .day-end:active ~.day-label{
-  background-color: #008fa3;
-} */
-
-
 /* hover1 */
 .calender .day-hover:hover {
   color: white;
 }
 .calender .day-hover:hover::before {
-  background-color: #00BCC8;
+  background-color: #00bcc8;
 }
 .calender .day-hover:active::before {
-  background-color: #008FA3;
+  background-color: #008fa3;
 }
 /* end-hover1 */
 .calender .day-end-hover:hover {
   color: white;
 }
 .calender .day-end-hover:hover::before {
-  background-color: #00BCC8;
+  background-color: #00bcc8;
 }
 .calender .day-end-hover:hover::after {
   background: linear-gradient(-90deg, transparent 50%, #c0dee0 0);
 }
 
-
-/* .calender .day-default-hover > .day-label-default {
-  background-color: #00BCC8;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-  color: white;
-}
-.calender .day-default:active > .day-label-default {
-  background-color: #008FA3;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-  color: white;
-} */
-
 /* today */
-.calender .day-today{
-  color: #00BCC8;
+.calender .day-today {
+  color: #00bcc8;
   font-weight: 700;
 }
 
 /* today */
-.calender .day-no{
-  color: #CACACA;
+.calender .day-no {
+  color: #cacaca;
 }
