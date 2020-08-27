@@ -13,8 +13,8 @@ class RentalResultSearchBar extends React.Component {
     this.state = {
       showdropdown: [false, false],
       keyword: "",
-      datestart: "選擇日期",
-      dateend: "選擇日期",
+      datestart: props.search.date.do ? props.search.date.value[0] : "選擇日期",
+      dateend: props.search.date.do ? props.search.date.value[1] : "選擇日期",
       selected: 0,
       pickday: [new Date("", "", ""), new Date("", "", "")],
     };
@@ -22,6 +22,16 @@ class RentalResultSearchBar extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCalenderShow = this.handleCalenderShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPickDay = this.setPickDay.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.maskclick) {
+      this.setState({
+        showdropdown: [false, false],
+      });
+      this.props.setMaskWork(false);
+    }
   }
 
   handleInputChange(event) {
@@ -35,21 +45,16 @@ class RentalResultSearchBar extends React.Component {
   handleSubmit(event) {
     let dodate =
       this.state.dateend !== "選擇日期" && this.state.dateend !== "選擇日期";
-
-    let dodistrict = this.state.district !== "選擇行政區";
-
-    let dotype = this.state.dateend !== "選擇類型";
+    let value = ["", ""];
+    if (dodate) {
+      value = [this.state.datestart, this.state.dateend];
+    }
     let s = {
       keyword: this.state.keyword,
-      date: { do: dodate, value: this.state.pickday },
+      date: { do: dodate, value: value },
     };
 
-    let f = Object.assign({}, this.props.filter, {
-      dodistrict: dodistrict,
-      dotype: dotype,
-      district: this.state.filter.district,
-      type: this.state.filter.type,
-    });
+    let f = this.props.filter;
 
     this.props.setRentalSearch(s, f);
     event.preventDefault();
@@ -62,9 +67,11 @@ class RentalResultSearchBar extends React.Component {
     this.setState({
       showdropdown: a,
     });
+    this.props.setMaskWork(a[index]);
   }
 
   setPickDay(day, count) {
+    console.log("aa");
     const start = new Date(day[0]);
     let m = [parseInt(start.getMonth()) + 1, ""];
     if (count === 0) {
@@ -88,7 +95,7 @@ class RentalResultSearchBar extends React.Component {
       this.setState({
         pickday: day,
         selected: 2,
-        showdropdown: [false, false, false],
+        showdropdown: [false, false],
         datestart:
           start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
         dateend: end.getFullYear() + "年" + m[1] + "月" + end.getDate() + "日",
@@ -122,7 +129,11 @@ class RentalResultSearchBar extends React.Component {
           場地關鍵字
           <label>
             <input
-              className="s2-input-t"
+              className={
+                this.state.keyword !== ""
+                  ? "s2-input-t s2-input-have"
+                  : "s2-input-t"
+              }
               type="text"
               name="keyword"
               value={this.state.keyword}
@@ -138,7 +149,7 @@ class RentalResultSearchBar extends React.Component {
           <img src={search} alt="" />
         </div>
         <div className="s2_container">
-        租借開始
+          租借開始
           <input
             className="s2-input-btn"
             type="button"
@@ -155,7 +166,7 @@ class RentalResultSearchBar extends React.Component {
             className="s2-input-btn"
             type="button"
             name="dateend"
-            value={this.state.datestart}
+            value={this.state.dateend}
             onClick={() => this.handleCalenderShow(1)}
           />
           <img src={end} alt="" />

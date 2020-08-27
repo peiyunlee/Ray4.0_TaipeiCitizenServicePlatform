@@ -9,6 +9,7 @@
   border: 1px solid #CACACA;
   width: 310px;
   border-radius: 6px;
+  z-index: 2;
 }
 .s2_title {
   border-bottom: 1px solid #CACACA;

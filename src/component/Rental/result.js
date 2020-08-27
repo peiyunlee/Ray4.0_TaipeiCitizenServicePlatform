@@ -9,24 +9,58 @@ import "./searchbar/search2.css";
 class RentalResult extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      maskclick: false,
+      maskwork: false,
+    };
+
+    this.setMaskWork = this.setMaskWork.bind(this);
+    this.maskClick = this.maskClick.bind(this);
 
     this._renderItems = this._renderItems.bind(this);
     this._costSort = this._costSort.bind(this);
     this._numberSort = this._numberSort.bind(this);
   }
 
+  maskClick() {
+    if (this.state.maskwork) {
+      this.setState({
+        maskclick: !this.state.maskclick,
+      });
+    }
+  }
+
+  setMaskWork(work) {
+    if (this.state.maskclick) {
+      this.setState({
+        maskclick: false,
+      });
+    }
+    this.setState({
+      maskwork: work,
+    });
+  }
+
   render() {
     return (
       <div>
+        <div className={this.state.maskwork ? "mask mask-work" : "mask"} onClick={this.maskClick}></div>
         <div className="rentalresult">
           <section>
             <div className="s2_search_wrapper">
               <div className="s2_title">搜尋</div>
-              <SearchBar setRentalSearch={this.props.setRentalSearch} />
+              <SearchBar
+                filter={this.props.filter}
+                search={this.props.search}
+                setMaskWork={this.setMaskWork}
+                maskclick={this.state.maskclick}
+                setRentalSearch={this.props.setRentalSearch}
+              />
             </div>
             <RentalFilter
               filter={this.props.filter}
-              setRentalFilter={this.props.setRentalFilter}
+              search={this.props.search}
+              setRentalSearch={this.props.setRentalSearch}
             />
           </section>
           <section className="container">
@@ -119,9 +153,7 @@ class RentalResult extends React.Component {
     let list = [];
     if (result !== []) {
       result.forEach((item, index) => {
-        list.push(
-          <VenueCard key={index} item={item} />
-        );
+        list.push(<VenueCard key={index} item={item} />);
       });
     } else {
       // 找不到

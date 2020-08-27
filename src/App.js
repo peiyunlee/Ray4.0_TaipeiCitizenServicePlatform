@@ -38,6 +38,7 @@ class App extends React.Component {
       filter: {
         dodistrict: false,
         district: [
+          { checked: false, name: "台北市不限" },
           { checked: false, name: "中正區" },
           { checked: false, name: "大同區" },
           { checked: false, name: "中山區" },
@@ -61,6 +62,7 @@ class App extends React.Component {
           { checked: false, name: "公園" },
           { checked: false, name: "教室" },
         ],
+        donumber: false,
         number: [
           { checked: false, min: 0, max: 30 },
           { checked: false, min: 30, max: 60 },
@@ -70,6 +72,7 @@ class App extends React.Component {
           { checked: false, min: 500, max: 1000 },
           { checked: false, min: 1000, max: 10000 },
         ],
+        docost: false,
         cost: [
           { checked: false, min: 0, max: 0 },
           { checked: false, min: 0, max: 500 },
@@ -84,8 +87,9 @@ class App extends React.Component {
 
     this.setRentalSearch = this.setRentalSearch.bind(this);
     this.setRentalFilter_DT = this.setRentalFilter_DT.bind(this);
+    this.setRentalFilter_N = this.setRentalFilter_N.bind(this);
+    this.setRentalFilter_C = this.setRentalFilter_C.bind(this);
     this.setRentalSearchDate = this.setRentalSearchDate.bind(this);
-    this.setRentalFilter = this.setRentalFilter.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
   }
 
@@ -119,10 +123,9 @@ class App extends React.Component {
             component={() => (
               <RentalResult
                 filter={this.state.filter}
+                search={this.state.search}
                 result={this.state.rentalResult}
                 setRentalSearch={this.setRentalSearch}
-                setRentalFilter={this.setRentalFilter}
-                setRentalResult={this.setRentalResult}
               />
             )}
           />
@@ -177,6 +180,8 @@ class App extends React.Component {
   setRentalSearch(search, filter) {
     let result_s = this.setRentalSearchDate(this.state.rentalData, search);
     let result = this.setRentalFilter_DT(result_s, filter);
+    if (filter.donumber) result = this.setRentalFilter_N(result, filter);
+    if (filter.docost) result = this.setRentalFilter_C(result, filter);
     this.setRentalResult(result);
   }
 
@@ -193,24 +198,6 @@ class App extends React.Component {
       }
     }
     return result;
-    // let d, t;
-    // data.forEach((item) => {
-    //   if (filter.district.every((ditem) => !ditem.checked)) {
-    //     d = true;
-    //   } else {
-    //     d = filter.district.some(
-    //       (ditem) => ditem.checked && ditem.name === item.district
-    //     );
-    //   }
-    //   if (filter.type.every((titem) => !titem.checked)) {
-    //     t = true;
-    //   } else {
-    //     t = item.type.some((name) =>
-    //       filter.type.some((titem) => titem.checked && titem.name === name)
-    //     );
-    //   }
-    //   if (d && t) result.push(item);
-    // });
   }
 
   setRentalFilter_DT(data, filter) {
@@ -248,30 +235,17 @@ class App extends React.Component {
     return result;
   }
 
-  setRentalFilter(filter) {
-    if (filter !== {}) {
+  setRentalFilter_N(data, filter) {
+    if (filter !== undefined) {
+      const f = Object.assign({}, this.state.filter, filter);
       this.setState({
-        filter: filter,
+        filter: f,
       });
     }
 
     let result = [];
-    let d, t, n, c;
-    this.state.rentalData.forEach((item) => {
-      if (filter.district.every((ditem) => !ditem.checked)) {
-        d = true;
-      } else {
-        d = filter.district.some(
-          (ditem) => ditem.checked && ditem.name === item.district
-        );
-      }
-      if (filter.type.every((titem) => !titem.checked)) {
-        t = true;
-      } else {
-        t = item.type.some((name) =>
-          filter.type.some((titem) => titem.checked && titem.name === name)
-        );
-      }
+    let n = true;
+    data.forEach((item) => {
       if (filter.number.every((nitem) => !nitem.checked)) {
         n = true;
       } else {
@@ -282,6 +256,22 @@ class App extends React.Component {
             item.number <= nitem.max
         );
       }
+      if (n) result.push(item);
+    });
+    return result;
+  }
+
+  setRentalFilter_C(data, filter) {
+    if (filter !== undefined) {
+      const f = Object.assign({}, this.state.filter, filter);
+      this.setState({
+        filter: f,
+      });
+    }
+
+    let result = [];
+    let c = true;
+    data.forEach((item) => {
       if (filter.cost.every((citem) => !citem.checked)) {
         c = true;
       } else {
@@ -290,13 +280,59 @@ class App extends React.Component {
             citem.checked && item.cost >= citem.min && item.cost <= citem.max
         );
       }
-      if (d && t && n && c) result.push(item);
+      if (c) result.push(item);
     });
+    return result;
   }
 }
 
 export default App;
 
+// setRentalFilter(filter) {
+//   if (filter !== {}) {
+//     this.setState({
+//       filter: filter,
+//     });
+//   }
+
+//   let result = [];
+//   let d, t, n, c;
+//   this.state.rentalData.forEach((item) => {
+//     if (filter.district.every((ditem) => !ditem.checked)) {
+//       d = true;
+//     } else {
+//       d = filter.district.some(
+//         (ditem) => ditem.checked && ditem.name === item.district
+//       );
+//     }
+//     if (filter.type.every((titem) => !titem.checked)) {
+//       t = true;
+//     } else {
+//       t = item.type.some((name) =>
+//         filter.type.some((titem) => titem.checked && titem.name === name)
+//       );
+//     }
+//     if (filter.number.every((nitem) => !nitem.checked)) {
+//       n = true;
+//     } else {
+//       n = filter.number.some(
+//         (nitem) =>
+//           nitem.checked &&
+//           item.number >= nitem.min &&
+//           item.number <= nitem.max
+//       );
+//     }
+//     if (filter.cost.every((citem) => !citem.checked)) {
+//       c = true;
+//     } else {
+//       c = filter.cost.some(
+//         (citem) =>
+//           citem.checked && item.cost >= citem.min && item.cost <= citem.max
+//       );
+//     }
+//     if (d && t && n && c) result.push(item);
+//   });
+// }
 //   let d, t, o;
 //   d = this.state.filter.district;
 //   d.forEach((ditem) => {

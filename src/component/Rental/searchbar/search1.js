@@ -54,9 +54,11 @@ class RentalHomeSearchBar extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+
     this.handleDropdownShow = this.handleDropdownShow.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setPickDay = this.setPickDay.bind(this);
+
     this._renderCheckBox_D = this._renderCheckBox_D.bind(this);
     this._renderCheckBox_T = this._renderCheckBox_T.bind(this);
     this._districtChange = this._districtChange.bind(this);
@@ -87,10 +89,17 @@ class RentalHomeSearchBar extends React.Component {
     let dodistrict = this.state.district !== "選擇行政區";
 
     let dotype = this.state.dateend !== "選擇類型";
+
+    let value = ["",""];
+    if(dodate){
+      value=[this.state.datestart,this.state.dateend]
+    }
+
     let s = {
       keyword: this.state.keyword,
-      date: { do: dodate, value: this.state.pickday },
+      date: { do: dodate, value: value },
     };
+    console.log(value)
 
     let f = Object.assign({}, this.props.filter, {
       dodistrict: dodistrict,

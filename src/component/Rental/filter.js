@@ -59,37 +59,41 @@ class RentalFilter extends React.Component {
   }
 
   _districtChange(event) {
-    const { filter } = this.props;
+    const { filter,search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let d = filter.district;
+    d[0].checked = false;
     d[index].checked = !d[index].checked;
 
     let c;
     c = Object.assign({}, filter, {
+      dodistrict:true,
       district: d,
     });
 
-    this.props.setRentalFilter(c);
+    this.props.setRentalSearch(search,c);
   }
 
   _typeChange(event) {
-    const { filter } = this.props;
+    const { filter,search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let t = filter.type;
+    t[0].checked = false;
     t[index].checked = !t[index].checked;
 
     let c;
     c = Object.assign({}, filter, {
+      dotype:true,
       type: t,
     });
 
-    this.props.setRentalFilter(c);
+    this.props.setRentalSearch(search,c);
   }
 
   _numberChange(event) {
-    const { filter } = this.props;
+    const { filter,search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let n = filter.number;
@@ -97,14 +101,15 @@ class RentalFilter extends React.Component {
 
     let c;
     c = Object.assign({}, filter, {
+      donumber:true,
       number: n,
     });
 
-    this.props.setRentalFilter(c);
+    this.props.setRentalSearch(search,c);
   }
 
   _costChange(event) {
-    const { filter } = this.props;
+    const { filter,search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let c = filter.cost;
@@ -112,49 +117,91 @@ class RentalFilter extends React.Component {
 
     let o;
     o = Object.assign({}, filter, {
+      docost:true,
       cost: c,
     });
 
-    this.props.setRentalFilter(o);
+    this.props.setRentalSearch(search,o);
   }
 
   _renderCheckBox_D() {
     const { filter } = this.props;
     let list = [];
-    filter.district.forEach((item, index) => {
-      list.push(
-        <label key={index}>
-          <input
-            key={index}
-            name={index}
-            type="checkbox"
-            checked={filter.district[index].checked}
-            onChange={this._districtChange}
-          />
-          {filter.district[index].name}
-        </label>
-      );
-    });
+    if (filter.district[0].checked) {
+      filter.district.forEach((item, index) => {
+        if (index !== 0) {
+          list.push(
+            <label key={index}>
+              <input
+                key={index}
+                name={index}
+                type="checkbox"
+                onChange={this._districtChange}
+              />
+              {item.name}
+            </label>
+          );
+        }
+      });
+    } else {
+      filter.district.forEach((item, index) => {
+        if (index !== 0) {
+          list.push(
+            <label key={index}>
+              <input
+                key={index}
+                name={index}
+                type="checkbox"
+                checked={filter.district[index].checked}
+                onChange={this._districtChange}
+              />
+              {filter.district[index].name}
+            </label>
+          );
+        }
+      });
+    }
+
     return list;
   }
 
   _renderCheckBox_T() {
     const { filter } = this.props;
     let list = [];
-    filter.type.forEach((item, index) => {
-      list.push(
-        <label key={index}>
-          <input
-            key={index}
-            name={index}
-            type="checkbox"
-            checked={item.checked}
-            onChange={this._typeChange}
-          />
-          {item.name}
-        </label>
-      );
-    });
+    if (filter.type[0].checked) {
+      filter.type.forEach((item, index) => {
+        if (index !== 0) {
+          list.push(
+            <label key={index}>
+              <input
+                key={index}
+                name={index}
+                type="checkbox"
+                onChange={this._typeChange}
+              />
+              {item.name}
+            </label>
+          );
+        }
+      });
+    } else {
+      filter.type.forEach((item, index) => {
+        if (index !== 0) {
+          list.push(
+            <label key={index}>
+              <input
+                key={index}
+                name={index}
+                type="checkbox"
+                checked={item.checked}
+                onChange={this._typeChange}
+              />
+              {item.name}
+            </label>
+          );
+        }
+      });
+    }
     return list;
   }
 

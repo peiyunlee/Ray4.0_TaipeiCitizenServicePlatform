@@ -37,7 +37,7 @@ class RentalHome extends React.Component {
   render() {
     return (
       <div className="rental-home">
-        <div className="mask" onClick={this.maskClick}></div>
+        <div className={this.state.maskwork ? "mask mask-work" : "mask"} onClick={this.maskClick}></div>
         <section className="section_rh">
           <h3>公有場地租用</h3>
           <div className="info">快速搜尋適合您的場地</div>

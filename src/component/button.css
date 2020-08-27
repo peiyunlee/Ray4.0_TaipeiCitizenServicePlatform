@@ -70,6 +70,7 @@ button {
 }
 .s2_form .button2:active,
 .s2_form .button2:focus {
+  filter: none;
   background: #3a959a;
   transition: all 0.2s;
   outline: none;
