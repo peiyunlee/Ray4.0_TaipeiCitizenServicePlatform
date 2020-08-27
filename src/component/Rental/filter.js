@@ -1,11 +1,12 @@
 import React from "react";
 
 import "./filter.css";
+import up from "../../assets/images/icon/up-black.png";
+import down from "../../assets/images/icon/down-black.png";
 
 class RentalFilter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this._renderCheckBox_D = this._renderCheckBox_D.bind(this);
     this._renderCheckBox_T = this._renderCheckBox_T.bind(this);
@@ -22,24 +23,122 @@ class RentalFilter extends React.Component {
       <div className="filter">
         <div className="title">透過以下分類搜尋</div>
         <div className="container">
-          <div className="list_title">行政區</div>
-          <div className="list">{this._renderCheckBox_D()}</div>
+          <div className="list_title">
+            行政區
+            <div className="icon-wrapper" onClick={() => this.props.filterListClick(0)}>
+              <img
+                src={down}
+                alt=""
+                className={`collapse-icon ${
+                  !this.props.active[0] ? "collapse-icon-active" : ""
+                }`}
+              />
+              <img
+                src={up}
+                alt=""
+                className={`collapse-icon ${
+                  this.props.active[0] ? "collapse-icon-active" : ""
+                }`}
+              />
+            </div>
+          </div>
+          <div className={`list ${!this.props.active[0] ? "list-hide" : ""}`}>
+            {this._renderCheckBox_D()}
+          </div>
         </div>
         <div className="container">
-          <div className="list_title">場地類型</div>
-          <div className="list">{this._renderCheckBox_T()}</div>
+          <div className="list_title">
+            場地類型
+            <div className="icon-wrapper" onClick={() => this.props.filterListClick(1)}>
+              <img
+                src={down}
+                alt=""
+                className={`collapse-icon ${
+                  !this.props.active[1] ? "collapse-icon-active" : ""
+                }`}
+              />
+              <img
+                src={up}
+                alt=""
+                className={`collapse-icon ${
+                  this.props.active[1] ? "collapse-icon-active" : ""
+                }`}
+              />
+            </div>
+          </div>
+          <div className={`list ${!this.props.active[1] ? "list-hide" : ""}`}>
+            {this._renderCheckBox_T()}
+          </div>
         </div>
         <div className="container">
-          <div className="list_title">容納人數</div>
-          <div className="list">{this._renderCheckBox_N()}</div>
+          <div className="list_title">
+            容納人數
+            <div className="icon-wrapper" onClick={() => this.props.filterListClick(2)}>
+              <img
+                src={down}
+                alt=""
+                className={`collapse-icon ${
+                  !this.props.active[2] ? "collapse-icon-active" : ""
+                }`}
+              />
+              <img
+                src={up}
+                alt=""
+                className={`collapse-icon ${
+                  this.props.active[2] ? "collapse-icon-active" : ""
+                }`}
+              />
+            </div>
+          </div>
+          <div className={`list ${!this.props.active[2] ? "list-hide" : ""}`}>
+            {this._renderCheckBox_N()}
+          </div>
         </div>
         <div className="container">
-          <div className="list_title">場地價格（小時）</div>
-          <div className="list">{this._renderCheckBox_C()}</div>
+          <div className="list_title">
+            場地價格（小時）
+            <div className="icon-wrapper" onClick={() => this.props.filterListClick(3)}>
+              <img
+                src={down}
+                alt=""
+                className={`collapse-icon ${
+                  !this.props.active[3] ? "collapse-icon-active" : ""
+                }`}
+              />
+              <img
+                src={up}
+                alt=""
+                className={`collapse-icon ${
+                  this.props.active[3] ? "collapse-icon-active" : ""
+                }`}
+              />
+            </div>
+          </div>
+          <div className={`list ${!this.props.active[3] ? "list-hide" : ""}`}>
+            {this._renderCheckBox_C()}
+          </div>
         </div>
         <div className="container">
-          <div className="list_title">其他設施及設備</div>
-          <div className="list">
+          <div className="list_title">
+            其他設施及設備
+            <div className="icon-wrapper" onClick={() => this.props.filterListClick(4)}>
+              <img
+                src={down}
+                alt=""
+                className={`collapse-icon ${
+                  !this.props.active[4] ? "collapse-icon-active" : ""
+                }`}
+              />
+              <img
+                src={up}
+                alt=""
+                className={`collapse-icon ${
+                  this.props.active[4] ? "collapse-icon-active" : ""
+                }`}
+              />
+            </div>
+          </div>
+          <div className={`list ${!this.props.active[4] ? "list-hide" : ""}`}>
             <label>
               <input name="停車場" type="checkbox" />
               停車場
@@ -59,7 +158,7 @@ class RentalFilter extends React.Component {
   }
 
   _districtChange(event) {
-    const { filter,search } = this.props;
+    const { filter, search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let d = filter.district;
@@ -68,15 +167,16 @@ class RentalFilter extends React.Component {
 
     let c;
     c = Object.assign({}, filter, {
-      dodistrict:true,
+      dodistrict: true,
       district: d,
     });
 
-    this.props.setRentalSearch(search,c);
+    this.props.setRentalSearch(search, c);
+    window.scrollTo(0, 0);
   }
 
   _typeChange(event) {
-    const { filter,search } = this.props;
+    const { filter, search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let t = filter.type;
@@ -85,15 +185,16 @@ class RentalFilter extends React.Component {
 
     let c;
     c = Object.assign({}, filter, {
-      dotype:true,
+      dotype: true,
       type: t,
     });
 
-    this.props.setRentalSearch(search,c);
+    this.props.setRentalSearch(search, c);
+    window.scrollTo(0, 0);
   }
 
   _numberChange(event) {
-    const { filter,search } = this.props;
+    const { filter, search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let n = filter.number;
@@ -101,15 +202,16 @@ class RentalFilter extends React.Component {
 
     let c;
     c = Object.assign({}, filter, {
-      donumber:true,
+      donumber: true,
       number: n,
     });
 
-    this.props.setRentalSearch(search,c);
+    this.props.setRentalSearch(search, c);
+    window.scrollTo(0, 0);
   }
 
   _costChange(event) {
-    const { filter,search } = this.props;
+    const { filter, search } = this.props;
     const target = event.target;
     const index = parseInt(target.name);
     let c = filter.cost;
@@ -117,11 +219,12 @@ class RentalFilter extends React.Component {
 
     let o;
     o = Object.assign({}, filter, {
-      docost:true,
+      docost: true,
       cost: c,
     });
 
-    this.props.setRentalSearch(search,o);
+    this.props.setRentalSearch(search, o);
+    window.scrollTo(0, 0);
   }
 
   _renderCheckBox_D() {

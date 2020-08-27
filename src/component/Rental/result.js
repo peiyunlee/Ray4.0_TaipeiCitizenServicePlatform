@@ -41,10 +41,56 @@ class RentalResult extends React.Component {
     });
   }
 
+  _numberSort(type) {
+    const { result } = this.props;
+    let r = result;
+    if (!type) {
+      r.sort((a, b) => {
+        return a.number - b.number;
+      });
+    } else {
+      r.sort((a, b) => {
+        return b.number - a.number;
+      });
+    }
+    this.props.setRentalResult(r);
+  }
+
+  _costSort(type) {
+    const { result } = this.props;
+    let r = result;
+    if (!type) {
+      r.sort((a, b) => {
+        return a.cost - b.cost;
+      });
+    } else {
+      r.sort((a, b) => {
+        return b.cost - a.cost;
+      });
+    }
+    this.props.setRentalResult(r);
+  }
+
+  _renderItems() {
+    const { result } = this.props;
+    let list = [];
+    if (result !== []) {
+      result.forEach((item, index) => {
+        list.push(<VenueCard key={index} item={item} />);
+      });
+    } else {
+      // 找不到
+    }
+    return list;
+  }
+
   render() {
     return (
       <div>
-        <div className={this.state.maskwork ? "mask mask-work" : "mask"} onClick={this.maskClick}></div>
+        <div
+          className={this.state.maskwork ? "mask mask-work" : "mask"}
+          onClick={this.maskClick}
+        ></div>
         <div className="rentalresult">
           <section>
             <div className="s2_search_wrapper">
@@ -58,6 +104,8 @@ class RentalResult extends React.Component {
               />
             </div>
             <RentalFilter
+              active={this.props.filterlistactive}
+              filterListClick={this.props.filterListClick}
               filter={this.props.filter}
               search={this.props.search}
               setRentalSearch={this.props.setRentalSearch}
@@ -116,49 +164,6 @@ class RentalResult extends React.Component {
         </div>
       </div>
     );
-  }
-
-  _numberSort(type) {
-    const { result } = this.props;
-    let r = result;
-    if (!type) {
-      r.sort((a, b) => {
-        return a.number - b.number;
-      });
-    } else {
-      r.sort((a, b) => {
-        return b.number - a.number;
-      });
-    }
-    this.props.setRentalResult(r);
-  }
-
-  _costSort(type) {
-    const { result } = this.props;
-    let r = result;
-    if (!type) {
-      r.sort((a, b) => {
-        return a.cost - b.cost;
-      });
-    } else {
-      r.sort((a, b) => {
-        return b.cost - a.cost;
-      });
-    }
-    this.props.setRentalResult(r);
-  }
-
-  _renderItems() {
-    const { result } = this.props;
-    let list = [];
-    if (result !== []) {
-      result.forEach((item, index) => {
-        list.push(<VenueCard key={index} item={item} />);
-      });
-    } else {
-      // 找不到
-    }
-    return list;
   }
 }
 

@@ -27,6 +27,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filterlistactive: [false, false, false, false, false],
       rentalData: rentalData,
       caseData: caseData,
       sortData: sortData,
@@ -91,6 +92,8 @@ class App extends React.Component {
     this.setRentalFilter_C = this.setRentalFilter_C.bind(this);
     this.setRentalSearchDate = this.setRentalSearchDate.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
+
+    this.filterListClick = this.filterListClick.bind(this);
   }
 
   render() {
@@ -122,10 +125,12 @@ class App extends React.Component {
             path="/rentallist"
             component={() => (
               <RentalResult
+              filterlistactive={this.state.filterlistactive}
                 filter={this.state.filter}
                 search={this.state.search}
                 result={this.state.rentalResult}
                 setRentalSearch={this.setRentalSearch}
+                filterListClick={this.filterListClick}
               />
             )}
           />
@@ -163,6 +168,14 @@ class App extends React.Component {
         <Footer />
       </HashRouter>
     );
+  }
+
+  filterListClick(index) {
+    let a = this.state.filterlistactive
+    a[index] = !a[index];
+    this.setState({
+      filterlistactive: a,
+    });
   }
 
   setMaskWork() {

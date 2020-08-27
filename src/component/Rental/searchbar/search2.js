@@ -58,6 +58,7 @@ class RentalResultSearchBar extends React.Component {
 
     this.props.setRentalSearch(s, f);
     event.preventDefault();
+    window.scrollTo(0, 0);
     // this.props.history.push("/rentallist");
   }
 
@@ -146,7 +147,7 @@ class RentalResultSearchBar extends React.Component {
               }}
             />
           </label>
-          <img src={search} alt="" />
+          <img className="icon-input" src={search} alt="" />
         </div>
         <div className="s2_container">
           租借開始
@@ -157,7 +158,7 @@ class RentalResultSearchBar extends React.Component {
             value={this.state.datestart}
             onClick={() => this.handleCalenderShow(0)}
           />
-          <img src={start} alt="" />
+          <img className="icon-input" src={start} alt="" />
           {dropdown[0]}
         </div>
         <div className="s2_container">
@@ -169,7 +170,7 @@ class RentalResultSearchBar extends React.Component {
             value={this.state.dateend}
             onClick={() => this.handleCalenderShow(1)}
           />
-          <img src={end} alt="" />
+          <img className="icon-input" src={end} alt="" />
           {dropdown[1]}
         </div>
         <Button type={2} text={"搜尋"} onclick={this.handleSubmit} />
