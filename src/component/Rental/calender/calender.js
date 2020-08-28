@@ -1,7 +1,7 @@
 import React from "react";
 
-import left from "../assets/images/icon/c-left.png";
-import right from "../assets/images/icon/c-right.png";
+import left from "../../../assets/images/icon/c-left.png";
+import right from "../../../assets/images/icon/c-right.png";
 class Calender extends React.Component {
   constructor(props) {
     super(props);

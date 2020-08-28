@@ -22,7 +22,7 @@ button {
 .button1:active,
 .button1:focus {
   box-shadow: none;
-  background: #3a959a;
+  background: #015E73;
   transition: all 0.2s;
   outline: none;
 }

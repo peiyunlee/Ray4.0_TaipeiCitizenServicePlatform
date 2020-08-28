@@ -9,7 +9,7 @@ import RentalHome from "./component/Rental/home";
 import RentalResult from "./component/Rental/result";
 import CaseList from "./component/Case/caselist";
 import CaseInfo from "./component/Case/caseinfo";
-import VenueDetail from "./component/Rental/Detail";
+import VenueDetail from "./component/Rental/detail";
 import Header from "./component/header";
 import Footer from "./component/footer";
 import FatFooter from "./component/Home/fatfooter";
@@ -181,9 +181,15 @@ class App extends React.Component {
           <Route
             path="/venuedetail/:venueindex"
             component={(props) => (
-              <VenueDetail
-                item={this.state.rentalData[props.match.params.venueindex]}
-              />
+              <div>
+                <BreadCrumb
+                  pathName={["首頁", "公有場地租用首頁", "場地列表", this.state.rentalData[props.match.params.venueindex].name]}
+                  path={["/", "/rental","/rentallist"]}
+                />
+                <VenueDetail
+                  item={this.state.rentalData[props.match.params.venueindex]}
+                />
+              </div>
             )}
           />
           <Route path="/apply/step1" component={(props) => <StepOne />} />

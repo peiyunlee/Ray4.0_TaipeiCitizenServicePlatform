@@ -147,7 +147,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  align-items: center;
+  /* padding: 0 16px; */
 }
 
 .card h3 {
@@ -168,10 +169,12 @@
 }
 
 .card-line {
+  width: 160px;
   height: 2px;
   background-color: #015e73;
 }
 .card-theme p {
+  width: 160px;
   margin-top: 8px;
   font-weight: 500;
   color: #676767;
