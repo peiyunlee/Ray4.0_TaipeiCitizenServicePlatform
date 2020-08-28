@@ -13,7 +13,7 @@ class DemoLink extends React.Component {
 
   render() {
     return (
-      <a href="/#" onClick={this.handleDemoClick}>
+      <a href="/#" className={this.props.classname} onClick={this.handleDemoClick}>
         {this.props.text}
       </a>
     );

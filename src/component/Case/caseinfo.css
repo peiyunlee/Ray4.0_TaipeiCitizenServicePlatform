@@ -1,9 +1,63 @@
-.caseinfo{
-    height: 1000px;
+.caseinfo {
+  min-height: calc(100vh - 255px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
 }
-.fix{
-    position: fixed;
-    z-index: 100;
-    right: 100px;
-    bottom: 100px;
+.caseinfo h3 {
+  font-weight: bold;
+  font-size: 32px;
+  color: #015e73;
+  margin-bottom: 50px;
+}
+.caseinfo .card {
+  width: 960px;
+  margin-bottom: 24px;
+}
+.caseinfo .card-title {
+  background: #acdee1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 65px;
+  width: 100%;
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.caseinfo .card-p-wrapper {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  padding: 40px 80px 60px;
+}
+.caseinfo .card-p-title {
+  color: #008992;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.caseinfo p {
+  margin-bottom: 20px;
+}
+.caseinfo .card-file-item {
+  display: block;
+  color: #0081de;
+  text-decoration-line: underline;
+  margin-bottom: 2px;
+}
+
+.caseinfo-btn-fixed {
+  position: fixed;
+  z-index: 100;
+  right: 100px;
+  bottom: 100px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #00bcc8;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25);
+  color:#fff;
+  font-size:20px;
+  font-weight: 500;
 }

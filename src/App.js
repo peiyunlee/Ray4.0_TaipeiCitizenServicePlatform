@@ -18,6 +18,7 @@ import StepOne from "./component/Apply/one";
 import StepTwo from "./component/Apply/two";
 import StepThree from "./component/Apply/three";
 import StepFour from "./component/Apply/four";
+import BreadCrumb from "./component/breadcrumb";
 
 import rentalData from "./data/rental";
 import caseData from "./data/case";
@@ -49,7 +50,7 @@ class App extends React.Component {
           { checked: false, name: "萬華區" },
           { checked: false, name: "信義區" },
           { checked: false, name: "士林區" },
-          { checked: false, name: "松山區" },
+          { checked: false, name: "南港區" },
           { checked: false, name: "內湖區" },
           { checked: false, name: "文山區" },
         ],
@@ -127,35 +128,60 @@ class App extends React.Component {
           <Route
             path="/rentallist"
             component={() => (
-              <RentalResult
-                timerange={this.state.timerange}
-                filterlistactive={this.state.filterlistactive}
-                filter={this.state.filter}
-                search={this.state.search}
-                result={this.state.rentalResult}
-                setRentalFilter_Time={this.setRentalFilter_Time}
-                setRentalResult={this.setRentalResult}
-                setRentalSearch={this.setRentalSearch}
-                filterListClick={this.filterListClick}
-              />
+              <div>
+                <BreadCrumb
+                  pathName={["首頁", "公有場地租用首頁", "場地列表"]}
+                  path={["/", "/rental"]}
+                />
+                <RentalResult
+                  timerange={this.state.timerange}
+                  filterlistactive={this.state.filterlistactive}
+                  filter={this.state.filter}
+                  search={this.state.search}
+                  result={this.state.rentalResult}
+                  setRentalFilter_Time={this.setRentalFilter_Time}
+                  setRentalResult={this.setRentalResult}
+                  setRentalSearch={this.setRentalSearch}
+                  filterListClick={this.filterListClick}
+                />
+              </div>
             )}
           />
           <Route
             path="/caselist/:listtype/:listname"
             component={(props) => (
-              <CaseList
-                {...props}
-                sortData={this.state.sortData}
-                caseData={this.state.caseData}
-              />
+              <div>
+                <BreadCrumb
+                  pathName={["首頁", "服務案件列表"]}
+                  path={["/", ""]}
+                />
+                <CaseList
+                  {...props}
+                  listName={props.match.params.listname}
+                  listType={props.match.params.listtype}
+                  sortData={this.state.sortData}
+                  caseData={this.state.caseData}
+                />
+                <FatFooter sortData={this.state.sortData} />
+              </div>
             )}
           />
           <Route
             path="/caseinfo/:caseindex"
-            component={(props) => (
-              <CaseInfo
-                item={this.state.caseData[props.match.params.caseindex]}
-              />
+            component={(props,route) => (
+              <div>
+                <BreadCrumb
+                  pathName={[
+                    "首頁",
+                    "服務申辦說明",
+                  ]}
+                  path={["/"]}
+                />
+                <CaseInfo
+                  item={this.state.caseData[props.match.params.caseindex]}
+                />
+                <FatFooter sortData={this.state.sortData} />
+              </div>
             )}
           />
           <Route
@@ -312,8 +338,12 @@ class App extends React.Component {
 
   setRentalFilter_Time(v) {
     this.setTimeRange(v);
-    let result_s,result = [];
-    result_s = this.setRentalSearchDate(this.state.rentalData, this.state.search);
+    let result_s,
+      result = [];
+    result_s = this.setRentalSearchDate(
+      this.state.rentalData,
+      this.state.search
+    );
     result_s = this.setRentalFilter_DT(result_s, this.state.filter);
     if (this.state.filter.donumber)
       result_s = this.setRentalFilter_N(result_s, this.state.filter);

@@ -37,6 +37,9 @@ nav li{
     height: 100%;
 
 }
+nav li:last-child{
+    margin-left: 20px;
+}
 nav li>a{
     display: flex;
     align-items: center;

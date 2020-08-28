@@ -1,6 +1,8 @@
 import React from "react";
 import "./caseinfo.css";
 
+import DemoLink from "../demolink";
+
 class CaseInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -12,40 +14,40 @@ class CaseInfo extends React.Component {
   render() {
     const { item } = this.props;
     let download = "";
-    if(item.download){
-      download = <div>
-      <div className="title">檔案下載</div>
-      <div>
-        {this._renderFile(item.download)}
-      </div>
-    </div>
+    if (item.download) {
+      download = (
+        <div className="card">
+          <div className="card-title">檔案下載</div>
+          <div className="card-p-wrapper">
+            {this._renderFile(item.download)}
+          </div>
+        </div>
+      );
     }
 
     return (
       <div className="caseinfo">
         <h3>{item.name}</h3>
-        <div>
-          <div className="title">申辦說明</div>
-          <div>
-            <div className="p-title">服務說明</div>
+        <div className="card">
+          <div className="card-title">服務資訊</div>
+          <div className="card-p-wrapper">
+            <div className="card-p-title">服務說明</div>
             <p dangerouslySetInnerHTML={this._renderText(item.info)}></p>
-            <div className="p-title">處理天數</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.day+"日")}></p>
           </div>
         </div>
-        <div>
-          <div className="title">申辦方式</div>
-          <div>
-            <div className="p-title">應備文件</div>
+        <div className="card">
+          <div className="card-title">申辦方式</div>
+          <div className="card-p-wrapper">
+            <div className="card-p-title">應備文件</div>
             <p dangerouslySetInnerHTML={this._renderText(item.file)}></p>
-            <div className="p-title">臨櫃辦理</div>
+            <div className="card-p-title">處理天數</div>
+            <p dangerouslySetInnerHTML={this._renderText(item.day + "日")}></p>
+            <div className="card-p-title">臨櫃辦理</div>
             <p dangerouslySetInnerHTML={this._renderText(item.noonline)}></p>
           </div>
         </div>
-          <div>
-            {download}
-          </div>
-        <button className="fix">線上申辦</button>
+        <div>{download}</div>
+        <button className="caseinfo-btn-fixed">我要線上申辦</button>
       </div>
     );
   }
@@ -53,11 +55,11 @@ class CaseInfo extends React.Component {
     return { __html: text };
   }
 
-  _renderFile(download){
-    let list=[];
-    download.forEach((item,index)=>{
-      list.push(<a href="/" key={index}>{item}</a>)
-    })
+  _renderFile(download) {
+    let list = [];
+    download.forEach((item, index) => {
+      list.push(<DemoLink classname="card-file-item" key={index} text={item}></DemoLink>);
+    });
     return list;
   }
 }

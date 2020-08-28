@@ -1,0 +1,19 @@
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+  color: #9E9E9E;
+  width: 100%;
+  padding: 20px 160px;
+
+}
+.breadcrumb-wrapper a {
+  color: #0081de;
+}
+
+.breadcrumb-wrapper a:hover {
+    text-decoration:underline;
+  }
+
+.breadcrumb-wrapper img {
+    margin: 0 18px;
+  }

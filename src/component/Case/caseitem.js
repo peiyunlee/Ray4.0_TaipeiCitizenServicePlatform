@@ -15,11 +15,11 @@ class CaseItem extends React.Component {
   render() {
     const { item,number } = this.props;
     return (
-      <tr className="case-item">
+      <tr className={number%2 ? "case-item" : "case-item case-item-gray"}>
         <th>{number}</th>
         <th scope="row"><Link to={"/caseinfo/"+item.index}>{item.name}</Link></th>
         <th scope="row">{item.apply}</th>
-        <th scope="row">{item.day}</th>
+        <th scope="row">{item.day}日</th>
         <th scope="row">{this._renderApply()}</th>
       </tr>
     );

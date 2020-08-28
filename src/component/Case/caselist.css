@@ -1,5 +1,75 @@
-.case-list{
-    display: flex;
-    height: 1000px;
-    align-items: flex-end;
+.case-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 100px;
+  min-height: calc(100vh - 255px);
+}
+
+.case-list h3 {
+  font-weight: bold;
+  font-size: 36px;
+  color: #015e73;
+  margin-bottom: 50px;
+}
+.case-list table {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-list caption {
+  font-weight: bold;
+  font-size: 36px;
+  color: #015e73;
+  display: grid;
+  grid-template-columns: repeat(7, 150px);
+  grid-column-gap: 13px;
+}
+
+.case-list tr {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 95px 485px 180px 220px 1fr;
+  justify-content: left;
+  align-items: center;
+}
+
+.case-list thead {
+  height: 67px;
+  background: #acdee1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #015e73;
+}
+
+.case-list thead th {
+  font-weight: bold;
+}
+
+.case-list tbody th {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-list tbody tr {
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.case-list tbody .case-item-gray {
+  background: #eeeeee;
+}
+.case-item th:first-child {
+  font-weight: bold;
+}
+.case-item th:nth-child(2) a {
+  color: #0081de;
+}
+.case-item th:nth-child(2) a:hover {
+  text-decoration-line: underline;
+}
+
+.case-list tr th:nth-child(2) {
+  justify-self: flex-start;
 }

@@ -20,7 +20,7 @@
     "react-scripts": "3.4.3",
     "rsuite": "^4.8.1",
     "save-dev": "0.0.1-security"
-  },  
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

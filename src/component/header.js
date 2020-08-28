@@ -1,9 +1,10 @@
 import React from "react";
-import logo from "../assets/images/台北市政府logo去背 1.png";
 import { Link } from "react-router-dom";
 import "./header.css";
 
-import DemoLink from './demolink';
+import DemoLink from "./demolink";
+import logo from "../assets/images/台北市政府logo去背 1.png";
+import search from "../assets/images/icon/nav-search.png";
 
 class Header extends React.Component {
   render() {
@@ -19,9 +20,7 @@ class Header extends React.Component {
         <nav>
           <ul>
             <li>
-              <Link to="/" className="nav-item">
-                案件進度
-              </Link>
+              <DemoLink to="/" className="nav-item" text="案件進度"></DemoLink>
             </li>
             <li>
               <DemoLink className="nav-item" text="常見問題" />
@@ -31,6 +30,9 @@ class Header extends React.Component {
             </li>
             <li>
               <DemoLink className="nav-item" text="會員登入" />
+            </li>
+            <li>
+              <img src={search} alt="" />
             </li>
           </ul>
         </nav>

@@ -1,15 +1,16 @@
 import React from "react";
+
+import "./caselist.css";
+
 import CaseItem from "./caseitem";
 import Tab from "../tab";
-
-import "./caselist.css"
 
 class CaseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listName: props.match.params.listname,
-      listType: props.match.params.listtype,
+      // listName: props.match.params.listname,
+      // listType: props.match.params.listtype,
       caselist: [],
       tablist: [],
       activeTab: "",
@@ -18,12 +19,21 @@ class CaseList extends React.Component {
     this._renderItem = this._renderItem.bind(this);
     this._renderTab = this._renderTab.bind(this);
     this.tagClick = this.tagClick.bind(this);
+    this.tagGenerator = this.tagGenerator.bind(this);
   }
 
   componentDidMount() {
+    this.tagGenerator();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.listName !== prevProps.listName) this.tagGenerator();
+  }
+
+  tagGenerator() {
     const { caseData, sortData } = this.props;
-    const listtype = this.state.listType;
-    const listname = this.state.listName;
+    const listtype = this.props.listType;
+    const listname = this.props.listName;
     let list = [];
     caseData.forEach((i) => {
       const item = i;
@@ -38,12 +48,18 @@ class CaseList extends React.Component {
       caselist: list,
     });
 
+    let tablist = [];
     let index = sortData[listtype].findIndex((item) => item.name === listname);
-    let tablist = sortData[listtype][index].tab;
+    tablist = sortData[listtype][index].tab;
     if (tablist !== undefined) {
       this.setState({
         tablist: tablist,
         activeTab: tablist[0],
+      });
+    } else {
+      this.setState({
+        tablist: [],
+        activeTab: [],
       });
     }
   }
@@ -51,7 +67,7 @@ class CaseList extends React.Component {
   render() {
     return (
       <div className="case-list">
-        <h3>{this.state.listName}</h3>
+        <h3>{this.props.listName}</h3>
         <table>
           <caption>{this._renderTab()}</caption>
           <thead>
@@ -75,16 +91,18 @@ class CaseList extends React.Component {
 
   _renderTab() {
     let list = [];
-    this.state.tablist.forEach((tab) => {
-      list.push(
-        <Tab
-          label={tab}
-          key={tab}
-          activeTab={this.state.activeTab}
-          tagClick={this.tagClick}
-        />
-      );
-    });
+    if (this.state.tablist !== undefined) {
+      this.state.tablist.forEach((tab) => {
+        list.push(
+          <Tab
+            label={tab}
+            key={tab}
+            activeTab={this.state.activeTab}
+            tagClick={this.tagClick}
+          />
+        );
+      });
+    }
     return list;
   }
 
@@ -92,7 +110,7 @@ class CaseList extends React.Component {
     let list = [];
     let i = 1;
     this.state.caselist.forEach((item, index) => {
-      if (item.listtab === this.state.activeTab) {
+      if (item.listtab === this.state.activeTab || this.state.activeTab.length === 0) {
         list.push(<CaseItem key={index} number={i} item={item} />);
         i++;
       }

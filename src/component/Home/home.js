@@ -7,6 +7,8 @@ import "./home.css";
 
 import banner from "../../assets/images/icon/banner.png";
 
+import DemoLink from '../demolink';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -40,10 +42,10 @@ class Home extends React.Component {
                 <Link to="/rental">公有場地租用</Link>
               </li>
               <li>
-                <a href="/#" onClick={(event)=>{event.preventDefault()}}>防疫服務專區</a>
+                <DemoLink text="防疫服務專區"></DemoLink>
               </li>
               <li>
-                <a href="/#" onClick={(event)=>{event.preventDefault()}}>臨櫃預約服務</a>
+                <DemoLink text="臨櫃預約服務"></DemoLink>
               </li>
             </ul>
           </div>

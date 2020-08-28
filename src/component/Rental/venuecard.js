@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 // import Button from "../button";
 import "./venuecard.css";
 
+// import DemoLink from "../demolink";
+
 class VenueCard extends React.Component {
   constructor(props) {
     super(props);

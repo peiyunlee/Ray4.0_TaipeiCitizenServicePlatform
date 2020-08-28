@@ -33,7 +33,7 @@ class RentalHomeSearchBar extends React.Component {
           { checked: false, name: "信義區" },
           { checked: false, name: "士林區" },
           { checked: false, name: "北投區" },
-          { checked: false, name: "松山區" },
+          { checked: false, name: "南港區" },
           { checked: false, name: "內湖區" },
           { checked: false, name: "文山區" },
         ],
