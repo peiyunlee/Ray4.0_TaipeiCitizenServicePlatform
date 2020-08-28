@@ -1,8 +1,8 @@
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-// import { findDOMNode } from "react-dom";
 
-// import "./css/normalize.css";
+import "rsuite/lib/styles/index.less";
+
 import "./app.css";
 import Home from "./component/Home/home";
 import RentalHome from "./component/Rental/home";
@@ -28,6 +28,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       filterlistactive: [false, false, false, false, false],
+      timerange: [0, 14],
       rentalData: rentalData,
       caseData: caseData,
       sortData: sortData,
@@ -90,10 +91,12 @@ class App extends React.Component {
     this.setRentalFilter_DT = this.setRentalFilter_DT.bind(this);
     this.setRentalFilter_N = this.setRentalFilter_N.bind(this);
     this.setRentalFilter_C = this.setRentalFilter_C.bind(this);
+    this.setRentalFilter_Time = this.setRentalFilter_Time.bind(this);
     this.setRentalSearchDate = this.setRentalSearchDate.bind(this);
     this.setRentalResult = this.setRentalResult.bind(this);
 
     this.filterListClick = this.filterListClick.bind(this);
+    this.setTimeRange = this.setTimeRange.bind(this);
   }
 
   render() {
@@ -125,10 +128,13 @@ class App extends React.Component {
             path="/rentallist"
             component={() => (
               <RentalResult
-              filterlistactive={this.state.filterlistactive}
+                timerange={this.state.timerange}
+                filterlistactive={this.state.filterlistactive}
                 filter={this.state.filter}
                 search={this.state.search}
                 result={this.state.rentalResult}
+                setRentalFilter_Time={this.setRentalFilter_Time}
+                setRentalResult={this.setRentalResult}
                 setRentalSearch={this.setRentalSearch}
                 filterListClick={this.filterListClick}
               />
@@ -170,8 +176,14 @@ class App extends React.Component {
     );
   }
 
+  setTimeRange(v) {
+    this.setState({
+      timerange: v,
+    });
+  }
+
   filterListClick(index) {
-    let a = this.state.filterlistactive
+    let a = this.state.filterlistactive;
     a[index] = !a[index];
     this.setState({
       filterlistactive: a,
@@ -296,6 +308,46 @@ class App extends React.Component {
       if (c) result.push(item);
     });
     return result;
+  }
+
+  setRentalFilter_Time(v) {
+    this.setTimeRange(v);
+    let result_s,result = [];
+    result_s = this.setRentalSearchDate(this.state.rentalData, this.state.search);
+    result_s = this.setRentalFilter_DT(result_s, this.state.filter);
+    if (this.state.filter.donumber)
+      result_s = this.setRentalFilter_N(result_s, this.state.filter);
+    if (this.state.filter.docost)
+      result_s = this.setRentalFilter_C(result_s, this.state.filter);
+
+    let timetype = ["全天"];
+    if (v[0] !== v[1]) {
+      if (v[0] >= 0 && v[0] < 5) {
+        timetype.push("上午");
+        if (v[1] >= 5) {
+          timetype.push("下午");
+        }
+        if (v[1] >= 10) {
+          timetype.push("晚上");
+        }
+      } else if (v[0] >= 5 && v[0] < 10) {
+        timetype.push("下午");
+        if (v[1] >= 10) {
+          timetype.push("晚上");
+        }
+      } else if (v[0] >= 10) {
+        timetype.push("晚上");
+      }
+
+      if (result_s !== undefined || result_s === []) {
+        let n;
+        result_s.forEach((item) => {
+          n = timetype.some((titem) => titem === item.opentime);
+          if (n) result.push(item);
+        });
+      }
+    }
+    this.setRentalResult(result);
   }
 }
 

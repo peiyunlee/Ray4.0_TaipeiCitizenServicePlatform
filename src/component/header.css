@@ -1,5 +1,3 @@
-* {
-}
 
 header{
     height: 81px;
@@ -42,12 +40,12 @@ nav li{
 nav li>a{
     display: flex;
     align-items: center;
-    color: white;
+    color: #eeeeee;
     padding:14px;
     height: 100%;
     transition: all 0.2s;
 }
 nav li>a:hover{
-    color:red;
+    color:#ffffff;
     transition: all 0.2s;
 }

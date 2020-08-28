@@ -1,44 +1,28 @@
 import React from "react";
-import Button from "../button";
+import { Link } from "react-router-dom";
+// import Button from "../button";
 import "./venuecard.css";
 
 class VenueCard extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this._renderType = this._renderType.bind(this);
   }
   render() {
     const { item } = this.props;
     return (
-      <div className="venue-card">
+      <Link to={"/venuedetail/" + item.index} className="venue-card">
         <div className="district">{item.district}</div>
-        <div className="img"></div>
+        <img src={item.img} alt="" className="img" />
         <div className="info">
           <h4>{item.name}</h4>
-          <div className="flex">
-            {this._renderType(item.type)}
-          </div>
-          <div className="other">
-            <div className="icon"></div>
-            {item.number} 人
-          </div>
-          <div className="other">
-            <div className="icon"></div>
-            {item.cost} 元 / hr
-          </div>
-          <div className="other">
-            <div className="icon"></div>
-            {item.device}
-          </div>
+          <div className="type-wrapper">{this._renderType(item.type)}</div>
+          <div className="other">價格：{item.cost} 元 / hr</div>
+          <div className="other">設備：{item.device}</div>
+          <div className="other">容納人數：{item.number} 人</div>
         </div>
-        <Button
-          className="button"
-          type={1}
-          nextPath={"/venuedetail/" + item.index}
-          text={"線上租借"}
-        />
-      </div>
+      </Link>
     );
   }
 
@@ -56,3 +40,12 @@ class VenueCard extends React.Component {
 }
 
 export default VenueCard;
+
+{
+  /* <Button
+  className="button"
+  type={1}
+  nextPath={"/venuedetail/" + item.index}
+  text={"線上租借"}
+/> */
+}

@@ -23,9 +23,12 @@ class RentalFilter extends React.Component {
       <div className="filter">
         <div className="title">透過以下分類搜尋</div>
         <div className="container">
-          <div className="list_title">
+          <div
+            className="list_title"
+            onClick={() => this.props.filterListClick(0)}
+          >
             行政區
-            <div className="icon-wrapper" onClick={() => this.props.filterListClick(0)}>
+            <div className="icon-wrapper">
               <img
                 src={down}
                 alt=""
@@ -47,9 +50,12 @@ class RentalFilter extends React.Component {
           </div>
         </div>
         <div className="container">
-          <div className="list_title">
+          <div
+            className="list_title"
+            onClick={() => this.props.filterListClick(1)}
+          >
             場地類型
-            <div className="icon-wrapper" onClick={() => this.props.filterListClick(1)}>
+            <div className="icon-wrapper">
               <img
                 src={down}
                 alt=""
@@ -71,9 +77,12 @@ class RentalFilter extends React.Component {
           </div>
         </div>
         <div className="container">
-          <div className="list_title">
+          <div
+            className="list_title"
+            onClick={() => this.props.filterListClick(2)}
+          >
             容納人數
-            <div className="icon-wrapper" onClick={() => this.props.filterListClick(2)}>
+            <div className="icon-wrapper">
               <img
                 src={down}
                 alt=""
@@ -97,7 +106,10 @@ class RentalFilter extends React.Component {
         <div className="container">
           <div className="list_title">
             場地價格（小時）
-            <div className="icon-wrapper" onClick={() => this.props.filterListClick(3)}>
+            <div
+              className="icon-wrapper"
+              onClick={() => this.props.filterListClick(3)}
+            >
               <img
                 src={down}
                 alt=""
@@ -121,7 +133,10 @@ class RentalFilter extends React.Component {
         <div className="container">
           <div className="list_title">
             其他設施及設備
-            <div className="icon-wrapper" onClick={() => this.props.filterListClick(4)}>
+            <div
+              className="icon-wrapper"
+              onClick={() => this.props.filterListClick(4)}
+            >
               <img
                 src={down}
                 alt=""
@@ -162,6 +177,9 @@ class RentalFilter extends React.Component {
     const target = event.target;
     const index = parseInt(target.name);
     let d = filter.district;
+    if (d[0].checked) {
+      d.forEach((item) => (item.checked = false));
+    }
     d[0].checked = false;
     d[index].checked = !d[index].checked;
 
@@ -180,6 +198,9 @@ class RentalFilter extends React.Component {
     const target = event.target;
     const index = parseInt(target.name);
     let t = filter.type;
+    if (t[0].checked) {
+      t.forEach((item) => (item.checked = false));
+    }
     t[0].checked = false;
     t[index].checked = !t[index].checked;
 
