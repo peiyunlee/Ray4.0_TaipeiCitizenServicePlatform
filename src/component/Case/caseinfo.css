@@ -30,6 +30,7 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: #fff;
   padding: 40px 80px 60px;
+  width: 100%;
 }
 .caseinfo .card-p-title {
   color: #008992;

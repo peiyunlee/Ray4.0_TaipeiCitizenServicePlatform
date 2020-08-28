@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40px 0 80px;
 }
 
 .venue-detail-info {
@@ -60,6 +61,193 @@
   width: 220px;
 }
 
-.day-weekend{
-  color:#FFAC92
+.daypicker-container {
+  width: 1170px;
+}
+
+.daypicker {
+  padding: 25px 50px;
+}
+
+.daypicker-title {
+  background: #00bcc8;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.daypicker-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #404040;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.daypicker-caption .month-btn {
+  cursor: pointer;
+}
+
+.daypicker .week {
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template: 55px / repeat(7, 55px);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.daypicker .week-head {
+  margin: 10px 0;
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.daypicker .week-label {
+  /* border: 1px solid red; */
+  font-weight: 500;
+  font-size: 20px;
+  color: #404040;
+  text-align: center;
+}
+
+.daypicker .day-weekend {
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffac92;
+}
+
+.daypicker .day {
+  font-weight: 500;
+  font-size: 20px;
+  color: #404040;
+  text-align: center;
+  cursor: pointer;
+}
+
+.daypicker .day-no {
+  color: #cacaca;
+}
+
+.daypicker .day-today::before {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid #404040;
+  z-index: -2;
+  width: 36px;
+  height: 100%;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+}
+
+.daypicker .day-default::after {
+  color: #fff;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #7fcdd2;
+  z-index: -1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  width: 52px;
+  height: 52px;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  opacity: 0;
+  transition: "opacity" 0.2s;
+}
+
+.day-default:hover {
+  color: #fff;
+}
+
+.day-default:hover::after {
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.day-default:hover .day-weekend {
+  color: #fff;
+}
+
+.day-default:active::after,
+.day-default:focus::after {
+  background: #008fa3;
+}
+
+.daypicker .day-default-active::after {
+  background: #008fa3;
+  opacity: 1;
+}
+.daypicker .day-default-active {
+  color: #fff;
+}
+.daypicker .day-default-active .day-weekend {
+  color: #fff;
+}
+
+.timepicker-info {
+  color: #d91c1c;
+  margin: 20px 0;
+}
+
+.timepicker {
+  display: grid;
+  grid-template: repeat(2, 45px) / repeat(6, 155px);
+  justify-content: space-between;
+  grid-row-gap: 35px;
+  margin-bottom: 40px;
+}
+
+.timepicker label {
+  background-color: #7fcdd2;
+  font-size: 20px;
+  font-weight: 500;
+  color: #404040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.timepicker input {
+  display: none;
+}
+.timepicker label:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.timepicker .label-active {
+  background-color: #ffed92;
+}
+
+.timetaglist {
+  margin: 35px 0 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 345px);
+  justify-content: space-between;
+  grid-row-gap: 35px;
+}
+
+.timetaglist .tag-item {
+  background: #7fcdd2;
+  border-radius: 3px;
+  height: 48px;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #404040;
+  padding: 0 20px;
+}
+
+.tag-item img{
+  cursor: pointer;
+}
+
+.venue-detail-daypicker{
+  margin-top:30px;
 }

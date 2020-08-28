@@ -2,19 +2,42 @@ import React from "react";
 
 import left from "../../../assets/images/icon/daypicker-left.png";
 import right from "../../../assets/images/icon/daypicker-right.png";
+import cross from "../../../assets/images/icon/cross-small.png";
+
 class DayPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showmonth: "",
       showyear: "",
+      pickedday: false,
+      day: new Date("", "", ""),
+      timelabel: [
+        "08:00-10:00",
+        "10:00-12:00",
+        "12:00-14:00",
+        "14:00-16:00",
+        "16:00-18:00",
+        "18:00-20:00",
+        "20:00-22:00",
+      ],
+      timechecked: [false, false, false, false, false, false, false],
+      selected: [],
     };
     this.monthClick = this.monthClick.bind(this);
+    this.dayClick = this.dayClick.bind(this);
 
     this._renderDay = this._renderDay.bind(this);
     this.dayStart = this.dayStart.bind(this);
     this.daysMonth = this.daysMonth.bind(this);
     this.labelGenerator = this.labelGenerator.bind(this);
+    this.pickName = this.pickName.bind(this);
+
+    this._renderTime = this._renderTime.bind(this);
+    this._handleTimeInput = this._handleTimeInput.bind(this);
+
+    this._renderTag = this._renderTag.bind(this);
+    this._handleTagInput = this._handleTagInput.bind(this);
   }
 
   render() {
@@ -26,9 +49,10 @@ class DayPicker extends React.Component {
     const showyear =
       this.state.showyear !== "" ? this.state.showyear : today_year;
     return (
-      <div className="calender-container">
-        <div className="calender">
-          <div className="calender-caption">
+      <div className="daypicker-container">
+        <div className="daypicker-title">請選擇租借日期</div>
+        <div className="daypicker">
+          <div className="daypicker-caption">
             <div
               className="month-btn"
               onClick={() => {
@@ -37,7 +61,7 @@ class DayPicker extends React.Component {
             >
               <img src={left} alt="" />
             </div>
-            {showyear} 年 {showmonth}月
+            {showyear} 年 {showmonth} 月
             <div
               className="month-btn month-btn-right"
               onClick={() => {
@@ -48,18 +72,174 @@ class DayPicker extends React.Component {
             </div>
           </div>
           <div className="week week-head">
-            <div className="week-label">日</div>
+            <div className="week-label">
+              <span className="day-weekend">日</span>
+            </div>
             <div className="week-label">一</div>
             <div className="week-label">二</div>
             <div className="week-label">三</div>
             <div className="week-label">四</div>
             <div className="week-label">五</div>
-            <div className="week-label">六</div>
+            <div className="week-label">
+              <span className="day-weekend">六</span>
+            </div>
           </div>
           <div>{this._renderDay(showmonth, showyear, today)}</div>
         </div>
+        <div className="daypicker-title">請選擇租借時間</div>
+        <div className="timepicker-info">＊時段可複選</div>
+        <div className="timepicker">{this._renderTime()}</div>
+        <div className="daypicker-title">確認租借時間</div>
+        <div className="timetaglist">{this._renderTag()}</div>
       </div>
     );
+  }
+
+  //   funciton
+
+  _handleTagInput(item, index) {
+    let arr = this.state.selected;
+    arr.splice(index, 1);
+    this.setState({
+      selected: arr,
+    });
+    this.props.setBtnEnable(arr.length !== 0);
+    console.log(arr.length !== 0)
+    if (this.state.day.getTime() === item.day.getTime()) {
+      let timechecked = this.state.timechecked;
+      timechecked[item.selected] = false;
+      this.setState({
+        timechecked: timechecked,
+      });
+    }
+  }
+
+  _renderTag() {
+    let list = [];
+    this.state.selected.forEach((item, index) => {
+      const year = item.day.getFullYear();
+      const month = item.day.getMonth();
+      const date = item.day.getDate();
+      const labeltext =
+        year +
+        "/" +
+        month +
+        "/" +
+        date +
+        " " +
+        this.state.timelabel[item.selected];
+      list.push(
+        <div className="tag-item" key={index}>
+          {labeltext}
+          <img
+            key={index}
+            src={cross}
+            alt=""
+            onClick={() => this._handleTagInput(item, index)}
+          />
+        </div>
+      );
+    });
+    return list;
+  }
+
+  _renderTime() {
+    let list = [];
+    if (this.state.pickedday) {
+      this.state.timelabel.forEach((item, index) => {
+        list.push(
+          <label
+            key={index}
+            className={this.state.timechecked[index] ? "label-active" : ""}
+          >
+            <input
+              key={index}
+              name={index}
+              type="checkbox"
+              // checked={item.checked}
+              onChange={this._handleTimeInput}
+            />
+            {item}
+          </label>
+        );
+      });
+    }
+    return list;
+  }
+
+  _handleTimeInput(e) {
+    let arr = this.state.timechecked;
+    const index = e.target.name;
+    arr[index] = !arr[index];
+    this.setState({
+      timechecked: arr,
+    });
+
+    //選取tag
+    let result = this.state.selected;
+    if (arr[index]) {
+      result.push({ day: this.state.day, selected: index });
+    } else {
+      const findindex = result.findIndex(
+        (element) =>
+          element.day.getTime() === this.state.day.getTime() &&
+          element.selected === index
+      );
+      if (findindex !== -1) {
+        result.splice(findindex, 1);
+      }
+    }
+    result.sort(function (a, b) {
+      var dayA = a.day; // ignore upper and lowercase
+      var dayB = b.day; // ignore upper and lowercase
+      if (dayA < dayB) {
+        return -1;
+      }
+      if (dayA > dayB) {
+        return 1;
+      }
+      var selectedA = a.selected; // ignore upper and lowercase
+      var selectedB = b.selected; // ignore upper and lowercase
+      return selectedA - selectedB;
+    });
+
+    this.setState({ selected: result });
+    this.props.setBtnEnable(result.length !== 0);
+    console.log(result.length !== 0)
+  }
+
+  pickName(day, name) {
+    let result = name;
+    if (day.getTime() === this.state.day.getTime()) {
+      result = result + " day-default-active";
+    }
+    return result;
+  }
+
+  dayClick(day) {
+    if (this.state.pickedday && this.state.day.getTime() === day.getTime()) {
+      this.setState({
+        day: new Date("", "", ""),
+        pickedday: false,
+      });
+    } else {
+      this.setState({
+        day: day,
+        pickedday: true,
+      });
+
+      //讀取時間按鈕狀態
+      let timeresult = this.state.selected.filter(
+        (item) => item.day.getTime() === day.getTime()
+      );
+      let arr = [false, false, false, false, false, false, false];
+      timeresult.forEach((item) => {
+        arr[item.selected] = true;
+      });
+      this.setState({
+        timechecked: arr,
+      });
+    }
   }
 
   dayStart(month, year) {
@@ -122,23 +302,64 @@ class DayPicker extends React.Component {
     // 日曆裡有今天
     if (havetoday) {
       let day = new Date(show_year, show_month - 1, today_date);
-      let name = "day day-today day-weekend";
-      labellist.push(
-        <div key={today_date + firstDay} className={name}>
-          {today_date}
-        </div>
-      );
+      let name = "day day-default day-today";
+      name = this.pickName(day, name);
+      if (day.getDay() === 0 || day.getDay() === 6) {
+        labellist.push(
+          <div
+            key={today_date + firstDay}
+            className={name}
+            onClick={() => {
+              this.dayClick(day);
+            }}
+          >
+            <span className="day-weekend">{today_date}</span>
+          </div>
+        );
+      } else {
+        labellist.push(
+          <div
+            key={today_date + firstDay}
+            className={name}
+            onClick={() => {
+              this.dayClick(day);
+            }}
+          >
+            {today_date}
+          </div>
+        );
+      }
     }
     // 其他
     for (let j = black[0]; j <= black[1]; j++) {
       let day = new Date(show_year, show_month - 1, j);
-      let name = "day";
-
-      labellist.push(
-        <div key={j + firstDay} className={name}>
-          {j}
-        </div>
-      );
+      let name = "day day-default";
+      name = this.pickName(day, name);
+      if (day.getDay() === 0 || day.getDay() === 6) {
+        labellist.push(
+          <div
+            key={j + firstDay}
+            className={name}
+            onClick={() => {
+              this.dayClick(day);
+            }}
+          >
+            <span className="day-weekend">{j}</span>
+          </div>
+        );
+      } else {
+        labellist.push(
+          <div
+            key={j + firstDay}
+            className={name}
+            onClick={() => {
+              this.dayClick(day);
+            }}
+          >
+            {j}
+          </div>
+        );
+      }
     }
 
     return labellist;

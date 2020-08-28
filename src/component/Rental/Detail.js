@@ -2,7 +2,8 @@ import React from "react";
 import DemoLink from "../demolink";
 
 import "./detail.css";
-import DayPicker from './calender/daypicker'
+import DayPicker from "./calender/daypicker";
+import Button from "../button";
 
 class VenueDetail extends React.Component {
   constructor(props) {
@@ -14,10 +15,12 @@ class VenueDetail extends React.Component {
         "https://service.gov.taipei/RAWebFiles/rental/3a9fcb5f04e4/20190325/e54a345bde5a46dc.jpg",
       ],
       showimg: 0,
+      btndisable: true,
     };
 
     this._renderText = this._renderText.bind(this);
     this.setShowImg = this.setShowImg.bind(this);
+    this.setBtnEnable = this.setBtnEnable.bind(this)
   }
   render() {
     const { item } = this.props;
@@ -92,11 +95,18 @@ class VenueDetail extends React.Component {
             </ul>
           </div>
         </section>
-        <section>
-          <DayPicker />
+        <section className="venue-detail-daypicker">
+          <DayPicker setBtnEnable={this.setBtnEnable}/>
         </section>
+        <Button disable={this.state.btndisable} type={1} nextPath="/apply/step1" text="開始租借" />
       </div>
     );
+  }
+
+  setBtnEnable(type){
+    this.setState({
+      btndisable:!type
+    })
   }
 
   _renderText(text) {
