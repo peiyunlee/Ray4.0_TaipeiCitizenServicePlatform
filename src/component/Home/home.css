@@ -146,7 +146,6 @@
 .card {
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
 }
 
 .card h3 {
@@ -159,11 +158,13 @@
 
 .card-theme {
   height: 216px;
+  padding: 0 16px;
 }
 
 .card-organ {
   height: 84px;
   justify-content: center;
+  padding: 0 20px;
 }
 
 .card-line {
@@ -174,4 +175,11 @@
   margin-top: 8px;
   font-weight: 500;
   color: #676767;
+}
+
+.card-theme-icon {
+  border: 1px solid red;
+  height: 65px;
+  width: 65px;
+  align-self: center;
 }
