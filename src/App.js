@@ -104,7 +104,7 @@ class App extends React.Component {
     return (
       <HashRouter className="App">
         <ScrollToTop />
-        <Header />
+        <Header showsearchbar={this.state.showsearchbar} />
         <Switch>
           <Route
             exact
@@ -168,15 +168,9 @@ class App extends React.Component {
           />
           <Route
             path="/caseinfo/:caseindex"
-            component={(props,route) => (
+            component={(props, route) => (
               <div>
-                <BreadCrumb
-                  pathName={[
-                    "首頁",
-                    "服務申辦說明",
-                  ]}
-                  path={["/"]}
-                />
+                <BreadCrumb pathName={["首頁", "服務申辦說明"]} path={["/"]} />
                 <CaseInfo
                   item={this.state.caseData[props.match.params.caseindex]}
                 />
