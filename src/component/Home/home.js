@@ -5,6 +5,8 @@ import SortCard from "./sortcard";
 import Tab from "../tab";
 import "./home.css";
 
+import banner from "../../assets/images/icon/banner.png";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -18,14 +20,37 @@ class Home extends React.Component {
     return (
       <div className="home">
         <section className="top">
-          <ul>
-            <li>
-              <Link to="/rental">公有場地租用</Link>
-            </li>
-          </ul>
+          <div className="home-banner">
+            <img src={banner} alt="" />
+            <div className="banner-title-wrapper banner-title-wrapper-top">
+              <div className="banner-title banner-title-count">
+                1400+<div className="banner-title-line"></div>
+              </div>
+              <div className="banner-title">便民申辦</div>
+            </div>
+            <div className="banner-title-wrapper">
+              <div className="banner-title banner-title-count">
+                3<span>項</span>
+                <div className="banner-title-line"></div>
+              </div>
+              <div className="banner-title">重點服務</div>
+            </div>
+            <ul>
+              <li>
+                <Link to="/rental">公有場地租用</Link>
+              </li>
+              <li>
+                <a href="/#" onClick={(event)=>{event.preventDefault()}}>防疫服務專區</a>
+              </li>
+              <li>
+                <a href="/#" onClick={(event)=>{event.preventDefault()}}>臨櫃預約服務</a>
+              </li>
+            </ul>
+          </div>
+          <div className="sort-title">要找什麼服務呢</div>
         </section>
-        <section className="sort">
-          <div>
+        <section className="home-sort">
+          <div className="sort-tab-wrapper">
             <Tab
               label="服務主題"
               activeTab={this.state.activeTab}
@@ -37,7 +62,7 @@ class Home extends React.Component {
               tagClick={this.tagClick}
             />
           </div>
-          <div>{this._renderItems()}</div>
+          <div className="sort-list">{this._renderItems()}</div>
         </section>
       </div>
     );

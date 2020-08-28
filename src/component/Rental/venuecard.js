@@ -41,11 +41,11 @@ class VenueCard extends React.Component {
 
 export default VenueCard;
 
-{
+
   /* <Button
   className="button"
   type={1}
   nextPath={"/venuedetail/" + item.index}
   text={"線上租借"}
 /> */
-}
+

@@ -3,7 +3,6 @@ import SearchBar from "./searchbar/search2";
 import RentalFilter from "./filter";
 import VenueCard from "./venuecard";
 import TimeSlider from "./slider";
-import { Pagination } from "rsuite";
 
 import "./result.css";
 import "./searchbar/search2.css";

@@ -11,16 +11,18 @@ class SortCard extends React.Component {
     const { list, listtype } = this.props;
     if (listtype === "theme") {
       return (
-        <Link to={"/caselist/" + listtype + "/" + list.name}>
+        <Link className="card card-theme" to={"/caselist/" + listtype + "/" + list.name}>
           <h3>{list.name}</h3>
+          <div className="card-line"></div>
           <p>{list.info}</p>
         </Link>
       );
     }
     else{
       return (
-        <Link to={"/caselist/" + listtype + "/" + list.name}>
+        <Link className="card card-organ" to={"/caselist/" + listtype + "/" + list.name}>
           <h3>{list.name}</h3>
+          <div className="card-line"></div>
         </Link>
       );
 

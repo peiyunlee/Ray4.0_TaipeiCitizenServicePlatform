@@ -1,7 +1,7 @@
 .tab-list-item {
   border: none;
-  background: #ebebeb;
-  color: #008992;
+  background: #cacaca;
+  color: #015e73;
   font-weight: bold;
   font-size: 26px;
 }
@@ -11,4 +11,5 @@
 .home .tab-list-item {
   width: 200px;
   height: 56px;
+  margin-right: 50px;
 }
