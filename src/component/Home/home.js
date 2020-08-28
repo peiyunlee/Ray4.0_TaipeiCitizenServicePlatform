@@ -47,7 +47,7 @@ class Home extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="sort-title">要找什麼服務呢</div>
+          <div className="sort-title">要找什麼服務呢？</div>
         </section>
         <section className="home-sort">
           <div className="sort-tab-wrapper">
