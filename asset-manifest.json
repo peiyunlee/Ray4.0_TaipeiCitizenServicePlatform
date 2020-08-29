@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.5619cd85.chunk.css",
-    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.b1c3880b.chunk.js",
-    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.b1c3880b.chunk.js.map",
+    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.3de07f10.chunk.css",
+    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.6f8bd769.chunk.js",
+    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.6f8bd769.chunk.js.map",
     "runtime-main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js",
     "runtime-main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js.map",
     "static/js/2.545d8521.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.545d8521.chunk.js",
     "static/js/2.545d8521.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.545d8521.chunk.js.map",
     "index.html": "/Ray4.0_TaipeiCitizenServicePlatform/index.html",
-    "precache-manifest.bc8495e84f5edcfdd73132c0a6204343.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.bc8495e84f5edcfdd73132c0a6204343.js",
+    "precache-manifest.8e6ca1e1d08f577f51865a3fc880f07f.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.8e6ca1e1d08f577f51865a3fc880f07f.js",
     "service-worker.js": "/Ray4.0_TaipeiCitizenServicePlatform/service-worker.js",
-    "static/css/main.5619cd85.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.5619cd85.chunk.css.map",
+    "static/css/main.3de07f10.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.3de07f10.chunk.css.map",
     "static/js/2.545d8521.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.545d8521.chunk.js.LICENSE.txt",
     "static/media/home.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/101.6d8f99ee.jpg",
     "static/media/banner.png": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/banner.9a87bf72.png",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.e73960f0.js",
     "static/js/2.545d8521.chunk.js",
-    "static/css/main.5619cd85.chunk.css",
-    "static/js/main.b1c3880b.chunk.js"
+    "static/css/main.3de07f10.chunk.css",
+    "static/js/main.6f8bd769.chunk.js"
   ]
 }

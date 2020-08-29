@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.bc8495e84f5edcfdd73132c0a6204343.js"
+  "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.8e6ca1e1d08f577f51865a3fc880f07f.js"
 );
 
 self.addEventListener('message', (event) => {
