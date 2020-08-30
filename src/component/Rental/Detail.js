@@ -9,6 +9,8 @@ class VenueDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      defaultorganizer:
+        "聯絡人：總務處 秦xx<br />電話：276729xx轉630<br />地址：台北市松山區八德路四段xxx號",
       img:
         // [
         this.props.item.img,
@@ -56,7 +58,10 @@ class VenueDetail extends React.Component {
                 src={this.state.img[0]}
                 alt=""
                 onClick={() => this.setStateValue(0, "showimg")}
-              />) : ""}
+              />
+            ) : (
+              ""
+            )}
             {this.state.img[1] !== undefined ? (
               <img
                 className={
@@ -67,7 +72,10 @@ class VenueDetail extends React.Component {
                 src={this.state.img[1]}
                 alt=""
                 onClick={() => this.setStateValue(1, "showimg")}
-              />) : ""}
+              />
+            ) : (
+              ""
+            )}
             {this.state.img[2] !== undefined ? (
               <img
                 className={
@@ -78,13 +86,18 @@ class VenueDetail extends React.Component {
                 src={this.state.img[2]}
                 alt=""
                 onClick={() => this.setStateValue(2, "showimg")}
-              />) : ""}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div className="info-wrapper">
             <h3>{item.name}</h3>
             <ul>
               {item.number !== undefined && <li>人數：{item.number} 人</li>}
-              {item.cost !== undefined && <li>費用：{item.cost*2 + " / 2小時 "}</li>}
+              {item.cost !== undefined && (
+                <li>費用：{item.cost * 2 + " / 2小時 "}</li>
+              )}
               {item.size !== undefined && <li>大小：{item.size}</li>}
               {item.device !== undefined && <li>設備：{item.device}</li>}
               {item.traffic !== undefined && (
@@ -96,18 +109,21 @@ class VenueDetail extends React.Component {
               )}
               <li>
                 其他相關資訊
-                  <div className="other-wrapper">
+                <div className="other-wrapper">
                   <DemoLink text="場地使用規範"></DemoLink>、
-                    <DemoLink text="場地平面圖"></DemoLink>
+                  <DemoLink text="場地平面圖"></DemoLink>
                 </div>
               </li>
-              {item.organizer !== undefined && (
-                <li
-                  dangerouslySetInnerHTML={this._renderText(
-                    "承辦單位資訊<br />" + item.organizer
-                  )}
-                ></li>
-              )}
+
+              <li
+                dangerouslySetInnerHTML={this._renderText(
+                  `承辦單位資訊<br /> ${
+                    item.organizer !== undefined
+                      ? item.organizer
+                      : this.state.defaultorganizer
+                  }`
+                )}
+              ></li>
             </ul>
           </div>
         </section>
@@ -150,6 +166,7 @@ class VenueDetail extends React.Component {
   setApply() {
     const { item } = this.props;
     const name = item.name;
+    const organizer = item.organizer;
 
     const selected = this.state.selected;
     let result = [];
@@ -174,7 +191,7 @@ class VenueDetail extends React.Component {
       const month = item.day.getMonth() + 1;
       const date = item.day.getDate();
       const day = item.day.getDay();
-      const day_list = ['(日)', '(一)', '(二)', '(三)', '(四)', '(五)', '(六)'];
+      const day_list = ["(日)", "(一)", "(二)", "(三)", "(四)", "(五)", "(六)"];
       const current = year + "/" + month + "/" + date + day_list[day];
       if (before_day !== current) {
         //日期不等於上一個
@@ -208,7 +225,7 @@ class VenueDetail extends React.Component {
       }
     });
 
-    let o = { name: name, time: result, cost: cost };
+    let o = { name: name, time: result, cost: cost, organizer: organizer };
     this.props.setStateValue(o, "selectedResult");
   }
 }

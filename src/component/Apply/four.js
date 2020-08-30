@@ -4,8 +4,12 @@ import { withRouter } from "react-router";
 class StepFour extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      defaultorganizer:
+        "聯絡人：總務處 秦xx<br />電話：276729xx轉630<br />地址：台北市松山區八德路四段xxx號",
+    };
     this._renderTime = this._renderTime.bind(this);
+    this._renderHTMLText = this._renderHTMLText.bind(this);
   }
 
   render() {
@@ -17,7 +21,9 @@ class StepFour extends React.Component {
           <div className="content-bg">
             <div className="content">
               案件編號：202008504408
-              <span className="content-alert">請記下您的案件編號，以利之後確認場地借用狀態</span>
+              <span className="content-alert">
+                請記下您的案件編號，以利之後確認場地借用狀態
+              </span>
               <div className="content-top">
                 場地：{selectedResult.name}
                 <div className="content-time">
@@ -30,11 +36,13 @@ class StepFour extends React.Component {
                 若有其他疑問，請聯絡承辦單位
                 <br />
                 <br />
-                聯絡人：總務處 秦xx
-                <br />
-                電話：276729xx轉630
-                <br />
-                地址：台北市松山區八德路四段xxx號
+                <span
+                  dangerouslySetInnerHTML={this._renderHTMLText(`承辦單位資訊<br />${
+                    selectedResult.organizer !== undefined
+                      ? selectedResult.organizer
+                      : this.state.defaultorganizer}`
+                  )}
+                ></span>
               </div>
             </div>
           </div>
@@ -56,6 +64,12 @@ class StepFour extends React.Component {
       );
     });
     return list;
+  }
+
+  _renderHTMLText(text) {
+    return {
+      __html: text,
+    };
   }
 }
 

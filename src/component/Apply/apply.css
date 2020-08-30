@@ -51,7 +51,7 @@
   padding: 10px 0;
 }
 .rental-info-list {
-  width: 985px;
+  /* width: 985px; */
   display: flex;
   justify-content: center;
 }
@@ -395,6 +395,9 @@
   padding-left: 70px;
   align-self: flex-start;
   max-width: 560px;
+}
+.step-34 .content-bottom  span {
+  font-size: 20px;
 }
 
 .step-34 .content-time {
