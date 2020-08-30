@@ -99,7 +99,6 @@
 }
 .step-1 .content-title {
   width: 100%;
-  color: #404040;
   font-size: 20px;
   text-align: center;
   border-bottom: 2px solid #cacaca;
@@ -107,7 +106,6 @@
   margin-bottom: 30px;
 }
 .step-1 .content-p {
-  color: #404040;
   margin-bottom: 30px;
 }
 
@@ -126,7 +124,6 @@
 }
 
 .step1-agree {
-  color: #404040;
   display: flex;
   align-items: center;
   margin: 60px 0 80px;
@@ -231,7 +228,6 @@
   border-radius: 5px;
   padding-left: 15px;
   margin: 10px 0;
-  color: #404040;
   width: 500px;
 }
 .step2-form .required-text {
@@ -266,7 +262,6 @@
   border: 1px solid #c4c4c4;
   border-radius: 5px;
   padding-left: 15px;
-  color: #404040;
   padding-right: 20px;
   appearance: none;
   -moz-appearance: none;
@@ -300,7 +295,6 @@
   width: 385px;
   padding-left: 15px;
   margin: 0;
-  color: #404040;
 }
 
 .step2-form .special-text {
@@ -368,7 +362,6 @@
   padding: 0 50px;
 }
 .step-34 .content {
-  color: #404040;
   font-weight: bold;
   font-size: 28px;
   width: 100%;

@@ -32,18 +32,18 @@ class CaseInfo extends React.Component {
           <div className="card-title">服務資訊</div>
           <div className="card-p-wrapper">
             <div className="card-p-title">服務說明</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.info)}></p>
+            {item.info !== undefined ? (<p dangerouslySetInnerHTML={this._renderText(item.info)}></p>) : ""}
           </div>
         </div>
         <div className="card">
           <div className="card-title">申辦方式</div>
           <div className="card-p-wrapper">
             <div className="card-p-title">應備文件</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.file)}></p>
+            {item.file !== undefined ? (<p dangerouslySetInnerHTML={this._renderText(item.file)}></p>) : ""}
             <div className="card-p-title">處理天數</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.day)}></p>
+            {item.day !== undefined ? (<p dangerouslySetInnerHTML={this._renderText(item.day)}></p>) : ""}
             <div className="card-p-title">臨櫃辦理</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.noonline)}></p>
+            {item.noonline !== undefined ? (<p dangerouslySetInnerHTML={this._renderText(item.noonline)}></p>) : ""}
           </div>
         </div>
         {download !== undefined ? <div>{download}</div> : ""}
