@@ -16,6 +16,8 @@
 
 .banner-title-wrapper {
   display: flex;
+  /* height: 60px; */
+  align-items: center;
 }
 
 .banner-title {
@@ -122,8 +124,9 @@
 }
 
 .card-theme {
-  height: 216px;
+  height: 225px;
   padding-top: 7px;
+  /* padding-bottom: 20px; */
 }
 
 .card-organ {

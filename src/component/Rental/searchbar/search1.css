@@ -288,6 +288,8 @@ input[type="submit"] {
   width: 40px;
   height: 30px;
   position: absolute;
+  left: 0;
+  top: 0;
 }
 
 /* start */
@@ -307,6 +309,9 @@ input[type="submit"] {
 }
 .calender .day-start::after {
   background: linear-gradient(90deg, transparent 50%, #c0dee0 0);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 /* in */

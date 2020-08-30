@@ -9,11 +9,12 @@ class VenueDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      img: [
+      img:
+        // [
         this.props.item.img,
-        "https://blog.xuite.net/hsu042/twblog1/468696142/cover600.jpg",
-        "https://service.gov.taipei/RAWebFiles/rental/3a9fcb5f04e4/20190325/e54a345bde5a46dc.jpg",
-      ],
+      // "https://blog.xuite.net/hsu042/twblog1/468696142/cover600.jpg",
+      // "https://service.gov.taipei/RAWebFiles/rental/3a9fcb5f04e4/20190325/e54a345bde5a46dc.jpg",
+      // ],
       showimg: 0,
       btndisable: this.props.selected.length === 0 ? true : false,
       selected: props.selected,
@@ -45,36 +46,39 @@ class VenueDetail extends React.Component {
               src={this.state.img[this.state.showimg]}
               alt=""
             />
-            <img
-              className={
-                this.state.showimg === 0
-                  ? "venue-img venue-img-s venue-img-active"
-                  : "venue-img venue-img-s"
-              }
-              src={this.state.img[0]}
-              alt=""
-              onClick={() => this.setStateValue(0, "showimg")}
-            />
-            <img
-              className={
-                this.state.showimg === 1
-                  ? "venue-img venue-img-s venue-img-active"
-                  : "venue-img venue-img-s"
-              }
-              src={this.state.img[1]}
-              alt=""
-              onClick={() => this.setStateValue(1, "showimg")}
-            />
-            <img
-              className={
-                this.state.showimg === 2
-                  ? "venue-img venue-img-s venue-img-active"
-                  : "venue-img venue-img-s"
-              }
-              src={this.state.img[2]}
-              alt=""
-              onClick={() => this.setStateValue(2, "showimg")}
-            />
+            {this.state.img[0] !== undefined ? (
+              <img
+                className={
+                  this.state.showimg === 0
+                    ? "venue-img venue-img-s venue-img-active"
+                    : "venue-img venue-img-s"
+                }
+                src={this.state.img[0]}
+                alt=""
+                onClick={() => this.setStateValue(0, "showimg")}
+              />) : ""}
+            {this.state.img[1] !== undefined ? (
+              <img
+                className={
+                  this.state.showimg === 1
+                    ? "venue-img venue-img-s venue-img-active"
+                    : "venue-img venue-img-s"
+                }
+                src={this.state.img[1]}
+                alt=""
+                onClick={() => this.setStateValue(1, "showimg")}
+              />) : ""}
+            {this.state.img[2] !== undefined ? (
+              <img
+                className={
+                  this.state.showimg === 2
+                    ? "venue-img venue-img-s venue-img-active"
+                    : "venue-img venue-img-s"
+                }
+                src={this.state.img[2]}
+                alt=""
+                onClick={() => this.setStateValue(2, "showimg")}
+              />) : ""}
           </div>
           <div className="info-wrapper">
             <h3>{item.name}</h3>
@@ -169,7 +173,7 @@ class VenueDetail extends React.Component {
 
     selected.forEach((item) => {
       const year = item.day.getFullYear();
-      const month = item.day.getMonth()+1;
+      const month = item.day.getMonth() + 1;
       const date = item.day.getDate();
       const day = item.day.getDay();
       const day_list = ['(日)', '(一)', '(二)', '(三)', '(四)', '(五)', '(六)'];

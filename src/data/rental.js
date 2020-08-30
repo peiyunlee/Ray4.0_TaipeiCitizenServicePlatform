@@ -28,7 +28,9 @@ const rentalData = [
     device: "冷氣 / 會議桌 / 座椅 / 立扇",
     size: "200m 操場",
     img:
-      "https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg",
+      ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg",
+        "https://blog.xuite.net/hsu042/twblog1/468696142/cover600.jpg",
+        "https://service.gov.taipei/RAWebFiles/rental/3a9fcb5f04e4/20190325/e54a345bde5a46dc.jpg"],
     traffic:
       "公車：28、51、63、203、204、205、240<br />捷運：松山站5號出口<br />火車：松山車站",
     costcontent: "1050 元 / 2小時",
@@ -117,7 +119,7 @@ const rentalData = [
     opentime: "下午",
     device: "運動設備",
     img:
-      "https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg",
+      "https://service.gov.taipei/RAWebFiles/rental/238e4dc54f67/20190614/61136782d92d460e.JPG",
   },
   {
     index: 8,

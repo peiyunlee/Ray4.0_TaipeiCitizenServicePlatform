@@ -149,6 +149,7 @@
 .rs-slider-handle {
   position: absolute;
   top: -1px;
+  cursor: pointer;
 }
 
 .rs-slider-handle:before {

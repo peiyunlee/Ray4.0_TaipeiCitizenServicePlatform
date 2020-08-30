@@ -29,6 +29,7 @@
   width: 135px;
   text-align: center;
   bottom: -30px;
+  left: -37.5%;
 }
 .flow-line {
   position: absolute;
@@ -363,7 +364,7 @@
   background: #ffffff;
   border-radius: 4px;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   padding: 0 50px;
 }
 .step-34 .content {

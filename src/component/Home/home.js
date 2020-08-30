@@ -30,7 +30,7 @@ class Home extends React.Component {
             <div className="banner-title">重點服務</div>
           </div>
           <div className="banner-content">
-            大平台除了提供服務的詳細資訊，也讓你無時無刻、隨時隨地都可以進行申辦。
+            大平台除了提供服務的詳細資訊，也讓你隨時隨地都可以進行申辦。
           </div>
           <ul>
             <li>
