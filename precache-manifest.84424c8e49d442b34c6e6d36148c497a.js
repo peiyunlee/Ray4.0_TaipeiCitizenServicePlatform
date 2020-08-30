@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "162481cd9a78a741fb9ac5ce533d368e",
+    "revision": "9e27c8d3a3dbc1c62e26fffc98b9b7de",
     "url": "/Ray4.0_TaipeiCitizenServicePlatform/index.html"
   },
   {
-    "revision": "6ff81e86df232b12c3c4",
+    "revision": "55576499f5b719102c7b",
     "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.579eb724.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6ff81e86df232b12c3c4",
-    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.14ee2d35.chunk.js"
+    "revision": "55576499f5b719102c7b",
+    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.a2682a27.chunk.js"
   },
   {
     "revision": "a32550e41a29f237d96c",
