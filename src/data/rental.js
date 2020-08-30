@@ -226,7 +226,7 @@ const rentalData = [
         "number": 250,
         "cost": 390,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://www.taitung.gov.tw/Upload/RelPic/33/180363/150acb5d-03b3-4520-961d-71715efd67d9.jpg"]
     },
     {
@@ -1388,7 +1388,7 @@ const rentalData = [
         "number": 150,
         "cost": 630,
         "opentime": "全天",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1500,7 +1500,7 @@ const rentalData = [
         "number": 70,
         "cost": 550,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1654,7 +1654,7 @@ const rentalData = [
         "number": 500,
         "cost": 310,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1668,7 +1668,7 @@ const rentalData = [
         "number": 200,
         "cost": 840,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1682,7 +1682,7 @@ const rentalData = [
         "number": 500,
         "cost": 530,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1696,7 +1696,7 @@ const rentalData = [
         "number": 35,
         "cost": 810,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1710,7 +1710,7 @@ const rentalData = [
         "number": 200,
         "cost": 430,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1724,7 +1724,7 @@ const rentalData = [
         "number": 200,
         "cost": 290,
         "opentime": "晚上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1780,7 +1780,7 @@ const rentalData = [
         "number": 100,
         "cost": 980,
         "opentime": "早上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -1892,7 +1892,7 @@ const rentalData = [
         "number": 1000,
         "cost": 250,
         "opentime": "早上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2060,7 +2060,7 @@ const rentalData = [
         "number": 300,
         "cost": 670,
         "opentime": "早上",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2158,7 +2158,7 @@ const rentalData = [
         "number": 40,
         "cost": 240,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2172,7 +2172,7 @@ const rentalData = [
         "number": 100,
         "cost": 290,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2186,7 +2186,7 @@ const rentalData = [
         "number": 200,
         "cost": 450,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2234,9 +2234,9 @@ const rentalData = [
             "https://az804957.vo.msecnd.net/photogym/20170704145723_AXPN1YDNNJQ6POO9V9W0.jpg",
             "http://www.joyfulliving.com.tw/uploads/9/4/8/6/9486053/dsc07668_orig.jpg"
         ],
-        "traffic": "捷運：中和新蘆線、松山新店線 (古亭站-同安街出口)\n公車：297、671、673、1、251、252、236、208",
+        "traffic": "捷運：中和新蘆線、松山新店線 (古亭站-同安街出口)<br />公車：297、671、673、1、251、252、236、208",
         "costcontent": "1400元/ 2小時 ",
-        "organizer": "臺北市中正區河堤國民小學 總務處\n聯絡人：張適宜\n電話：23677144分機832\n傳真：23685438\n地址：臺北市中正區汀州路二段180號"
+        "organizer": "臺北市中正區河堤國民小學 總務處<br />聯絡人：張適宜<br />電話：23677144分機832<br />傳真：23685438<br />地址：臺北市中正區汀州路二段180號"
     },
     {
         "index": 159,
@@ -2258,7 +2258,7 @@ const rentalData = [
         "size": "92坪",
         "traffic": "捷運小南門站2號出口步行2分鐘",
         "costcontent": "400元/ 2小時 ",
-        "organizer": "臺北市中正區南門國民小學\n聯絡人：許小姐\n電話：2371-5052分機402\n傳真：2331-7822\n地址：臺北市中正區廣州街6號南門國小(總務處：2樓)"
+        "organizer": "臺北市中正區南門國民小學<br />聯絡人：許小姐<br />電話：2371-5052分機402<br />傳真：2331-7822<br />地址：臺北市中正區廣州街6號南門國小(總務處：2樓)"
     },
     {
         "index": 160,
@@ -2271,7 +2271,7 @@ const rentalData = [
         "number": 300,
         "cost": 90,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2341,7 +2341,7 @@ const rentalData = [
         "number": 50,
         "cost": 330,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2439,7 +2439,7 @@ const rentalData = [
         "number": 100,
         "cost": 430,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2607,7 +2607,7 @@ const rentalData = [
         "number": 30,
         "cost": 20,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
@@ -2621,7 +2621,7 @@ const rentalData = [
         "number": 30,
         "cost": 10,
         "opentime": "下午",
-        "device": "\"\"",
+        "device": "",
         "img": ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"]
     },
     {
