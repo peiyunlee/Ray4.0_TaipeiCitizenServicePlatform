@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.2450c9a9.chunk.css",
-    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.a1e7f544.chunk.js",
-    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.a1e7f544.chunk.js.map",
+    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.cd77f2ba.chunk.css",
+    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.41de2eb4.chunk.js",
+    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.41de2eb4.chunk.js.map",
     "runtime-main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js",
     "runtime-main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js.map",
     "static/js/2.16c8f68c.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.16c8f68c.chunk.js",
     "static/js/2.16c8f68c.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.16c8f68c.chunk.js.map",
     "index.html": "/Ray4.0_TaipeiCitizenServicePlatform/index.html",
-    "precache-manifest.5a02bddbf9e434b7fe1fa22ad8175c94.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.5a02bddbf9e434b7fe1fa22ad8175c94.js",
+    "precache-manifest.4bb887b94c3cda66282f43923015e8a7.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.4bb887b94c3cda66282f43923015e8a7.js",
     "service-worker.js": "/Ray4.0_TaipeiCitizenServicePlatform/service-worker.js",
-    "static/css/main.2450c9a9.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.2450c9a9.chunk.css.map",
+    "static/css/main.cd77f2ba.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.cd77f2ba.chunk.css.map",
     "static/js/2.16c8f68c.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.16c8f68c.chunk.js.LICENSE.txt",
     "static/media/home.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/101.6d8f99ee.jpg",
     "static/media/Frame.png": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/Frame.f9b8be89.png",
     "static/media/index.less": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/index.904d64fa.less",
-    "static/media/search.svg": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/search.7d2b719c.svg"
+    "static/media/search.svg": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/search.9780dd43.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e73960f0.js",
     "static/js/2.16c8f68c.chunk.js",
-    "static/css/main.2450c9a9.chunk.css",
-    "static/js/main.a1e7f544.chunk.js"
+    "static/css/main.cd77f2ba.chunk.css",
+    "static/js/main.41de2eb4.chunk.js"
   ]
 }
