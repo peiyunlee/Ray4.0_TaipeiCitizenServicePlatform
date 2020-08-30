@@ -2235,7 +2235,7 @@ const rentalData = [
             "http://www.joyfulliving.com.tw/uploads/9/4/8/6/9486053/dsc07668_orig.jpg"
         ],
         "traffic": "捷運：中和新蘆線、松山新店線 (古亭站-同安街出口)<br />公車：297、671、673、1、251、252、236、208",
-        "costcontent": "1400元/ 2小時 ",
+        "costcontent": "1400元 / 2小時 ",
         "organizer": "臺北市中正區河堤國民小學 總務處<br />聯絡人：張適宜<br />電話：23677144分機832<br />傳真：23685438<br />地址：臺北市中正區汀州路二段180號"
     },
     {

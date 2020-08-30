@@ -83,8 +83,8 @@ class VenueDetail extends React.Component {
           <div className="info-wrapper">
             <h3>{item.name}</h3>
             <ul>
-              {item.size !== undefined && <li>人數：{item.number} 人</li>}
-              {item.size !== undefined && <li>費用：{item.costcontent}</li>}
+              {item.number !== undefined && <li>人數：{item.number} 人</li>}
+              {item.cost !== undefined && <li>費用：{item.cost*2 + " / 2小時 "}</li>}
               {item.size !== undefined && <li>大小：{item.size}</li>}
               {item.device !== undefined && <li>設備：{item.device}</li>}
               {item.traffic !== undefined && (
@@ -94,15 +94,13 @@ class VenueDetail extends React.Component {
                   )}
                 ></li>
               )}
-              {item.organizer !== undefined && (
-                <li>
-                  其他相關資訊
+              <li>
+                其他相關資訊
                   <div className="other-wrapper">
-                    <DemoLink text="場地使用規範"></DemoLink>、
+                  <DemoLink text="場地使用規範"></DemoLink>、
                     <DemoLink text="場地平面圖"></DemoLink>
-                  </div>
-                </li>
-              )}
+                </div>
+              </li>
               {item.organizer !== undefined && (
                 <li
                   dangerouslySetInnerHTML={this._renderText(
