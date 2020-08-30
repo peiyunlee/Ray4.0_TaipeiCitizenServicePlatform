@@ -19,7 +19,7 @@ class CaseItem extends React.Component {
         <th>{number}</th>
         <th scope="row"><Link to={"/caseinfo/"+item.index}>{item.name}</Link></th>
         <th scope="row">{item.apply}</th>
-        <th scope="row">{item.day}日</th>
+        <th scope="row">{item.day}</th>
         <th scope="row">{this._renderApply()}</th>
       </tr>
     );

@@ -41,12 +41,12 @@ class CaseInfo extends React.Component {
             <div className="card-p-title">應備文件</div>
             <p dangerouslySetInnerHTML={this._renderText(item.file)}></p>
             <div className="card-p-title">處理天數</div>
-            <p dangerouslySetInnerHTML={this._renderText(item.day + "日")}></p>
+            <p dangerouslySetInnerHTML={this._renderText(item.day)}></p>
             <div className="card-p-title">臨櫃辦理</div>
             <p dangerouslySetInnerHTML={this._renderText(item.noonline)}></p>
           </div>
         </div>
-        <div>{download}</div>
+        {download !== undefined ? <div>{download}</div> : ""}
         <button className="caseinfo-btn-fixed">我要線上申辦</button>
       </div>
     );
@@ -58,7 +58,9 @@ class CaseInfo extends React.Component {
   _renderFile(download) {
     let list = [];
     download.forEach((item, index) => {
-      list.push(<DemoLink classname="card-file-item" key={index} text={item}></DemoLink>);
+      list.push(
+        <DemoLink classname="card-file-item" key={index} text={item}></DemoLink>
+      );
     });
     return list;
   }

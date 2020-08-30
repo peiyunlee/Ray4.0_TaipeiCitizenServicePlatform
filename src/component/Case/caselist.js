@@ -37,7 +37,8 @@ class CaseList extends React.Component {
     let list = [];
     caseData.forEach((i) => {
       const item = i;
-      let index = item[listtype].findIndex((t) => t === listname);
+      let index;
+      index = item[listtype].findIndex((t) => t === listname);
       if (index !== -1) {
         item.listname = item[listtype][index];
         item.listtab = item[listtype + "tab"][index];
@@ -110,7 +111,10 @@ class CaseList extends React.Component {
     let list = [];
     let i = 1;
     this.state.caselist.forEach((item, index) => {
-      if (item.listtab === this.state.activeTab || this.state.activeTab.length === 0) {
+      if (
+        item.listtab === this.state.activeTab ||
+        this.state.activeTab.length === 0
+      ) {
         list.push(<CaseItem key={index} number={i} item={item} />);
         i++;
       }
