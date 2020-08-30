@@ -3,6 +3,7 @@ import React from "react";
 class Flow extends React.Component {
   render() {
     const { light } = this.props;
+    const { text } = this.props;
     return (
       <div className="flow">
         <div className="flow-line"></div>
@@ -19,7 +20,7 @@ class Flow extends React.Component {
           }
         >
           {" "}
-          2<span>填寫租借資料</span>
+          2<span>填寫資料</span>
         </div>
         <div
           className={
@@ -35,7 +36,7 @@ class Flow extends React.Component {
           }
         >
           {" "}
-          4<span>預約完成，待審核</span>
+          4<span>{text}</span>
         </div>
       </div>
     );

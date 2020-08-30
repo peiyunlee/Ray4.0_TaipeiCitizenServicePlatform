@@ -29,7 +29,7 @@ class CaseItem extends React.Component {
     const { item } = this.props;
     let list = [];
     if (item.apply !== "臨櫃") {
-          list.push(<Link key={item.index} to="#"><img key={item.index} src={icon} alt=""/></Link>);
+          list.push(<Link to="/apply/case-step1" key={item.index}><img key={item.index} src={icon} alt=""/></Link>);
     return list;
   }
   }

@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "react-router";
+
 import "./caseinfo.css";
 
 import DemoLink from "../demolink";
@@ -47,7 +49,10 @@ class CaseInfo extends React.Component {
           </div>
         </div>
         {download !== undefined ? <div>{download}</div> : ""}
-        <button className="caseinfo-btn-fixed">我要線上申辦</button>
+        <button className="caseinfo-btn-fixed"
+          onClick={() => {
+            this.props.history.push("/apply/case-step1");
+          }}>我要線上申辦</button>
       </div>
     );
   }
@@ -66,4 +71,4 @@ class CaseInfo extends React.Component {
   }
 }
 
-export default CaseInfo;
+export default  withRouter(CaseInfo);
