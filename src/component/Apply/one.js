@@ -50,7 +50,6 @@ class StepOne extends React.Component {
             }
             onClick={() => {
               this.props.history.push("/apply/step2");
-              this.props.setPropsValue(2,"step")
             }}
           >
             下一步

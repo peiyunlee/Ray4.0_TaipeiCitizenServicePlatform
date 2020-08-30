@@ -15,7 +15,6 @@ class Apply extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
       info: {
         name: "Demo",
         number: "Demo",
@@ -36,7 +35,7 @@ class Apply extends React.Component {
             path="/apply/case-step1"
             component={(props) => (
               <div>
-                <Flow text={["申請完成，待審核"]} light={this.state.step} />
+                <Flow text={["申請完成，待審核"]} light={1} />
                 <CaseApplyOne/>
               </div>
             )}
@@ -46,8 +45,8 @@ class Apply extends React.Component {
             component={(props) => (
               <div>
                 <RentalInfo selectedResult={this.props.selectedResult} />
-                <Flow text={["預約完成，待審核"]} light={this.state.step} />
-                <StepOne setPropsValue={this.setPropsValue} />
+                <Flow text={["預約完成，待審核"]} light={1} />
+                <StepOne/>
               </div>
             )}
           />
@@ -56,7 +55,7 @@ class Apply extends React.Component {
             component={(props) => (
               <div>
                 <RentalInfo selectedResult={this.props.selectedResult} />
-                <Flow text={["預約完成，待審核"]} light={this.state.step} />
+                <Flow text={["預約完成，待審核"]} light={2} />
                 <StepTwo setPropsValue={this.setPropsValue} />
               </div>
             )}
@@ -65,7 +64,7 @@ class Apply extends React.Component {
             path="/apply/step3"
             component={(props) => (
               <div>
-                <Flow text={["預約完成，待審核"]} light={this.state.step} />
+                <Flow text={["預約完成，待審核"]} light={3} />
                 <StepThree
                   setAlert={this.props.setAlert}
                   selectedResult={this.props.selectedResult}
@@ -79,11 +78,9 @@ class Apply extends React.Component {
             path="/apply/step4"
             component={(props) => (
               <div>
-                <Flow text={["預約完成，待審核"]} light={this.state.step} />
+                <Flow text={["預約完成，待審核"]} light={4} />
                 <StepFour
                   selectedResult={this.props.selectedResult}
-                  info={this.state.info}
-                  setPropsValue={this.setPropsValue}
                 />
               </div>
             )}

@@ -170,7 +170,6 @@ class StepTwo extends React.Component {
   }
 
   _handleSubmit() {
-    this.props.setPropsValue(3, "step");
     const o = {
       name: this.state.name,
       number: this.state.number,
