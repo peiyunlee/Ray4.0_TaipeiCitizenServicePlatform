@@ -14,7 +14,7 @@ class VenueCard extends React.Component {
   render() {
     const { item } = this.props;
     return (
-      <Link to={"/venuedetail/" + item.index} className="venue-card">
+      <Link to={"/venuedetail/" + item.index} className="venue-card" onClick={()=>this.props.setStateValue([],"selected")}>
         <div className="district">{item.district}</div>
         <img src={item.img} alt="" className="img" />
         <div className="info">

@@ -99,7 +99,6 @@ class RentalHomeSearchBar extends React.Component {
       keyword: this.state.keyword,
       date: { do: dodate, value: value },
     };
-    console.log(value);
 
     let f = Object.assign({}, this.props.filter, {
       dodistrict: dodistrict,

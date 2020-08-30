@@ -22,7 +22,6 @@ class DayPicker extends React.Component {
         "20:00-22:00",
       ],
       timechecked: [false, false, false, false, false, false, false],
-      selected: [],
     };
     this.monthClick = this.monthClick.bind(this);
     this.dayClick = this.dayClick.bind(this);
@@ -38,6 +37,8 @@ class DayPicker extends React.Component {
 
     this._renderTag = this._renderTag.bind(this);
     this._handleTagInput = this._handleTagInput.bind(this);
+
+    this.sortTime = this.sortTime.bind(this)
   }
 
   render() {
@@ -98,13 +99,10 @@ class DayPicker extends React.Component {
   //   funciton
 
   _handleTagInput(item, index) {
-    let arr = this.state.selected;
+    let arr = this.props.selected;
     arr.splice(index, 1);
-    this.setState({
-      selected: arr,
-    });
+    this.props.setStateValue(arr, "selected");
     this.props.setBtnEnable(arr.length !== 0);
-    console.log(arr.length !== 0)
     if (this.state.day.getTime() === item.day.getTime()) {
       let timechecked = this.state.timechecked;
       timechecked[item.selected] = false;
@@ -116,9 +114,9 @@ class DayPicker extends React.Component {
 
   _renderTag() {
     let list = [];
-    this.state.selected.forEach((item, index) => {
+    this.props.selected.forEach((item, index) => {
       const year = item.day.getFullYear();
-      const month = item.day.getMonth();
+      const month = item.day.getMonth()+1;
       const date = item.day.getDate();
       const labeltext =
         year +
@@ -176,7 +174,7 @@ class DayPicker extends React.Component {
     });
 
     //選取tag
-    let result = this.state.selected;
+    let result = this.props.selected;
     if (arr[index]) {
       result.push({ day: this.state.day, selected: index });
     } else {
@@ -189,6 +187,13 @@ class DayPicker extends React.Component {
         result.splice(findindex, 1);
       }
     }
+    this.sortTime(result);
+
+    this.props.setStateValue(result, "selected");
+    this.props.setBtnEnable(result.length !== 0);
+  }
+
+  sortTime(result){
     result.sort(function (a, b) {
       var dayA = a.day; // ignore upper and lowercase
       var dayB = b.day; // ignore upper and lowercase
@@ -202,10 +207,6 @@ class DayPicker extends React.Component {
       var selectedB = b.selected; // ignore upper and lowercase
       return selectedA - selectedB;
     });
-
-    this.setState({ selected: result });
-    this.props.setBtnEnable(result.length !== 0);
-    console.log(result.length !== 0)
   }
 
   pickName(day, name) {
@@ -229,7 +230,7 @@ class DayPicker extends React.Component {
       });
 
       //讀取時間按鈕狀態
-      let timeresult = this.state.selected.filter(
+      let timeresult = this.props.selected.filter(
         (item) => item.day.getTime() === day.getTime()
       );
       let arr = [false, false, false, false, false, false, false];

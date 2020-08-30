@@ -129,7 +129,7 @@ class RentalResult extends React.Component {
     if (result !== []) {
       show = result.slice(0, this.state.showcount);
       show.forEach((item, index) => {
-        list.push(<VenueCard key={index} item={item} />);
+        list.push(<VenueCard setStateValue={this.props.setStateValue}key={index} item={item} />);
       });
     } else {
       // 找不到

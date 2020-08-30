@@ -10,24 +10,26 @@ import RentalResult from "./component/Rental/result";
 import CaseList from "./component/Case/caselist";
 import CaseInfo from "./component/Case/caseinfo";
 import VenueDetail from "./component/Rental/detail";
+import Apply from "./component/Apply/apply";
 import Header from "./component/header";
 import Footer from "./component/footer";
 import FatFooter from "./component/Home/fatfooter";
 import ScrollToTop from "./component/scrolltotop";
-import StepOne from "./component/Apply/one";
-import StepTwo from "./component/Apply/two";
-import StepThree from "./component/Apply/three";
-import StepFour from "./component/Apply/four";
 import BreadCrumb from "./component/breadcrumb";
+import Button from "./component/button";
 
 import rentalData from "./data/rental";
 import caseData from "./data/case";
 import sortData from "./data/sort";
 
+import cross from "./assets/images/icon/cross-small-gray.png";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showalert: false,
+      alerttype: 0,
       filterlistactive: [false, false, false, false, false],
       timerange: [0, 14],
       rentalData: rentalData,
@@ -86,6 +88,14 @@ class App extends React.Component {
           { checked: false, min: 10000, max: 100000 },
         ],
       },
+      selected: [],
+      selectedResult: {
+        name: "士林公民會館 | 202教室",
+        time: [
+          { day: "2020/7/31(一)", start: "1", end: "2", time: "10:00-14:00" },
+        ],
+        cost: 800,
+      },
     };
 
     this.setRentalSearch = this.setRentalSearch.bind(this);
@@ -97,13 +107,58 @@ class App extends React.Component {
     this.setRentalResult = this.setRentalResult.bind(this);
 
     this.filterListClick = this.filterListClick.bind(this);
-    this.setTimeRange = this.setTimeRange.bind(this);
+    this.setStateValue = this.setStateValue.bind(this);
+    this.setAlert = this.setAlert.bind(this);
   }
 
   render() {
     return (
       <HashRouter className="App">
         <ScrollToTop />
+        <div className={this.state.showalert ? "alert" : "alert alert-hide"}>
+          <div
+            className="alert-mask"
+            onClick={() => this.setState({ showalert: false })}
+          ></div>
+          {this.state.alerttype === 0 ? (
+            <div className="modal">
+              是否要進行登入？
+              <div className="btn-wrapper">
+                <Button
+                  classname="button button3"
+                  type={3}
+                  text="略過"
+                  nextpath="/apply/step1"
+                  alerttype={0}
+                  setAlert={this.setAlert}
+                />
+                <Button classname="button button3" text="登入" nextpaht="" />
+              </div>
+              <img
+                src={cross}
+                alt=""
+                onClick={() => this.setState({ showalert: false })}
+              />
+            </div>
+          ) : (
+            <div className="modal modal-step3">
+              您確定要送出資料嗎？
+              <Button
+                classname="button button3"
+                type={3}
+                text="確認"
+                alerttype={1}
+                nextpath="/apply/step4"
+                setAlert={this.setAlert}
+              />
+              <img
+                src={cross}
+                alt=""
+                onClick={() => this.setState({ showalert: false })}
+              />
+            </div>
+          )}
+        </div>
         <Header showsearchbar={this.state.showsearchbar} />
         <Switch>
           <Route
@@ -139,6 +194,7 @@ class App extends React.Component {
                   filter={this.state.filter}
                   search={this.state.search}
                   result={this.state.rentalResult}
+                  setStateValue={this.setStateValue}
                   setRentalFilter_Time={this.setRentalFilter_Time}
                   setRentalResult={this.setRentalResult}
                   setRentalSearch={this.setRentalSearch}
@@ -183,28 +239,49 @@ class App extends React.Component {
             component={(props) => (
               <div>
                 <BreadCrumb
-                  pathName={["首頁", "公有場地租用首頁", "場地列表", this.state.rentalData[props.match.params.venueindex].name]}
-                  path={["/", "/rental","/rentallist"]}
+                  pathName={[
+                    "首頁",
+                    "公有場地租用首頁",
+                    "場地列表",
+                    this.state.rentalData[props.match.params.venueindex].name,
+                  ]}
+                  path={["/", "/rental", "/rentallist"]}
                 />
                 <VenueDetail
+                  selected={this.state.selected}
+                  setAlert={this.setAlert}
+                  setStateValue={this.setStateValue}
                   item={this.state.rentalData[props.match.params.venueindex]}
                 />
               </div>
             )}
           />
-          <Route path="/apply/step1" component={(props) => <StepOne />} />
-          <Route path="/apply/step2" component={(props) => <StepTwo />} />
-          <Route path="/apply/step3" component={(props) => <StepThree />} />
-          <Route path="/apply/step4" component={(props) => <StepFour />} />
+          <Route
+            path="/apply/:step"
+            component={(props) => (
+              <div>
+                <Apply
+                  setAlert={this.setAlert}
+                  selectedResult={this.state.selectedResult}
+                />
+              </div>
+            )}
+          />
         </Switch>
         <Footer />
       </HashRouter>
     );
   }
-
-  setTimeRange(v) {
+  setAlert(type, b) {
     this.setState({
-      timerange: v,
+      showalert: b,
+      alerttype:type
+    });
+  }
+
+  setStateValue(v, name) {
+    this.setState({
+      [name]: v,
     });
   }
 
@@ -337,7 +414,7 @@ class App extends React.Component {
   }
 
   setRentalFilter_Time(v) {
-    this.setTimeRange(v);
+    this.setStateValue(v, "timerange");
     let result_s,
       result = [];
     result_s = this.setRentalSearchDate(
@@ -382,86 +459,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// setRentalFilter(filter) {
-//   if (filter !== {}) {
-//     this.setState({
-//       filter: filter,
-//     });
-//   }
-
-//   let result = [];
-//   let d, t, n, c;
-//   this.state.rentalData.forEach((item) => {
-//     if (filter.district.every((ditem) => !ditem.checked)) {
-//       d = true;
-//     } else {
-//       d = filter.district.some(
-//         (ditem) => ditem.checked && ditem.name === item.district
-//       );
-//     }
-//     if (filter.type.every((titem) => !titem.checked)) {
-//       t = true;
-//     } else {
-//       t = item.type.some((name) =>
-//         filter.type.some((titem) => titem.checked && titem.name === name)
-//       );
-//     }
-//     if (filter.number.every((nitem) => !nitem.checked)) {
-//       n = true;
-//     } else {
-//       n = filter.number.some(
-//         (nitem) =>
-//           nitem.checked &&
-//           item.number >= nitem.min &&
-//           item.number <= nitem.max
-//       );
-//     }
-//     if (filter.cost.every((citem) => !citem.checked)) {
-//       c = true;
-//     } else {
-//       c = filter.cost.some(
-//         (citem) =>
-//           citem.checked && item.cost >= citem.min && item.cost <= citem.max
-//       );
-//     }
-//     if (d && t && n && c) result.push(item);
-//   });
-// }
-//   let d, t, o;
-//   d = this.state.filter.district;
-//   d.forEach((ditem) => {
-//     ditem.checked = false;
-//   });
-//   t = this.state.filter.type;
-//   t.forEach((titem) => {
-//     titem.checked = false;
-//   });
-//   if (search.district.do && search.type.do) {
-//     d[search.district.index].checked = true;
-//     t[search.type.index].checked = true;
-//   } else if (search.district.do) {
-//     d[search.district.index].checked = true;
-//   } else if (search.type.do) {
-//     t[search.type.index].checked = true;
-//   }
-
-//   o = Object.assign({}, this.state.filter, {
-//     district: d,
-//     type: t,
-//   });
-
-//   this.setState({
-//     filter: o,
-//   });
-
-//   let result = [];
-//   if (search.district.do || search.type.do) {
-//     this.state.rentalData.forEach((item) => {
-//       let d = item.district === search.district.name || !search.district.do;
-//       let t = item.type.includes(search.type.name) || !search.type.do;
-//       if (d && t) result.push(item);
-//     });
-//   } else result = this.state.rentalData;
-//   this.setRentalResult(result);
-// }

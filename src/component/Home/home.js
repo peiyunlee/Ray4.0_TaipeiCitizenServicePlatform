@@ -5,9 +5,9 @@ import SortCard from "./sortcard";
 import Tab from "../tab";
 import "./home.css";
 
-import banner from "../../assets/images/icon/banner.png";
+import banner from "../../assets/images/Frame.png";
 
-import DemoLink from '../demolink';
+import DemoLink from "../demolink";
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,35 +21,28 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <section className="top">
-          <div className="home-banner">
-            <img src={banner} alt="" />
-            <div className="banner-title-wrapper banner-title-wrapper-top">
-              <div className="banner-title banner-title-count">
-                1400+<div className="banner-title-line"></div>
-              </div>
-              <div className="banner-title">便民申辦</div>
-            </div>
-            <div className="banner-title-wrapper">
-              <div className="banner-title banner-title-count">
-                3<span>項</span>
-                <div className="banner-title-line"></div>
-              </div>
-              <div className="banner-title">重點服務</div>
-            </div>
-            <ul>
-              <li>
-                <Link to="/rental">公有場地租用</Link>
-              </li>
-              <li>
-                <DemoLink text="防疫服務專區"></DemoLink>
-              </li>
-              <li>
-                <DemoLink text="臨櫃預約服務"></DemoLink>
-              </li>
-            </ul>
+        <section className="home-banner">
+          <img src={banner} alt="" />
+          <div className="banner-title-wrapper">
+            <div className="banner-title banner-title-count banner-title-1400">1400+</div>
+            <div className="banner-title">便民申辦</div>
+            <div className="banner-title banner-title-count banner-title-3">3項</div>
+            <div className="banner-title">重點服務</div>
           </div>
-          <div className="sort-title">要找什麼服務呢？</div>
+          <div className="banner-content">
+            大平台除了提供服務的詳細資訊，也讓你無時無刻、隨時隨地都可以進行申辦。
+          </div>
+          <ul>
+            <li>
+              <Link to="/rental">公有場地租用</Link>
+            </li>
+            <li>
+              <DemoLink text="防疫服務專區"></DemoLink>
+            </li>
+            <li>
+              <DemoLink text="臨櫃預約服務"></DemoLink>
+            </li>
+          </ul>
         </section>
         <section className="home-sort">
           <div className="sort-tab-wrapper">
@@ -74,7 +67,7 @@ class Home extends React.Component {
     let list = [];
     if (this.state.activeTab === "服務主題") {
       this.state.sortData.theme.forEach((item, index) => {
-        list.push(<SortCard key={index} list={item} listtype={"theme"} />);
+        list.push(<SortCard index={index} key={index} list={item} listtype={"theme"} />);
       });
     } else {
       this.state.sortData.organ.forEach((item) => {

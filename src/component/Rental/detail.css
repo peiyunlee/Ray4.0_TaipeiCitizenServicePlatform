@@ -9,7 +9,7 @@
 .venue-detail-info {
   width: 1170px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 475px 1fr;
   justify-content: space-between;
   grid-column-gap: 60px;
 }
@@ -47,20 +47,27 @@
 
 .venue-detail-info ul {
   padding-left: 25px;
-  height: 365px;
+  height: 385px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: space-between;
+  align-content: space-between;
 }
 
 .venue-detail-info li {
   list-style-type: disc;
   font-size: 20px;
   color: #404040;
-  width: 220px;
+  width: 280px;
 }
 
+.venue-detail-info .other-wrapper a{
+  color:#0081de;
+  font-size: 20px;
+}
+.venue-detail-info .other-wrapper a:hover{
+  text-decoration-line: underline;
+}
 .daypicker-container {
   width: 1170px;
 }
@@ -232,7 +239,7 @@
 }
 
 .timetaglist .tag-item {
-  background: #7fcdd2;
+  background: #ffed92;
   border-radius: 3px;
   height: 48px;
   font-weight: 500;

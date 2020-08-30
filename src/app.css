@@ -56,3 +56,57 @@ input:active {
 .mask-work{
   z-index: 1;
 }
+
+.alert{
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+}
+
+.alert-hide{
+  display: none;
+}
+
+.alert-mask{
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.modal{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 500px;
+  height: 250px;
+  background-color: #fff;
+  color: #404040;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3px;
+  padding-top: 20px;
+}
+
+.modal .btn-wrapper{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-column-gap: 25px;
+}
+
+.modal img{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.modal-step3 button{
+  margin-top: 40px;
+}
