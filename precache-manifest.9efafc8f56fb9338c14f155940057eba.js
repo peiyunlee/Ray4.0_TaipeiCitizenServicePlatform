@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "feea7f8c3ac4584407c15e04c8e50da6",
+    "revision": "162481cd9a78a741fb9ac5ce533d368e",
     "url": "/Ray4.0_TaipeiCitizenServicePlatform/index.html"
   },
   {
-    "revision": "c2fa97380bab4f1d545b",
-    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.6b29ceb0.chunk.css"
+    "revision": "6ff81e86df232b12c3c4",
+    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.579eb724.chunk.css"
   },
   {
-    "revision": "d00e23ab957555a4b71e",
-    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.16c8f68c.chunk.js"
+    "revision": "ed3569013fa9548cc64f",
+    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js"
   },
   {
     "revision": "3453b8997016469371284a28c0e873e2",
-    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.16c8f68c.chunk.js.LICENSE.txt"
+    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c2fa97380bab4f1d545b",
-    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.8b3e752f.chunk.js"
+    "revision": "6ff81e86df232b12c3c4",
+    "url": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.14ee2d35.chunk.js"
   },
   {
     "revision": "a32550e41a29f237d96c",
