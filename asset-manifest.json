@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.579eb724.chunk.css",
-    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.a2682a27.chunk.js",
-    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.a2682a27.chunk.js.map",
+    "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.a2dacd6a.chunk.css",
+    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.dbece21c.chunk.js",
+    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.dbece21c.chunk.js.map",
     "runtime-main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js",
     "runtime-main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js.map",
     "static/js/2.82ed92ea.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js",
     "static/js/2.82ed92ea.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.map",
     "index.html": "/Ray4.0_TaipeiCitizenServicePlatform/index.html",
-    "precache-manifest.84424c8e49d442b34c6e6d36148c497a.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.84424c8e49d442b34c6e6d36148c497a.js",
+    "precache-manifest.4cffacf01c37b452bf79acba85cdc544.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.4cffacf01c37b452bf79acba85cdc544.js",
     "service-worker.js": "/Ray4.0_TaipeiCitizenServicePlatform/service-worker.js",
-    "static/css/main.579eb724.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.579eb724.chunk.css.map",
+    "static/css/main.a2dacd6a.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.a2dacd6a.chunk.css.map",
     "static/js/2.82ed92ea.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.LICENSE.txt",
     "static/media/home.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/101.6d8f99ee.jpg",
     "static/media/Frame.png": "/Ray4.0_TaipeiCitizenServicePlatform/static/media/Frame.f9b8be89.png",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.e73960f0.js",
     "static/js/2.82ed92ea.chunk.js",
-    "static/css/main.579eb724.chunk.css",
-    "static/js/main.a2682a27.chunk.js"
+    "static/css/main.a2dacd6a.chunk.css",
+    "static/js/main.dbece21c.chunk.js"
   ]
 }
