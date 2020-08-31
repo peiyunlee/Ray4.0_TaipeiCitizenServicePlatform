@@ -84,7 +84,7 @@ class RentalHomeSearchBar extends React.Component {
 
   handleSubmit(event) {
     let dodate =
-      this.state.dateend !== "選擇日期" && this.state.dateend !== "選擇日期";
+      this.state.datestart !== "選擇日期" || this.state.dateend !== "選擇日期";
 
     let dodistrict = this.state.district !== "選擇行政區";
 

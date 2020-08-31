@@ -64,8 +64,8 @@ const caseData = [
   {
     index: 1,
     name: "中低收入戶查定",
-    theme: ["社會關懷"],
-    themetab: ["中低收入戶"],
+    theme: ["社會關懷","戶政相關"],
+    themetab: ["中低收入戶","戶籍"],
     organ: ["社會局"],
     organtab: ["社會局"],
     apply: "全線上／臨櫃",
@@ -731,6 +731,66 @@ const caseData = [
     apply: "全線上／臨櫃",
     day: "2日",
   },
+  {
+    "index": 40,
+    "name": "結婚登記",
+    "theme": ["戶政相關"],
+    "themetab": ["戶籍"],
+    "organ": ["民政局"],
+    "organtab": ["民政局"],
+    "apply": "線上 + 臨櫃／臨櫃",
+    "day": "2日"
+  },
+  {
+    "index": 41,
+    "name": "離婚登記",
+    "theme": ["戶政相關"],
+    "themetab": ["戶籍"],
+    "organ": ["民政局"],
+    "organtab": ["民政局"],
+    "apply": "線上 + 臨櫃／臨櫃",
+    "day": "2日"
+  },
+  {
+    "index": 42,
+    "name": "收養登記",
+    "theme": ["戶政相關"],
+    "themetab": ["戶籍"],
+    "organ": ["民政局"],
+    "organtab": ["民政局"],
+    "apply": "線上 + 臨櫃／臨櫃",
+    "day": "2日"
+  },
+  {
+    "index": 43,
+    "name": "門牌編釘",
+    "theme": ["戶政相關"],
+    "themetab": ["其他"],
+    "organ": ["民政局"],
+    "organtab": ["民政局"],
+    "apply": "全線上／臨櫃",
+    "day": "2日"
+  },
+  {
+    "index": 44,
+    "name": "法人更名登記",
+    "theme": ["戶政相關"],
+    "themetab": ["其他"],
+    "organ": ["地政局"],
+    "organtab": ["地政局"],
+    "apply": "線上 + 臨櫃／臨櫃",
+    "day": "2日"
+  },
+  {
+    "index": 45,
+    "name": "管理者變更登記",
+    "theme": ["戶政相關"],
+    "themetab": ["其他"],
+    "organ": ["地政局"],
+    "organtab": ["地政局"],
+    "apply": "線上 + 臨櫃／臨櫃",
+    "day": "2日"
+  }
 ];
 
 export default caseData;

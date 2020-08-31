@@ -133,7 +133,7 @@ class StepTwo extends React.Component {
                   <option defaultValue value="">
                     請選擇
                   </option>
-                  <option value="是">是</option>
+                  <option value="是" disabled>是</option>
                   <option value="否">否</option>
                 </select>
               </div>

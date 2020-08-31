@@ -13,7 +13,7 @@ class VenueDetail extends React.Component {
         "聯絡人：總務處 秦xx<br />電話：276729xx轉630<br />地址：台北市松山區八德路四段xxx號",
       img:
         // [
-        this.props.item.img,
+        props.item.img !== undefined ? props.item.img : ["https://service.gov.taipei/RAWebFiles/rental/41ab0acc761c/20190614/a8e76619770a4cb0.jpg"],
       // "https://blog.xuite.net/hsu042/twblog1/468696142/cover600.jpg",
       // "https://service.gov.taipei/RAWebFiles/rental/3a9fcb5f04e4/20190325/e54a345bde5a46dc.jpg",
       // ],
@@ -60,8 +60,8 @@ class VenueDetail extends React.Component {
                 onClick={() => this.setStateValue(0, "showimg")}
               />
             ) : (
-              ""
-            )}
+                ""
+              )}
             {this.state.img[1] !== undefined ? (
               <img
                 className={
@@ -74,8 +74,8 @@ class VenueDetail extends React.Component {
                 onClick={() => this.setStateValue(1, "showimg")}
               />
             ) : (
-              ""
-            )}
+                ""
+              )}
             {this.state.img[2] !== undefined ? (
               <img
                 className={
@@ -88,8 +88,8 @@ class VenueDetail extends React.Component {
                 onClick={() => this.setStateValue(2, "showimg")}
               />
             ) : (
-              ""
-            )}
+                ""
+              )}
           </div>
           <div className="info-wrapper">
             <h3>{item.name}</h3>
@@ -118,9 +118,9 @@ class VenueDetail extends React.Component {
               <li
                 dangerouslySetInnerHTML={this._renderText(
                   `承辦單位資訊<br /> ${
-                    item.organizer !== undefined
-                      ? item.organizer
-                      : this.state.defaultorganizer
+                  item.organizer !== undefined
+                    ? item.organizer
+                    : this.state.defaultorganizer
                   }`
                 )}
               ></li>

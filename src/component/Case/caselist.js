@@ -110,6 +110,7 @@ class CaseList extends React.Component {
   _renderItem() {
     let list = [];
     let i = 1;
+    
     this.state.caselist.forEach((item, index) => {
       if (
         item.listtab === this.state.activeTab ||

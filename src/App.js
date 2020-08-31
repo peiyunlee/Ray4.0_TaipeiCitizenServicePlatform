@@ -111,6 +111,10 @@ class App extends React.Component {
     this.setAlert = this.setAlert.bind(this);
   }
 
+  componentDidMount(){
+    alert("請使用電腦裝置來觀看，確保有最佳的瀏覽體驗喔")
+  }
+
   render() {
     return (
       <HashRouter className="App">
