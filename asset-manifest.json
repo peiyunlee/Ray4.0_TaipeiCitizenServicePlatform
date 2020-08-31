@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.44a35bd7.chunk.css",
-    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.0139176e.chunk.js",
-    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.0139176e.chunk.js.map",
+    "main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.85806507.chunk.js",
+    "main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/main.85806507.chunk.js.map",
     "runtime-main.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js",
     "runtime-main.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/runtime-main.e73960f0.js.map",
     "static/js/2.82ed92ea.chunk.js": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js",
     "static/js/2.82ed92ea.chunk.js.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.map",
     "index.html": "/Ray4.0_TaipeiCitizenServicePlatform/index.html",
-    "precache-manifest.3b9e7d1d33601bd1a664fa6cbc0768f8.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.3b9e7d1d33601bd1a664fa6cbc0768f8.js",
+    "precache-manifest.e7ff2530284f14da9966e6397a607456.js": "/Ray4.0_TaipeiCitizenServicePlatform/precache-manifest.e7ff2530284f14da9966e6397a607456.js",
     "service-worker.js": "/Ray4.0_TaipeiCitizenServicePlatform/service-worker.js",
     "static/css/main.44a35bd7.chunk.css.map": "/Ray4.0_TaipeiCitizenServicePlatform/static/css/main.44a35bd7.chunk.css.map",
     "static/js/2.82ed92ea.chunk.js.LICENSE.txt": "/Ray4.0_TaipeiCitizenServicePlatform/static/js/2.82ed92ea.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.e73960f0.js",
     "static/js/2.82ed92ea.chunk.js",
     "static/css/main.44a35bd7.chunk.css",
-    "static/js/main.0139176e.chunk.js"
+    "static/js/main.85806507.chunk.js"
   ]
 }
