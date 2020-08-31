@@ -137,7 +137,7 @@ class RentalHomeSearchBar extends React.Component {
         selected: 1,
         datestart:
           start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
-        dateend: "選擇日期",
+        dateend: start.getFullYear() + "年" + m[0] + "月" + start.getDate() + "日",
       });
     } else {
       const end = new Date(day[1]);
