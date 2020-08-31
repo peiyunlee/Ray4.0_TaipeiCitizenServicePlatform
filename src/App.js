@@ -111,8 +111,10 @@ class App extends React.Component {
     this.setAlert = this.setAlert.bind(this);
   }
 
-  componentDidMount(){
-    alert("請使用電腦裝置來觀看，確保有最佳的瀏覽體驗喔")
+  componentDidMount() {
+    if (this.state.alerttype == 0) {
+      alert("請使用電腦裝置來觀看，確保有最佳的瀏覽體驗喔")
+    }
   }
 
   render() {
@@ -145,23 +147,23 @@ class App extends React.Component {
               />
             </div>
           ) : (
-            <div className="modal modal-step3">
-              您確定要送出資料嗎？
-              <Button
-                classname="button button3"
-                type={3}
-                text="確認"
-                alerttype={1}
-                nextpath="/apply/step4"
-                setAlert={this.setAlert}
-              />
-              <img
-                src={cross}
-                alt=""
-                onClick={() => this.setState({ showalert: false })}
-              />
-            </div>
-          )}
+              <div className="modal modal-step3">
+                您確定要送出資料嗎？
+                <Button
+                  classname="button button3"
+                  type={3}
+                  text="確認"
+                  alerttype={1}
+                  nextpath="/apply/step4"
+                  setAlert={this.setAlert}
+                />
+                <img
+                  src={cross}
+                  alt=""
+                  onClick={() => this.setState({ showalert: false })}
+                />
+              </div>
+            )}
         </div>
         <Header showsearchbar={this.state.showsearchbar} />
         <Switch>
@@ -279,7 +281,7 @@ class App extends React.Component {
   setAlert(type, b) {
     this.setState({
       showalert: b,
-      alerttype:type
+      alerttype: type
     });
   }
 
