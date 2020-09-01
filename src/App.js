@@ -18,7 +18,7 @@ import ScrollToTop from "./component/scrolltotop";
 import BreadCrumb from "./component/breadcrumb";
 import Button from "./component/button";
 
-import rentalData from "./data/rental-old2";
+import rentalData from "./data/rental";
 import caseData from "./data/case";
 import sortData from "./data/sort";
 
