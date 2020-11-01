@@ -27,10 +27,10 @@ $ npm run build
 
 ## License
 Credit：李佩芸、孫若盈、張硯涵、李彤/Ray4.0
-##### 原始碼
+#### 原始碼
 MIT License：
 Copyright (c) 2020 Peiyun Lee
 
-##### 設計素材
+#### 設計素材
 ![avatar](https://i.creativecommons.org/l/by-nc/3.0/tw/88x31.png)
 
