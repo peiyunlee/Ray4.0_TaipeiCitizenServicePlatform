@@ -8,7 +8,7 @@
 團隊經過前期研究後，發現「場地租借服務」是此次改造的潛在標的，除了因場地租用的服務四散在不同的營運方外，服務流程本身也相當繁複。因此，在設計方面，期能透過「效率查找」、「良好的資訊呈現」、「優化租借服務流程」三大目標，解決市民在租借場地上的痛點。
 
 ### 團隊成員
-| ![avatar](./src/assets/images/h.png) |  ![avatar](./src/assets/images/t.png) |  ![avatar](./src/assets/images/s.png) | ![avatar](./src/assets/images/.png)|
+| ![avatar](../../src/assets/images/h.png) |  ![avatar](./src/assets/images/t.png) |  ![avatar](./src/assets/images/s.png) | ![avatar](./src/assets/images/.png)|
 | :----: | :----: | :----: |:----:|
 | 張硯涵 | 李彤 | 孫若盈 | 李佩芸 |
 
