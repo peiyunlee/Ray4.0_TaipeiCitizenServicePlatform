@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
 import "rsuite/lib/styles/index.less";
@@ -23,6 +23,40 @@ import caseData from "./data/case";
 import sortData from "./data/sort";
 
 import cross from "./assets/images/icon/cross-small-gray.png";
+
+function PrototypeAlert() {
+  const [visiable, setVisiable] = useState(true)
+  const style = {
+    container: {
+      display: visiable ? 'block' : 'none',
+      padding: '1em',
+      position: 'fixed',
+      width: '100%',
+      background: '#ffffff',
+      bottom: 0,
+    },
+    p: {
+      margin: '1em .67em',
+    },
+    closeButton: {
+      fontSize: '1rem',
+      borderRadius: '50%',
+      width: '3rem',
+      height: '3rem',
+      padding: '.5em',
+      marginRight: 'calc(1.5rem + .5em)',
+      position: 'absolute',
+      top: '1em',
+      right: 0,
+    }
+  }
+  return (<div style={style.container}>
+    <p style={style.p}>本網站為行政院青年學生體檢政府網站計畫，Rescue Action by Youth (RAY) 4.0 產出之網站原型 (Prototype)。</p>
+    <p style={style.p}>若您要前往臺北市政府市民服務大平台網站請前往 <a href="//service.gov.taipei" target="_blank" rel="noopener noreferrer">service.gov.taipei</a> </p>
+    <p style={style.p}>可以在 GitHub 看到這份原型的原始碼 <a href="//github.com/peiyunlee/Ray4.0_TaipeiCitizenServicePlatform/" target="_blank" rel="noopener noreferrer">github.com/peiyunlee/Ray4.0_TaipeiCitizenServicePlatform/</a></p>
+    <button style={style.closeButton} onClick={() => setVisiable(false)}>X</button>
+  </div>)
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -275,6 +309,7 @@ class App extends React.Component {
           />
         </Switch>
         <Footer />
+        <PrototypeAlert />
       </HashRouter>
     );
   }
